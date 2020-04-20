@@ -1,0 +1,31 @@
+.main-content {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-container {
+    color: white;
+    background: grey;
+    margin: 0 auto;
+    padding: 5px;
+    width: 40vw;
+}
+
+form {
+    display: grid;
+}
+
+form input, form div, form button {
+    padding: 10px;
+    margin: 10px 60px;
+    border: 0px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+*:focus {
+    outline: none;
+}
