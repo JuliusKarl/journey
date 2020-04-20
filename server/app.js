@@ -3,6 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 
 // Route Paths
 const productRoutes = require('./api/routes/products');
@@ -28,6 +29,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', '*');
     next();
 });
+
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // Routes which should handle requests.
 app.use('/products', productRoutes);
