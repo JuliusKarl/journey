@@ -6,10 +6,10 @@
     text-align: center;
     margin: 0 auto;}
 
-a h2 { 
+a h3 { 
     color: rgba(0, 0, 0, 1);
     transition: color 0.2s ease-in-out;}
 
-a h2:hover {
+a h3:hover {
     color: rgba(0, 0, 0, 0.6);
     transition: color 0.2s ease-in-out;}

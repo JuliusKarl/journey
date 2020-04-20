@@ -12,7 +12,7 @@ const devotionalRoutes = require('./api/routes/devotional');
 
 // MongoDB connection
 require('dotenv').config();
-const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@juliuskarlcluster0-ql03u.mongodb.net/test?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@cluster0-fzkp0.mongodb.net/test?retryWrites=true&w=majority`;
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true}, function(err) {
     if (err) {console.log(err)}
     else {console.log("Connected to MongoDB... ")}

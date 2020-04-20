@@ -16,6 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -37,6 +38,5 @@
       "last 1 safari version",
       "last 1 ie version"
     ]
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
