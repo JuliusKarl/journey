@@ -18,11 +18,14 @@ export default class Landing extends Component {
                 <div className="main-content">
                     <div style={{height: '15vh'}}></div>
                     <a 
-                    href={this.state.link} 
-                    target="_blank">
-                        <h3>{this.state.devotional}</h3>
-                    </a>
+                        href={this.state.link} 
+                        target="_blank">
+                        <h3 
+                            className="devotional-text">
+                            {this.state.devotional}</h3></a>
                     <hr/>
-                    <h4>{this.state.author}</h4>
+                    <h4 
+                        className="devotional-text">
+                        {this.state.author}</h4>
                 </div>
             </div>)}}

@@ -3,7 +3,7 @@ import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
 import Homepage from './components/homepage/Homepage';
 
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -42,22 +42,23 @@ export default class Appp extends Component {
             <Navbar 
               bg="dark" 
               variant="dark"
-              expand="lg">
+              expand="lg"
+              className="header-text">
       
               <Navbar.Brand href="/">
                   <img src={logo} alt="Echo"/>
                   &nbsp;Journey
               </Navbar.Brand>
       
-              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
-
                       <Nav className="ml-auto">
-                          <Nav.Link href="/">Home</Nav.Link>
-                          <Nav.Link href="/login">Login</Nav.Link>
-                      </Nav>
-
-                  </Navbar.Collapse> */}
+                        <Button 
+                          href="/login" 
+                          variant="outline-light">Login
+                        </Button>
+                      </Nav> 
+                  </Navbar.Collapse>
             </Navbar>
       
             <Router>

@@ -1,10 +1,11 @@
-* {
-    text-decoration: none!important;}
-
 .main-content {
     width: 90%;
     text-align: center;
-    margin: 0 auto;}
+    margin: 0 auto;
+}
+
+.devotional-text {
+    font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;}
 
 a h3 { 
     color: rgba(0, 0, 0, 1);
