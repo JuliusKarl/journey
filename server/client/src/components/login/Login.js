@@ -7,6 +7,7 @@ export default class Login extends Component {
         this.state = {
             login: true,
             emailIsValid: true,
+            emailExists: false,
             passwordIsValid: true,
             name: '',
             email: '',
@@ -16,14 +17,14 @@ export default class Login extends Component {
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
+        this.checkEmailExists = this.checkEmailExists.bind(this);
     }
 
     // Imperative Functions //
     storeValue(e) {
         this.setState({
             [e.target.name]: e.target.value
-        });
-        console.log(this.state);}
+        });}
 
     changeType() {
         this.setState({
@@ -39,6 +40,18 @@ export default class Login extends Component {
             email: e.target.value,
             emailIsValid: re.test(this.state.email.toLowerCase())
         });
+    }
+
+    checkEmailExists() {
+        console.log(this.state.email);
+        fetch('http://localhost:8080/user/check_email', {
+                method: 'POST',
+                headers : { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email:this.state.email})
+            })
+                .then((res) => res.json())
+                .then((data) => this.setState({emailExists: data.status}))
+                .catch((err) => console.log(err))
     }
 
     // Password validator //
@@ -106,9 +119,11 @@ export default class Login extends Component {
                             type="text" 
                             name="email"
                             placeholder="Email"/>
+                            {this.state.emailExists && <p className="error-warning">Mail Exists!</p>}
 
                         <input 
                             onChange={this.storeValue}
+                            onClick={this.checkEmailExists}
                             type="password" 
                             name="password"
                             placeholder="Password"/>

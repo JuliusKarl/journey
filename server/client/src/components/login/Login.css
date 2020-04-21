@@ -1,31 +1,63 @@
+*:focus {outline: none;}
+
 .main-content {
     width: 90%;
     text-align: center;
-    margin: 0 auto;
-}
+    margin: 0 auto;}
 
 .login-container {
     color: white;
     background: grey;
     margin: 0 auto;
     padding: 5px;
-    width: 40vw;
+    width: 40vw;}
+
+@media only screen and (max-width: 1000px) {
+    .main-content {
+        width: 100%!important;}
+
+    .login-container {
+        margin: 0 auto;
+        padding: 1px;
+        width: 60vw;}
+
+    form input, form div, form button {
+        padding: 10px;
+        margin: 10px 60px;
+        border: 0px;}
+
+    form p {
+        padding: 0px;
+        margin: 0px 60px;}   
 }
 
-form {
-    display: grid;
+@media only screen and (max-width: 600px) {
+    .main-content {
+        width: 100%!important;}
+
+    .login-container {
+        margin: 0 auto;
+        width: 100vw;}
+
+    form input, form div, form button {
+        margin: 10px 20px!important;}
+    
+    form p {
+        padding: 0px;
+        margin: 0px 20px!important;}
 }
+
+form {display: grid;}
 
 form input, form div, form button {
     padding: 10px;
     margin: 10px 60px;
-    border: 0px;
-}
+    border: 0px;}
 
-.pointer {
-    cursor: pointer;
-}
+.pointer {cursor: pointer;}
 
-*:focus {
-    outline: none;
-}
+.error-warning {
+    color: #a00c0c;
+    font-size: 12px;
+    margin: 0px 60px;
+    text-align: left;}

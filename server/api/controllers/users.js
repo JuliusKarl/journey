@@ -25,6 +25,27 @@ exports.user_get_all = (req, res, next) => {
 }
 
 // Post one user
+exports.user_check_email = (req, res, next) => {
+    console.log(req.body.email);
+    User.find({ email: req.body.email })
+        .exec()
+        .then(user => {
+            if (user.length >= 1) {
+                return res.status(409).json({
+                    message: "Mail Exists",
+                    status: true
+                })
+            }
+            else {
+                return res.status(200).json({
+                    message: "Mail Available",
+                    status: false
+                })
+            }
+        })
+}
+
+// Post one user
 exports.user_post_one = (req, res, next) => {
     User.find({ email: req.body.email })
         .exec()
@@ -50,7 +71,7 @@ exports.user_post_one = (req, res, next) => {
                         });
                         user
                             .save()
-                            .then(result => {res.status(201).json({message: 'User created'})})
+                            .then(result => {res.redirect('http://localhost:3000/login')})
                             .catch(err => {res.status(500).json({error: err});
                         });
                     }
@@ -74,7 +95,8 @@ exports.user_login = (req, res, next) => {
                 if (err) {
                     res.status(401).json({
                         message: 'Auth Failed'
-                    }); 
+                    })
+                    res.redirect('http://localhost:3000/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -83,10 +105,7 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.status(200).json({
-                        message: 'Auth Successful',
-                        token: token
-                    });
+                    return res.redirect('http://localhost:3000/');
                 }
             })
         })

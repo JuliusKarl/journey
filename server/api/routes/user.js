@@ -10,6 +10,9 @@ router.get('/', UsersController.user_get_all);
 // Create a new user
 router.post('/signup' , UsersController.user_post_one);
 
+// Create a new user
+router.post('/check_email' , UsersController.user_check_email);
+
 // Login a user
 router.post('/login', UsersController.user_login);
 

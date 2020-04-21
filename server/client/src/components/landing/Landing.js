@@ -19,7 +19,8 @@ export default class Landing extends Component {
                     <div style={{height: '15vh'}}></div>
                     <a 
                         href={this.state.link} 
-                        target="_blank">
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         <h3 
                             className="devotional-text">
                             {this.state.devotional}</h3></a>

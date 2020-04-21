@@ -53,10 +53,10 @@ export default class Appp extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="ml-auto">
-                        {/* <Button 
+                        <Button 
                           href="/login" 
                           variant="outline-light">Login
-                        </Button> */}
+                        </Button>
                       </Nav> 
                   </Navbar.Collapse>
             </Navbar>
