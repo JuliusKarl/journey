@@ -23,7 +23,11 @@ export default class Appp extends Component {
   }
 
   componentDidMount() {
-    fetch('/devotional')
+    fetch('/devotional', {
+      headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
       .then(response => response.json())
       .then(response => {
           const devotional = response["1"];
