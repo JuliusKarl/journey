@@ -38,12 +38,12 @@ app.use('/orders', orderRoutes);
 app.use('/user', userRoutes);
 app.use('/devotional', devotionalRoutes);
 
-//  Invalid Endpoint
-app.use('/*', (req, res, next) => {
-    res.status(404).json({
-        error: "Page not Found"
-    });
-})
+// //  Invalid Endpoint
+// app.use('/*', (req, res, next) => {
+//     res.status(404).json({
+//         error: "Page not Found"
+//     });
+// })
 
 // Build Prod
 app.get('*', function (request, response){  
