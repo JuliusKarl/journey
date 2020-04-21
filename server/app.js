@@ -47,7 +47,7 @@ app.use('/*', (req, res, next) => {
 
 // Build Prod
 app.get('*', function (request, response){  
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html')) })
+    response.sendFile(path.resolve(__dirname, 'client/public', 'index.html')) })
 
 module.exports = app;
 
