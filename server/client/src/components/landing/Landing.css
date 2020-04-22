@@ -14,3 +14,9 @@ a h3 {
 a h3:hover {
     color: rgba(0, 0, 0, 0.6);
     transition: color 0.2s ease-in-out;}
+
+@media only screen and (max-width: 1000px) {
+    a h3, hr { 
+        width: 90vw;
+        margin: 0 auto;}
+}
