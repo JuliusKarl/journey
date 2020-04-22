@@ -18,6 +18,7 @@ export default class Login extends Component {
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
+        this.temp = this.temp.bind(this);
     }
 
     // Imperative Functions //
@@ -62,6 +63,13 @@ export default class Login extends Component {
         })
     }
 
+    temp(e) {
+        // action="/user/login">
+        fetch('/user')
+            .then(response => response.json())
+            .then(response => console.log(response))
+    }
+
     render() {
         return (
             <div className="main-content">
@@ -70,7 +78,7 @@ export default class Login extends Component {
                     {this.state.login?
                     <form 
                         method="POST"
-                        action="/user/login">
+                        onSubmit={this.temp}>
                         <div></div>
                         <input  
                             onChange={this.storeValue}
