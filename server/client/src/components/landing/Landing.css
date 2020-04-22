@@ -19,4 +19,7 @@ a h3:hover {
     a h3, hr { 
         width: 90vw;
         margin: 0 auto;}
+    hr {
+        margin: 5px;
+    }
 }
