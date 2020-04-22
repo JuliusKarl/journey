@@ -45,7 +45,7 @@ exports.user_check_email = (req, res, next) => {
         })
 }
 
-// Post one user
+// Signup one user
 exports.user_post_one = (req, res, next) => {
     User.find({ email: req.body.email })
         .exec()
