@@ -105,7 +105,7 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('/');
+                    return res.redirect('http://18.233.138.219/');
                 }
             })
         })
