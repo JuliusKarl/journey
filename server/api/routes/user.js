@@ -5,7 +5,7 @@ const UsersController = require("../controllers/users");
 // const User = require('../models/user');
 
 // Get all existing users
-router.get('/', UsersController.user_get_all);
+// router.get('/', UsersController.user_get_all);
 
 // Create a new user
 router.post('/signup' , UsersController.user_post_one);
@@ -20,6 +20,6 @@ router.post('/login', UsersController.user_login);
 router.get('/:userId', UsersController.user_find_one)
 
 // Delete an existing user by userId
-router.delete('/:userId', UsersController.user_delete_one);
+// router.delete('/:userId', UsersController.user_delete_one);
 
 module.exports = router;
