@@ -70,7 +70,7 @@ export default class Login extends Component {
                     {this.state.login?
                     <form 
                         method="POST"
-                        action="http://127.0.0.1:8080/user/login">
+                        action="/user/login">
                         <div></div>
                         <input  
                             onChange={this.storeValue}
@@ -101,7 +101,7 @@ export default class Login extends Component {
                     :
                     <form 
                         method="POST" 
-                        action="http://localhost:8080/user/signup">
+                        action="/user/signup">
                         <div></div>
 
                         <input 
