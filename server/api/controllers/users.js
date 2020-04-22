@@ -71,7 +71,7 @@ exports.user_post_one = (req, res, next) => {
                         });
                         user
                             .save()
-                            .then(result => {res.redirect('http://localhost:3000/login')})
+                            .then(result => {res.redirect('http://18.233.138.219/login')})
                             .catch(err => {res.status(500).json({error: err});
                         });
                     }
@@ -96,7 +96,7 @@ exports.user_login = (req, res, next) => {
                     res.status(401).json({
                         message: 'Auth Failed'
                     })
-                    res.redirect('http://localhost:3000/login');
+                    res.redirect('http://18.233.138.219/login');
                 }
                 if (result) {
                     const token = jwt.sign({
