@@ -89,7 +89,8 @@ exports.user_login = (req, res, next) => {
             if (user.length < 1) {
                 res.status(401).json({
                     message: 'Auth Failed'
-                });
+                })
+                res.redirect("http://18.233.138.219/login");
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
