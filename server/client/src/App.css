@@ -1,9 +1,3 @@
-.header-text {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif!important; 
-}
-
 .navbar {
     background: rgba(14, 14, 27, 0.9)!important;
     padding: 0.5rem 2.5rem;

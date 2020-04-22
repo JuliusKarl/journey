@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
 
-import logo from './assets/favicon-Bible.png'
+import logo from './assets/bible-icon.png'
 
 export default class Appp extends Component {
   constructor() {
@@ -18,7 +18,8 @@ export default class Appp extends Component {
       devotional: "",
       date: "",
       author: "",
-      link: ""
+      link: "",
+      display_login_button: true
     }
   }
 
@@ -51,14 +52,14 @@ export default class Appp extends Component {
               </Navbar.Brand>
       
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                  <Navbar.Collapse id="basic-navbar-nav">
+                  {this.state.display_login_button && <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="ml-auto">
                         <Button 
                           href="/login" 
                           variant="outline-light">Login
                         </Button>
                       </Nav> 
-                  </Navbar.Collapse>
+                  </Navbar.Collapse>}
             </Navbar>
       
             <Router>
