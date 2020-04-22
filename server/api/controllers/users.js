@@ -24,7 +24,7 @@ exports.user_get_all = (req, res, next) => {
         .catch(err => {res.status(500).json({error: err})})
 }
 
-// Post one user
+// Check email valid
 exports.user_check_email = (req, res, next) => {
     console.log(req.body.email);
     User.find({ email: req.body.email })
@@ -105,7 +105,7 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('http://localhost:3000/');
+                    return res.redirect('/');
                 }
             })
         })
