@@ -70,9 +70,9 @@ export default class Login extends Component {
                     {this.state.login?
                     <form 
                         method="POST"
-                        action="http://localhost:8080/user/login">
+                        action="http://172.31.40.155:8080/user/login">
                         <div></div>
-                        <input 
+                        <input  
                             onChange={this.storeValue}
                             type="text" 
                             name="email"
@@ -84,7 +84,9 @@ export default class Login extends Component {
                             name="password"
                             placeholder="Password"/>
 
-                        <button type="submit">Login</button>
+                        <input 
+                            type="submit"
+                            value="Login"/>
 
                         <div>
                             Not Registered?&nbsp;
@@ -139,9 +141,9 @@ export default class Login extends Component {
                             name="confirmPassword"
                             placeholder="Confirm Password"/>
 
-                        <button 
-                            type="submit">Submit
-                        </button>              
+                        <input 
+                            type="submit" 
+                            value="Submit"/>             
 
                         <div>
                             Already have an account?&nbsp;
