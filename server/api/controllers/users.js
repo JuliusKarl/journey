@@ -90,14 +90,16 @@ exports.user_login = (req, res, next) => {
                 res.status(401).json({
                     message: 'Auth Failed'
                 })
-                res.redirect("http://18.233.138.219/login");
+                //  http://172.31.40.155:8080/login
+                //  http://18.233.138.219/login
+                res.redirect("http://172.31.40.155:8080/login");
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     res.status(401).json({
                         message: 'Auth Failed'
                     })
-                    res.redirect('http://18.233.138.219/login');
+                    res.redirect('http://172.31.40.155:8080/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -106,7 +108,7 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('http://18.233.138.219/');
+                    return res.redirect('http://172.31.40.155:8080/');
                 }
             })
         })
