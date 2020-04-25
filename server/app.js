@@ -38,11 +38,6 @@ app.use('/orders', orderRoutes);
 app.use('/user', userRoutes);
 app.use('/devotional', devotionalRoutes);
 
-// Build Prod
-// app.get('*', function (request, response){  
-//     response.sendFile(path.resolve(__dirname, 'client/public', 'index.html')) 
-// })
-
 module.exports = app;
 
 
@@ -64,4 +59,8 @@ module.exports = app;
 //     res.status(404).json({
 //         error: "Page not Found by Julius"
 //     });
+// })
+// Build Prod
+// app.get('*', function (request, response){  
+//     response.sendFile(path.resolve(__dirname, 'client/public', 'index.html')) 
 // })

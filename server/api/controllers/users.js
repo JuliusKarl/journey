@@ -87,17 +87,17 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                res.status(401).json({
-                    message: 'Auth Failed'
-                })
-                res.redirect("http://18.233.138.219/login");
+                // res.status(401).json({
+                //     message: 'Auth Failed'
+                // })
+                return res.redirect('http://18.233.138.219/login?success=' + 'false');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    res.status(401).json({
-                        message: 'Auth Failed'
-                    })
-                    res.redirect('http://18.233.138.219/login');
+                    // res.status(401).json({
+                    //     message: 'Auth Failed'
+                    // })
+                    return res.redirect('http://18.233.138.219/login?success=' + 'false');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -106,7 +106,12 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('http://18.233.138.219/');
+                    // const cookieOptions = {
+                    //     httpOnly: true,
+                    //     expires: 0 
+                    //    }
+                    //    res.cookie('loginAccessJwt', token, cookieOptions)
+                    return res.redirect('http://18.233.138.219/?success=' + 'true');
                 }
             })
         })

@@ -1,10 +1,10 @@
 .navbar {
     background: rgba(14, 14, 27, 0.9)!important;
-    padding: 0.5rem 2.5rem;
-}
+    padding: 0.5rem 2.5rem;}
 
 @media only screen and (max-width: 1000px) {
     .navbar {
         padding: 0.5rem 1rem;
     }
-}
+    .button {
+        margin-top: 0.5rem;}}

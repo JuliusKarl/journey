@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
 
     // Imperative Functions //
-    storeValue(e) {
+    storeValue(e) {  
         this.setState({
             [e.target.name]: e.target.value
         });}
@@ -44,7 +44,7 @@ export default class Login extends Component {
 
     checkEmailExists() {
         console.log(this.state.email);
-        fetch('http://localhost:8080/user/check_email', {
+        fetch('/user/check_email', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email:this.state.email})

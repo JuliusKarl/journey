@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
 
-import logo from './assets/bible-icon.png'
+import logo from './assets/bible.png'
 
 export default class Appp extends Component {
   constructor() {
@@ -47,14 +47,18 @@ export default class Appp extends Component {
               className="header-text">
       
               <Navbar.Brand href="/">
-                  <img src={logo} alt="Echo"/>
-                  &nbsp;Journey
+                  <img 
+                    src={logo} 
+                    alt="Echo" 
+                    height="35" 
+                    width="33"/>&nbsp;Journey
               </Navbar.Brand>
       
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   {this.state.display_login_button && <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="ml-auto">
                         <Button 
+                          className="button"
                           href="/login" 
                           variant="outline-light">Login
                         </Button>
