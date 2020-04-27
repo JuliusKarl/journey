@@ -58,9 +58,8 @@ exports.user_post_one = (req, res, next) => {
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        return res.status(500).json({
-                            error: err
-                        })
+                        // return res.status(500).json({error: err});
+                        return res.redirect('http://18.233.138.219/login?success=false')
                     }
                     else {
                         const user = new User({
@@ -71,7 +70,7 @@ exports.user_post_one = (req, res, next) => {
                         });
                         user
                             .save()
-                            .then(result => {res.redirect('http://18.233.138.219/login')})
+                            .then(result => {res.redirect('http://18.233.138.219/login?success=true')})
                             .catch(err => {res.status(500).json({error: err});
                         });
                     }
@@ -90,14 +89,14 @@ exports.user_login = (req, res, next) => {
                 // res.status(401).json({
                 //     message: 'Auth Failed'
                 // })
-                return res.redirect('http://18.233.138.219/login?success=' + 'false');
+                return res.redirect('http://18.233.138.219/login?success=false');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     // res.status(401).json({
                     //     message: 'Auth Failed'
                     // })
-                    return res.redirect('http://18.233.138.219/login?success=' + 'false');
+                    return res.redirect('http://18.233.138.219/login?success=false');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -111,12 +110,13 @@ exports.user_login = (req, res, next) => {
                     //     expires: 0 
                     //    }
                     //    res.cookie('loginAccessJwt', token, cookieOptions)
-                    return res.redirect('http://18.233.138.219/?success=' + 'true');
+                    return res.redirect('http://18.233.138.219/?success=true');
                 }
             })
         })
         .catch(err => {
-            res.status(500).json({ error: err })
+            // res.status(500).json({ error: err });
+            return res.redirect('http://18.233.138.219/?success=false');
         })
 }
 

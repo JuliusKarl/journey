@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { isMobile } from "react-device-detect";
 import './Landing.css';
 
 export default class Landing extends Component {
@@ -16,7 +17,7 @@ export default class Landing extends Component {
         return (
             <div>
                 <div className="main-content">
-                    <div style={{height: '15vh'}}></div>
+                    <div style={isMobile? {height: '10vh'} : {height: '15vh'}}></div>
                     <a 
                         href={this.state.link} 
                         target="_blank" 

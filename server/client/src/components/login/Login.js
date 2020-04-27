@@ -8,7 +8,7 @@ export default class Login extends Component {
             login: true,
             emailIsValid: true,
             emailExists: false,
-            passwordIsValid: true,
+            passwordIsValid: false,
             name: '',
             email: '',
             password: ''
@@ -17,8 +17,7 @@ export default class Login extends Component {
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
-        this.checkEmailExists = this.checkEmailExists.bind(this);
-    }
+        this.checkEmailExists = this.checkEmailExists.bind(this);}
 
     // Imperative Functions //
     storeValue(e) {  
@@ -85,6 +84,7 @@ export default class Login extends Component {
                             placeholder="Password"/>
 
                         <input 
+                            disabled = {!this.state.email || !this.state.password}
                             type="submit"
                             value="Login"/>
 
@@ -133,15 +133,13 @@ export default class Login extends Component {
                         <input 
                             onChange={this.comparePassword}
                             onClick={this.state.password && this.comparePassword}
-                            style={
-                                this.state.passwordIsValid ?
-                                    {outline:""}:
-                                    {outline:"2px rgba(196, 33, 33, 0.7) solid"}}
+                            style={this.state.password ? this.state.passwordIsValid? {outline:''} : {outline:"2px rgba(196, 33, 33, 0.7) solid"} : {outline:''}}
                             type="password" 
                             name="confirmPassword"
                             placeholder="Confirm Password"/>
 
                         <input 
+                            disabled = {!this.state.email || !this.state.password || !this.state.passwordIsValid}
                             type="submit" 
                             value="Submit"/>             
 
