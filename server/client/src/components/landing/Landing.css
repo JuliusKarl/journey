@@ -17,10 +17,9 @@ a h3:hover {
 
 @media only screen and (max-width: 1000px) {
     hr {
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin: 5 auto;
     }
-    a h3, hr { 
+    a h3 { 
         width: 90vw;
         margin: 0 auto;}
 }
