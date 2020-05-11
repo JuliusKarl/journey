@@ -106,11 +106,9 @@ class Login extends Component {
                             name="password"
                             placeholder="Password"/>
 
-                        <input
+                        <button
                             disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}
-                            type="submit"
-                            value="Login"/>
+                            onClick={this.checkCredentials}>Login</button>
 
                         <div>
                             Not Registered?&nbsp;
@@ -150,7 +148,7 @@ class Login extends Component {
 
                         <input 
                             onChange={this.storeValue}
-                            type="password" 
+                            type="text" 
                             name="password"
                             placeholder="Password"/>
                         
@@ -162,14 +160,12 @@ class Login extends Component {
                             name="confirmPassword"
                             placeholder="Confirm Password"/>
 
-                        <input 
+                        <button 
                             disabled = {
                                 !this.state.email || 
                                 !this.state.password || 
                                 !this.state.passwordIsValid || 
-                                !this.emailExists}
-                            type="submit" 
-                            value="Submit"/>             
+                                !this.emailExists}>Submit</button>       
 
                         <div>
                             Already have an account?&nbsp;
