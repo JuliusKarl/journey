@@ -11,13 +11,16 @@ export default class Login extends Component {
             passwordIsValid: false,
             name: '',
             email: '',
-            password: ''
+            password: '',
+            validLoginCredentials: true
         }
         this.changeType = this.changeType.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
-        this.checkEmailExists = this.checkEmailExists.bind(this);}
+        this.checkEmailExists = this.checkEmailExists.bind(this);
+        // this.checkCredentials = this.checkCredentials.bind(this);}
+    }
 
     // Imperative Functions //
     storeValue(e) {  
@@ -30,6 +33,20 @@ export default class Login extends Component {
             login: !this.state.login
         });}
 
+    // Check Login Credentials are valid //
+    // checkCredentials(e) {
+    //     console.log("Login reached");
+    //     fetch('/user/login', {
+    //             method: 'POST',
+    //             headers : { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({
+    //                 email : this.state.email,
+    //                 password: this.state.password})
+    //         })
+    //             .then((res) => res.json())
+    //             .then((data) => this.setState({validLoginCredentials: data.status}))
+    //             .catch((err) => console.log(err))
+    // }
 
     // Email authentication //
     validateEmail(e) {
@@ -42,7 +59,6 @@ export default class Login extends Component {
     }
 
     checkEmailExists() {
-        console.log(this.state.email);
         fetch('/user/check_email', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
@@ -71,6 +87,7 @@ export default class Login extends Component {
                         method="POST"
                         action="/user/login">
                         <div></div>
+                        {!this.state.validLoginCredentials && <p className="error-warning">Invalid username or password</p>}
                         <input  
                             onChange={this.storeValue}
                             type="text" 
@@ -85,6 +102,7 @@ export default class Login extends Component {
 
                         <input 
                             disabled = {!this.state.email || !this.state.password}
+                            // onClick={this.checkCredentials}
                             type="submit"
                             value="Login"/>
 
@@ -113,6 +131,7 @@ export default class Login extends Component {
                         <input 
                             onChange={this.validateEmail}
                             onClick={this.state.email && this.validateEmail}
+                            onBlur={this.checkEmailExists}
                             value={this.state.email}
                             style={
                                 this.state.emailIsValid ?
@@ -125,7 +144,6 @@ export default class Login extends Component {
 
                         <input 
                             onChange={this.storeValue}
-                            onClick={this.checkEmailExists}
                             type="password" 
                             name="password"
                             placeholder="Password"/>
@@ -139,7 +157,11 @@ export default class Login extends Component {
                             placeholder="Confirm Password"/>
 
                         <input 
-                            disabled = {!this.state.email || !this.state.password || !this.state.passwordIsValid}
+                            disabled = {
+                                !this.state.email || 
+                                !this.state.password || 
+                                !this.state.passwordIsValid || 
+                                !this.emailExists}
                             type="submit" 
                             value="Submit"/>             
 

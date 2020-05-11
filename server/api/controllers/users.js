@@ -86,16 +86,18 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                // res.status(401).json({
-                //     message: 'Auth Failed'
-                // })
+                res.status(401).json({
+                    message: "Auth Failed",
+                    status: false
+                })
                 return res.redirect('http://18.233.138.219/login?success=false');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    // res.status(401).json({
-                    //     message: 'Auth Failed'
-                    // })
+                    res.status(401).json({
+                        message: "Auth Failed",
+                        status: false
+                    })
                     return res.redirect('http://18.233.138.219/login?success=false');
                 }
                 if (result) {
@@ -105,18 +107,15 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    // const cookieOptions = {
-                    //     httpOnly: true,
-                    //     expires: 0 
-                    //    }
-                    //    res.cookie('loginAccessJwt', token, cookieOptions)
-                    return res.redirect('http://18.233.138.219/?success=true');
+                    return res.redirect('http://18.233.138.219');
                 }
             })
         })
         .catch(err => {
-            // res.status(500).json({ error: err });
-            return res.redirect('http://18.233.138.219/?success=false');
+            res.status(500).json({
+                message: "Auth Failed",
+                status: false
+            })
         })
 }
 

@@ -20,6 +20,6 @@ router.post('/login', UsersController.user_login);
 router.get('/:userId', UsersController.user_find_one)
 
 // Delete an existing user by userId
-// router.delete('/:userId', UsersController.user_delete_one);
+router.delete('/:userId', UsersController.user_delete_one);
 
 module.exports = router;
