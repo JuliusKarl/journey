@@ -19,7 +19,7 @@ export default class Appp extends Component {
       date: "",
       author: "",
       link: "",
-      display_login_button: true
+      display_login_button: false
     }
   }
 
