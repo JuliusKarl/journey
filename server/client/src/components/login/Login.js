@@ -50,6 +50,7 @@ class Login extends Component {
                 .then((res) => res.json())
                 .then((data) => this.setState({validLoginCredentials: data.status}))
                 .then(() => {
+                    console.log(this.state.validLoginCredentials);
                     if (this.state.validLoginCredentials === true) {
                         this.props.history.push('/')
                     }
