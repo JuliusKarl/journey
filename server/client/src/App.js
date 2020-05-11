@@ -19,7 +19,7 @@ export default class Appp extends Component {
       date: "",
       author: "",
       link: "",
-      display_login_button: true
+      display_login_button: false
     }
   }
 
@@ -54,7 +54,7 @@ export default class Appp extends Component {
                     width="33"/>&nbsp;Journey
               </Navbar.Brand>
       
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
                   {this.state.display_login_button && <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="ml-auto">
                         <Button 
