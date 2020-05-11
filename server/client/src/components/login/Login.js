@@ -61,10 +61,10 @@ class Login extends Component {
     // Email authentication //
     validateEmail(e) {
         this.storeValue(e);
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
+        let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
         this.setState({
             email: e.target.value,
-            emailIsValid: re.test(this.state.email.toLowerCase())
+            emailIsValid: regex.test(this.state.email.toLowerCase())
         });
     }
 
