@@ -65,7 +65,7 @@ class Login extends Component {
     }
 
     checkEmailExists() {
-        fetch('/user/check_email', {
+        fetch('http://18.233.138.219/user/check_email', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email:this.state.email})
