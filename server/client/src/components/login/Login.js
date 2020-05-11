@@ -111,8 +111,10 @@ class Login extends Component {
                             placeholder="Password"/>
 
                         <button
+                            type="submit"
                             disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}>Login</button>
+                            // onClick={this.checkCredentials}
+                            >Login</button>
 
                         <div>
                             Not Registered?&nbsp;
