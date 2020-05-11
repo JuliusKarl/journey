@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import './Login.css';
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,14 +13,14 @@ export default class Login extends Component {
             name: '',
             email: '',
             password: '',
-            validLoginCredentials: true
+            validLoginCredentials: null
         }
         this.changeType = this.changeType.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
-        // this.checkCredentials = this.checkCredentials.bind(this);}
+        this.checkCredentials = this.checkCredentials.bind(this);
     }
 
     // Imperative Functions //
@@ -34,19 +35,24 @@ export default class Login extends Component {
         });}
 
     // Check Login Credentials are valid //
-    // checkCredentials(e) {
-    //     console.log("Login reached");
-    //     fetch('/user/login', {
-    //             method: 'POST',
-    //             headers : { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({
-    //                 email : this.state.email,
-    //                 password: this.state.password})
-    //         })
-    //             .then((res) => res.json())
-    //             .then((data) => this.setState({validLoginCredentials: data.status}))
-    //             .catch((err) => console.log(err))
-    // }
+    checkCredentials(e) {
+        e.preventDefault();
+        fetch('/user/login', {
+                method: 'POST',
+                headers : { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email : this.state.email,
+                    password: this.state.password})
+            })
+                .then((res) => res.json())
+                .then((data) => this.setState({validLoginCredentials: data.status}))
+                .then(() => {
+                    if (this.state.validLoginCredentials === true) {
+                        this.props.history.push('/')
+                    }
+                })
+                .catch((err) => console.log(err));
+    }
 
     // Email authentication //
     validateEmail(e) {
@@ -87,7 +93,7 @@ export default class Login extends Component {
                         method="POST"
                         action="/user/login">
                         <div></div>
-                        {!this.state.validLoginCredentials && <p className="error-warning">Invalid username or password</p>}
+                        {this.state.validLoginCredentials === false && <p className="error-warning">Invalid username or password</p>}
                         <input  
                             onChange={this.storeValue}
                             type="text" 
@@ -100,9 +106,9 @@ export default class Login extends Component {
                             name="password"
                             placeholder="Password"/>
 
-                        <input 
+                        <input
                             disabled = {!this.state.email || !this.state.password}
-                            // onClick={this.checkCredentials}
+                            onClick={this.checkCredentials}
                             type="submit"
                             value="Login"/>
 
@@ -176,3 +182,5 @@ export default class Login extends Component {
                     </form>}
                 </div>
             </div>)}};
+
+export default withRouter(Login);

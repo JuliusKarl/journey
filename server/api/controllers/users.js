@@ -90,7 +90,7 @@ exports.user_login = (req, res, next) => {
                     message: "Auth Failed",
                     status: false
                 })
-                return res.redirect('http://18.233.138.219/login?success=false');
+                // return res.redirect('http://18.233.138.219/login?success=false');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
@@ -98,7 +98,7 @@ exports.user_login = (req, res, next) => {
                         message: "Auth Failed",
                         status: false
                     })
-                    return res.redirect('http://18.233.138.219/login?success=false');
+                    // return res.redirect('http://18.233.138.219/login?success=false');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -107,7 +107,10 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('http://18.233.138.219');
+                    return res.status(200).json({
+                        message: "Auth Success",
+                        status: true
+                    })
                 }
             })
         })
