@@ -6,6 +6,19 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
+// Middleware setup
+app.use(morgan("dev"));
+app.use(express.static('uploads'))
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+    next();
+});
+app.use(express.static(path.join(__dirname, "client/build")));
+
 // Route Paths
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
@@ -19,19 +32,6 @@ mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true}, functi
     if (err) {console.log(err)}
     else {console.log("Connected to MongoDB... ")}
 });
-
-// Middleware setup
-app.use(morgan("dev"));
-app.use(express.static('uploads'))
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-app.use(cors());
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-});
-app.use(express.static(path.join(__dirname, "client/build")));
 
 // Routes which should handle requests.
 app.use('/products', productRoutes);
