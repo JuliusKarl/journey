@@ -164,15 +164,14 @@ class Login extends Component {
                             name="confirmPassword"
                             placeholder="Confirm Password"/>
 
-                        <input
-                            type="submit" 
-                            value="Submit"
+                        <button
+                            type="submit"
                             disabled = {
                                 !this.state.email || 
                                 !this.state.password || 
                                 !this.state.passwordIsValid || 
                                 !this.state.emailIsValid ||
-                                this.emailExists}/>     
+                                this.emailExists}>Submit</button>
 
                         <div>
                             Already have an account?&nbsp;
