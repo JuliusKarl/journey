@@ -12,11 +12,6 @@ app.use(express.static('uploads'))
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-});
 app.use(express.static(path.join(__dirname, "client/build")));
 
 // Route Paths
