@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -24,6 +25,7 @@ app.use(morgan("dev"));
 app.use(express.static('uploads'))
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
@@ -44,14 +46,14 @@ module.exports = app;
 //
 //
 // Allow CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    if (req.method == 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, PATCH, POST, DELETE, GET');
-        return res.status(200).json({});
-    };
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', '*');
+//     if (req.method == 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', 'PUT, PATCH, POST, DELETE, GET');
+//         return res.status(200).json({});
+//     };
+// });
 
 // //  Invalid Endpoint
 // app.use('/*', (req, res, next) => {
