@@ -40,7 +40,7 @@ class Login extends Component {
     // Check Login Credentials are valid //
     checkCredentials(e) {
         e.preventDefault();
-        fetch('http://18.233.138.219/user/login', {
+        fetch('172.31.89.21/user/login', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
