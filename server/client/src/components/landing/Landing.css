@@ -16,10 +16,11 @@ a h3:hover {
     transition: color 0.2s ease-in-out;}
 
 @media only screen and (max-width: 1000px) {
-    a h3, hr { 
+    hr {
+        width: 90vw;
+        margin: 5 auto;
+    }
+    a h3 { 
         width: 90vw;
         margin: 0 auto;}
-    hr {
-        margin: 5px;
-    }
 }
