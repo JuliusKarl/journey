@@ -31,7 +31,10 @@ class Login extends Component {
 
     changeType() {
         this.setState({
-            login: !this.state.login
+            login: !this.state.login,
+            name: '',
+            email: '',
+            password: '',
         });}
 
     // Check Login Credentials are valid //
@@ -148,7 +151,7 @@ class Login extends Component {
 
                         <input 
                             onChange={this.storeValue}
-                            type="text" 
+                            type="password" 
                             name="password"
                             placeholder="Password"/>
                         
@@ -160,12 +163,15 @@ class Login extends Component {
                             name="confirmPassword"
                             placeholder="Confirm Password"/>
 
-                        <button 
+                        <input
+                            type="submit" 
+                            value="Submit"
                             disabled = {
                                 !this.state.email || 
                                 !this.state.password || 
                                 !this.state.passwordIsValid || 
-                                !this.emailExists}>Submit</button>       
+                                !this.state.emailIsValid ||
+                                this.emailExists}/>     
 
                         <div>
                             Already have an account?&nbsp;
