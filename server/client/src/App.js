@@ -35,9 +35,6 @@ export default class App extends Component {
               link: devotional.readingUrl
           })
       });
-    fetch('/user/find')
-      // .then(response => response.json())
-      .then(response => {console.log(response)})
   }
 
   render() {
