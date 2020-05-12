@@ -87,11 +87,11 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                res.redirect('http://18.233.138.219/login');
+                return res.redirect('http://18.233.138.219/login');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    res.redirect('http://18.233.138.219/login');
+                    return res.redirect('http://18.233.138.219/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -100,12 +100,12 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    res.redirect('http://18.233.138.219');
+                    return res.redirect('http://18.233.138.219');
                 }
             })
         })
         .catch(err => {
-            res.redirect('http://18.233.138.219/login');
+            return res.redirect('http://18.233.138.219/login');
         })
 }
 
