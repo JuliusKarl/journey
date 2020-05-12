@@ -34,7 +34,10 @@ export default class App extends Component {
               author: devotional.reference,
               link: devotional.readingUrl
           })
-      });
+      // });
+      // fetch('/user/login')
+      //   .then(response => response.json())
+      //   .then(response => {console.log(response)})
   }
 
   render() {
@@ -49,13 +52,14 @@ export default class App extends Component {
               <Navbar.Brand href="/">
                   <img 
                     src={logo} 
-                    alt="Echo" 
+                    alt="Journey" 
                     height="35" 
                     width="33"/>&nbsp;Journey
               </Navbar.Brand>
       
-              <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-                  {this.state.display_login_button && <Navbar.Collapse id="basic-navbar-nav">
+              
+                <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
+                    <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="ml-auto">
                         <Button 
                           className="button"
@@ -63,7 +67,7 @@ export default class App extends Component {
                           variant="outline-light">Login
                         </Button>
                       </Nav> 
-                  </Navbar.Collapse>}
+                  </Navbar.Collapse>
             </Navbar>
       
             <Router>
