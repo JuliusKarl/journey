@@ -87,7 +87,7 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.redirect('http://18.233.138.219/login');
+                res.redirect('http://18.233.138.219/login');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 // if (err) {
@@ -100,15 +100,15 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    return res.redirect('http://18.233.138.219/');
+                    res.redirect('http://18.233.138.219/');
                 }
                 else {
-                    return res.redirect('http://18.233.138.219/login');
+                    res.redirect('http://18.233.138.219/login');
                 }
             })
         })
         .catch(err => {
-            return res.redirect('http://18.233.138.219/login');
+            res.redirect('http://18.233.138.219/login');
         })
 }
 
