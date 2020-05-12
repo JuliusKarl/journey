@@ -37,8 +37,10 @@ export default class App extends Component {
       // });
       // fetch('/user/login')
       //   .then(response => response.json())
-      //   .then(response => {console.log(response)})
+      //   .then(response => {console.log(response)
+    })
   }
+  
 
   render() {
       return (
