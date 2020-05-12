@@ -91,7 +91,7 @@ exports.user_login = (req, res, next) => {
                 //     message: "Auth Failed",
                 //     status: false
                 // })
-                return res.redirect('http://localhost:3000/login');
+                return res.redirect('http://18.233.138.219/login');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
@@ -99,7 +99,7 @@ exports.user_login = (req, res, next) => {
                     //     message: "Auth Failed",
                     //     status: false
                     // })
-                    return res.redirect('http://localhost:3000/login');
+                    return res.redirect('http://18.233.138.219/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -112,7 +112,7 @@ exports.user_login = (req, res, next) => {
                     //     message: "Auth Failed",
                     //     status: true
                     // })
-                    return res.redirect('http://localhost:3000');
+                    return res.redirect('http://18.233.138.219/');
                 }
             })
         })
@@ -121,7 +121,7 @@ exports.user_login = (req, res, next) => {
             //     message: "Auth Failed",
             //     status: false
             // })
-            return res.redirect('http://localhost:3000/login');
+            return res.redirect('http://18.233.138.219/login');
         })
 }
 
