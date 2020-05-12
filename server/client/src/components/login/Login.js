@@ -93,8 +93,7 @@ class Login extends Component {
                     {this.state.login?
                     <form 
                         method="POST"
-                        // action="/user/login"
-                        >
+                        action="/user/login">
                         <div></div>
                         {this.state.validLoginCredentials === false && <p className="error-warning">Invalid username or password</p>}
                         <input  
@@ -111,7 +110,7 @@ class Login extends Component {
 
                         <button
                             disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}
+                            // onClick={this.checkCredentials}
                             >Login</button>
 
                         <div>

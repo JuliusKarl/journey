@@ -87,19 +87,19 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.status(401).json({
-                    message: "Auth Failed",
-                    status: false
-                })
-                // return res.redirect('http://localhost:3000/login');
+                // return res.status(401).json({
+                //     message: "Auth Failed",
+                //     status: false
+                // })
+                return res.redirect('http://localhost:3000/login');
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false
-                    })
-                    // return res.redirect('http://localhost:3000/login');
+                    // return res.status(401).json({
+                    //     message: "Auth Failed",
+                    //     status: false
+                    // })
+                    return res.redirect('http://localhost:3000/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -108,20 +108,20 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    res.status(401).json({
-                        message: "Auth Failed",
-                        status: true
-                    })
-                    // return res.redirect('http://localhost:3000');
+                    // res.status(401).json({
+                    //     message: "Auth Failed",
+                    //     status: true
+                    // })
+                    return res.redirect('http://localhost:3000');
                 }
             })
         })
         .catch(err => {
-            return res.status(401).json({
-                message: "Auth Failed",
-                status: false
-            })
-            // return res.redirect('http://localhost:3000/login');
+            // return res.status(401).json({
+            //     message: "Auth Failed",
+            //     status: false
+            // })
+            return res.redirect('http://localhost:3000/login');
         })
 }
 
