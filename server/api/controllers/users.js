@@ -100,7 +100,7 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    res.redirect('http://google.com');
+                    res.redirect('http://18.233.138.219');
                 }
             })
         })
