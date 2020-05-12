@@ -100,8 +100,6 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    const decoded = jwt.verify(token, process.env.JWT_KEY);
-                    res.status(200).json({token: token, decoded: decoded})
                     res.redirect('http://localhost:3000/');
                 }
             })
