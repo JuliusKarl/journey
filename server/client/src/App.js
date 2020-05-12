@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
-import Homepage from './components/homepage/Homepage';
-
 import {Navbar, Nav, Button} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import logo from './assets/bible.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
-import logo from './assets/bible.png'
 
 export default class App extends Component {
   constructor() {
@@ -18,8 +14,7 @@ export default class App extends Component {
       devotional: "",
       date: "",
       author: "",
-      link: "",
-      display_login_button: true
+      link: ""
     }
   }
 
@@ -34,13 +29,8 @@ export default class App extends Component {
               author: devotional.reference,
               link: devotional.readingUrl
           })
-      // });
-      // fetch('/user/login')
-      //   .then(response => response.json())
-      //   .then(response => {console.log(response)
-    })
+      })
   }
-  
 
   render() {
       return (
@@ -58,24 +48,22 @@ export default class App extends Component {
                     height="35" 
                     width="33"/>&nbsp;Journey
               </Navbar.Brand>
-      
               
-                <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-                    <Navbar.Collapse id="basic-navbar-nav">
-                      <Nav className="ml-auto">
-                        <Button 
-                          className="button"
-                          href="/login" 
-                          variant="outline-light">Login
-                        </Button>
-                      </Nav> 
-                  </Navbar.Collapse>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                  <Button 
+                    className="button"
+                    href="/login" 
+                    onClick={this.loginButton}
+                    variant="outline-light">Login
+                  </Button>
+                </Nav> 
+              </Navbar.Collapse>
             </Navbar>
       
             <Router>
               <Switch>
-                {/* If no JWT token is foundm redirect to landing page screen */}
-                {/* If there is a JWT token stored, redirect to users homepage */}
                 <Route
                   exact
                   path='/'
