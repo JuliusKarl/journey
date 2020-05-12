@@ -96,11 +96,11 @@ exports.user_login = (req, res, next) => {
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    // return res.status(401).json({
-                    //     message: "Auth Failed",
-                    //     status: false
-                    // })
-                    return res.redirect('http://18.233.138.219/login');
+                    return res.status(401).json({
+                        message: "Auth Failed",
+                        status: false
+                    })
+                    // return res.redirect('http://18.233.138.219/login');
                 }
                 if (result) {
                     const token = jwt.sign({
