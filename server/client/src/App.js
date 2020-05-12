@@ -11,7 +11,7 @@ import './App.css';
 
 import logo from './assets/bible.png'
 
-export default class Appp extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -34,7 +34,10 @@ export default class Appp extends Component {
               author: devotional.reference,
               link: devotional.readingUrl
           })
-      })
+      });
+    fetch('/user/find')
+      // .then(response => response.json())
+      .then(response => {console.log(response)})
   }
 
   render() {

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // Get all users
 exports.user_get_all = (req, res, next) => {
+    console.log(req.userData);
     User
         .find()
         .exec()
@@ -98,7 +99,7 @@ exports.user_login = (req, res, next) => {
                     //     message: "Auth Failed",
                     //     status: false
                     // })
-                    res.redirect('http://18.233.138.219/login?');
+                    res.redirect('http://18.233.138.219/login');
                 }
                 if (result) {
                     const token = jwt.sign({
@@ -107,31 +108,31 @@ exports.user_login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: "1h"
                     });
-                    res.status(200);
-                    return res.redirect('http://18.233.138.219/');
+                    const decoded = jwt.verify(token, process.env.JWT_KEY);
+                    res.status(200).json({token: token, decoded: decoded})
+                    res.redirect('http://localhost:3000/');
                 }
             })
         })
         .catch(err => {
-            res.status(500).json({
-                message: "Auth Failed",
-                status: false
-            })
+            // res.status(500).json({
+            //     message: "Auth Failed",
+            //     status: false
+            // })
+            res.redirect('http://18.233.138.219/login');
         })
 }
 
 // Find one user
 exports.user_find_one = (req, res, next) => {
-    const id = req.params.userId;
     User
-        .findById({email: req.body.email})
+        .findOne({email: req.userData['email']})
         .exec()
         .then(result => {
             const response = {
                 _id: result.id,
                 name: result.name,
-                email: result.email,
-                password: "Nice try."
+                email: result.email
             }
             res.status(200).json(response)
         })
