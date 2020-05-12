@@ -47,8 +47,11 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})
             })
+                .then(() => {console.log('0')})
                 .then((res) => res.json())
+                .then(() => {console.log('1')})
                 .then((data) => this.setState({validLoginCredentials: data.status}))
+                .then(() => {console.log('2')})
                 .then(() => {
                     console.log(this.state.validLoginCredentials);
                     if (this.state.validLoginCredentials === true) {
