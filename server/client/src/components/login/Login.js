@@ -47,7 +47,6 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})
             })
-                .then((res) => res.json())
                 .then((data) => this.setState({validLoginCredentials: data.status}))
                 .then(() => {
                     console.log(this.state.validLoginCredentials);
@@ -55,19 +54,9 @@ class Login extends Component {
                         this.props.history.push('/')
                     }
                 })
-                .catch((err) => console.log(err));
-    }
+                .catch((err) => console.log(err));}
 
     // Email authentication //
-    validateEmail(e) {
-        this.storeValue(e);
-        let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
-        this.setState({
-            email: e.target.value,
-            emailIsValid: regex.test(this.state.email.toLowerCase())
-        });
-    }
-
     checkEmailExists() {
         fetch('/user/check_email', {
                 method: 'POST',
@@ -77,6 +66,14 @@ class Login extends Component {
                 .then((res) => res.json())
                 .then((data) => this.setState({emailExists: data.status}))
                 .catch((err) => console.log(err))
+    }
+    validateEmail(e) {
+        this.storeValue(e);
+        let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
+        this.setState({
+            email: e.target.value,
+            emailIsValid: regex.test(this.state.email.toLowerCase())
+        });
     }
 
     // Password validator //
