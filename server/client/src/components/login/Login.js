@@ -47,7 +47,6 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})
             })
-                .then((res) => {console.log(res)})
                 .then((res) => res.json())
                 .then((data) => this.setState({validLoginCredentials: data.status}))
                 .then(() => {
@@ -94,7 +93,8 @@ class Login extends Component {
                     {this.state.login?
                     <form 
                         method="POST"
-                        action="/user/login">
+                        // action="/user/login"
+                        >
                         <div></div>
                         {this.state.validLoginCredentials === false && <p className="error-warning">Invalid username or password</p>}
                         <input  
