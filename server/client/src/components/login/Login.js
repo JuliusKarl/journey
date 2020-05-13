@@ -44,11 +44,11 @@ class Login extends Component {
                     password: this.state.password})})
                 .then((res) => res.json())
                 .then((data) => {
-                    localStorage.setItem("pj_token", data.token);
                     this.setState({
                         validLoginCredentials: data.status})})
-                .then(() => {
+                .then((data) => {
                     if (this.state.validLoginCredentials === true) {
+                        localStorage.setItem("pj_token", data.token);
                         this.props.history.push('/')}})
                 .catch((err) => console.log(err));}
 
