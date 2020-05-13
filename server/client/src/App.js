@@ -36,7 +36,7 @@ export default class App extends Component {
         method: 'POST',
         headers : { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            token: localStorage.getItem('token')})
+            token: localStorage.getItem('pj_token')})
         })
           .then(response => response.json())
           .then(data => {

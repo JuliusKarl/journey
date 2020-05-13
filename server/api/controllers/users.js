@@ -15,14 +15,9 @@ exports.user_get_all = (req, res, next) => {
                         _id: result.id,
                         name: result.name,
                         email: result.email,
-                        password: result.password
-                    }
-                })
-            }
-            res.status(200).json(response)
-        })
-        .catch(err => {res.status(500).json({error: err})})
-}
+                        password: result.password}})}
+            res.status(200).json(response)})
+        .catch(err => {res.status(500).json({error: err})})}
 
 // Check email valid
 exports.user_check_email = (req, res, next) => {
@@ -40,10 +35,7 @@ exports.user_check_email = (req, res, next) => {
                 return res.status(200).json({
                     message: "Mail Available",
                     status: false
-                })
-            }
-        })
-}
+                })}})}
 
 // Signup one user
 exports.user_post_one = (req, res, next) => {
@@ -86,8 +78,7 @@ exports.user_login = (req, res, next) => {
                 if (err) {
                     res.status(401).json({
                         message: "Auth Failed",
-                        status: false
-                    })}
+                        status: false})}
                 if (result) {
                     const token = jwt.sign({
                         email: user[0].email,
@@ -96,18 +87,15 @@ exports.user_login = (req, res, next) => {
                     res.status(401).json({
                         message: "Auth Failed",
                         token: token,
-                        status: true
-                    })}
+                        status: true})}
                 else {
                     res.status(401).json({
                         message: "Auth Failed",
-                        status: false
-                })}})})
+                        status: false})}})})
         .catch(err => {
             res.status(401).json({
                 message: "Auth Failed",
-                status: false
-        })})}
+                status: false})})}
 
 // Find one user
 exports.user_find_one = (req, res, next) => {
@@ -119,12 +107,9 @@ exports.user_find_one = (req, res, next) => {
             const response = {
                 _id: result.id,
                 name: result.name,
-                email: result.email
-            }
-            res.status(200).json(response)
-        })
-        .catch(err => {res.status(500).json({error: err})})
-}
+                email: result.email}
+            res.status(200).json(response)})
+        .catch(err => {res.status(500).json({error: err})})}
 
 // Delete one user
 exports.user_delete_one = (req, res, next) => {
@@ -134,7 +119,6 @@ exports.user_delete_one = (req, res, next) => {
         .exec()
         .then(result => {
             const response = {
-                message: "User deleted."
-            }
+                message: "User deleted."}
             res.status(200).json(response)})
         .catch(err => {console.log(err);res.status(500).json({error: err})})}

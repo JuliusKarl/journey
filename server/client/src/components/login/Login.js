@@ -13,29 +13,25 @@ class Login extends Component {
             name: '',
             email: '',
             password: '',
-            validLoginCredentials: null
-        }
+            validLoginCredentials: null}
         this.changeType = this.changeType.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
-        this.checkCredentials = this.checkCredentials.bind(this);
-    }
+        this.checkCredentials = this.checkCredentials.bind(this);}
 
     // Imperative Functions //
     storeValue(e) {  
         this.setState({
-            [e.target.name]: e.target.value
-        });}
+            [e.target.name]: e.target.value});}
 
     changeType() {
         this.setState({
             login: !this.state.login,
             name: '',
             email: '',
-            password: '',
-        });}
+            password: ''});}
 
     // Check Login Credentials are valid //
     checkCredentials(e) {
@@ -45,21 +41,18 @@ class Login extends Component {
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email : this.state.email,
-                    password: this.state.password})
-            })
+                    password: this.state.password})})
                 .then((res) => res.json())
                 .then((data) => {
-                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("pj_token", data.token);
                     this.setState({
                         validLoginCredentials: data.status})})
                 .then(() => {
                     if (this.state.validLoginCredentials === true) {
-                        this.props.history.push('/')
-                    }
-                })
+                        this.props.history.push('/')}})
                 .catch((err) => console.log(err));}
 
-    // Email authentication //
+    /** Email Authentication */
     checkEmailExists() {
         fetch('/user/check_email', {
                 method: 'POST',
