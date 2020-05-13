@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const UsersController = require("../controllers/users");
-// const checkAuth = require("../middleware/check-auth");
 
 // Get all existing users
 router.get('/', UsersController.user_get_all);
@@ -16,7 +15,7 @@ router.post('/check_email' , UsersController.user_check_email);
 router.post('/login', UsersController.user_login);
 
 // Find an existing user by userID
-router.get('/find', UsersController.user_find_one)
+router.post('/find', UsersController.user_find_one)
 
 // Delete an existing user by userId
 router.delete('/:userId', UsersController.user_delete_one);

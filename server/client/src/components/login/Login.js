@@ -48,9 +48,11 @@ class Login extends Component {
                     password: this.state.password})
             })
                 .then((res) => res.json())
-                .then((data) => this.setState({validLoginCredentials: data.status}))
+                .then((data) => {
+                    localStorage.setItem("token", data.token);
+                    this.setState({
+                        validLoginCredentials: data.status})})
                 .then(() => {
-                    console.log(this.state.validLoginCredentials);
                     if (this.state.validLoginCredentials === true) {
                         this.props.history.push('/')
                     }
@@ -110,7 +112,7 @@ class Login extends Component {
 
                         <button
                             disabled = {!this.state.email || !this.state.password}
-                            // onClick={this.checkCredentials}
+                            onClick={this.checkCredentials}
                             >Login</button>
 
                         <div>

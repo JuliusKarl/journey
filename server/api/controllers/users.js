@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 // Get all users
 exports.user_get_all = (req, res, next) => {
-    console.log(req.userData);
     User
         .find()
         .exec()
@@ -73,12 +72,7 @@ exports.user_post_one = (req, res, next) => {
                             .save()
                             .then(result => {res.redirect('http://18.233.138.219/login?success=true')})
                             .catch(err => {res.status(500).json({error: err});
-                        });
-                    }
-                });
-            }
-        })
-}
+                        });}});}})}
 
 // Login one user
 exports.user_login = (req, res, next) => {
@@ -87,35 +81,39 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                res.redirect('http://18.233.138.219/login');
-            }
+                res.redirect('http://18.233.138.219/login');}
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-                // if (err) {
-                //     return res.redirect('http://18.233.138.219/login');
-                // }
+                if (err) {
+                    res.status(401).json({
+                        message: "Auth Failed",
+                        status: false
+                    })}
                 if (result) {
                     const token = jwt.sign({
                         email: user[0].email,
                         id: user[0]._id
-                    }, process.env.JWT_KEY, {
-                        expiresIn: "1h"
-                    });
-                    res.redirect('http://18.233.138.219/');
-                }
+                    }, process.env.JWT_KEY);
+                    res.status(401).json({
+                        message: "Auth Failed",
+                        token: token,
+                        status: true
+                    })}
                 else {
-                    res.redirect('http://18.233.138.219/login');
-                }
-            })
-        })
+                    res.status(401).json({
+                        message: "Auth Failed",
+                        status: false
+                })}})})
         .catch(err => {
-            res.redirect('http://18.233.138.219/login');
-        })
-}
+            res.status(401).json({
+                message: "Auth Failed",
+                status: false
+        })})}
 
 // Find one user
 exports.user_find_one = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
     User
-        .findOne({email: req.userData['email']})
+        .findOne({email: decoded["email"]})
         .exec()
         .then(result => {
             const response = {
@@ -138,7 +136,5 @@ exports.user_delete_one = (req, res, next) => {
             const response = {
                 message: "User deleted."
             }
-            res.status(200).json(response)
-        })
-        .catch(err => {console.log(err);res.status(500).json({error: err})})
-}
+            res.status(200).json(response)})
+        .catch(err => {console.log(err);res.status(500).json({error: err})})}

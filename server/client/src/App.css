@@ -2,6 +2,10 @@
     background: rgba(14, 14, 27, 0.9)!important;
     padding: 0.5rem 2.5rem;}
 
+.btn {
+    margin-left: 10px;
+    color: white;}
+
 @media only screen and (max-width: 1000px) {
     .navbar {
         padding: 0.5rem 1rem;

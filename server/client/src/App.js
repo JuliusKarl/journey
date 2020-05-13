@@ -14,7 +14,8 @@ export default class App extends Component {
       devotional: "",
       date: "",
       author: "",
-      link: ""
+      link: "",
+      username: null,
     }
   }
 
@@ -27,10 +28,22 @@ export default class App extends Component {
               devotional: devotional.text,
               date: response.date,
               author: devotional.reference,
-              link: devotional.readingUrl
+              link: devotional.readingUrl,
           })
       })
-  }
+
+      fetch('/user/find', {
+        method: 'POST',
+        headers : { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            token: localStorage.getItem('token')})
+        })
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+                username: data.name
+            })
+        })}
 
   render() {
       return (
@@ -50,6 +63,7 @@ export default class App extends Component {
               </Navbar.Brand>
               
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              {!this.state.username ?
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                   <Button 
@@ -59,7 +73,25 @@ export default class App extends Component {
                     variant="outline-light">Login
                   </Button>
                 </Nav> 
-              </Navbar.Collapse>
+              </Navbar.Collapse> 
+              :
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                  <Button 
+                      className="button" 
+                      variant="link">Prayers
+                  </Button>
+                  <Button 
+                      className="button" 
+                      variant="link">Devotionals
+                  </Button>
+                  <Button 
+                      className="button" 
+                      variant="link">Account
+                  </Button>
+                </Nav> 
+              </Navbar.Collapse> 
+              }
             </Navbar>
       
             <Router>
