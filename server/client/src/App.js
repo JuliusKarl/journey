@@ -28,22 +28,17 @@ export default class App extends Component {
               devotional: devotional.text,
               date: response.date,
               author: devotional.reference,
-              link: devotional.readingUrl,
-          })
-      })
+              link: devotional.readingUrl,})})
 
       fetch('/user/find', {
         method: 'POST',
         headers : { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            token: localStorage.getItem('pj_token')})
-        })
-          .then(response => response.json())
-          .then(data => {
-            this.setState({
-                username: data.name
-            })
-        })}
+            token: localStorage.getItem('pj_token')})})
+            .then(response => response.json())
+            .then(data => {
+              this.setState({
+                  username: data.name})})}
 
   render() {
       return (

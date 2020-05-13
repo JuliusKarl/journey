@@ -38,18 +38,19 @@ class Login extends Component {
         e.preventDefault();
         fetch('/user/login', {
                 method: 'POST',
-                headers : { 'Content-Type': 'application/json' },
+                // headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email : this.state.email,
                     password: this.state.password})})
                 .then((res) => res.json())
                 .then((data) => {
+                    localStorage.setItem("pj_token", data.token);
                     this.setState({
                         validLoginCredentials: data.status})})
                 .then((data) => {
                     if (this.state.validLoginCredentials === true) {
-                        localStorage.setItem("pj_token", data.token);
-                        this.props.history.push('/')}})
+                        this.props.history.push('/')
+                        window.location.reload(true);}})
                 .catch((err) => console.log(err));}
 
     /** Email Authentication */

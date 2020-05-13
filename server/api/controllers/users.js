@@ -73,12 +73,12 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                res.status(401).json({
+                return res.status(401).json({
                     message: "Auth Failed",
                     status: false});}
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    res.status(401).json({
+                    return res.status(401).json({
                         message: "Auth Failed",
                         status: false})}
                 if (result) {
@@ -86,12 +86,12 @@ exports.user_login = (req, res, next) => {
                         email: user[0].email,
                         id: user[0]._id
                     }, process.env.JWT_KEY);
-                    res.status(401).json({
-                        message: "Auth Failed",
+                    return res.status(200).json({
+                        message: "Auth Success",
                         token: token,
                         status: true})}
                 else {
-                    res.status(401).json({
+                    return res.status(401).json({
                         message: "Auth Failed",
                         status: false})}})})
         .catch(err => {
