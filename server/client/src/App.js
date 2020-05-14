@@ -3,7 +3,7 @@ import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
 import {Navbar, Nav, Button} from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import logo from './assets/bible.png';
+import logo from './assets/bible-logo-text.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -54,7 +54,7 @@ export default class App extends Component {
                     src={logo} 
                     alt="Journey" 
                     height="35" 
-                    width="33"/>&nbsp;Journey
+                    width="150"/>
               </Navbar.Brand>
               {this.state.showLogin && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
               {this.state.showLogin ?
