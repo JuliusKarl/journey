@@ -4,8 +4,6 @@
   "description": "Prayer Journal using React Fronten + Express Backend",
   "main": "server.js",
   "scripts": {
-    "start": "npm run server",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
     "client": "npm start --prefix client ",
@@ -30,8 +28,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  },
-  "engines": {
-        "node": "10.14.1"
   }
 }
