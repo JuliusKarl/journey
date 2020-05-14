@@ -50,7 +50,6 @@ exports.user_post_one = (req, res, next) => {
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        // return res.status(500).json({error: err});
                         return res.redirect('http://18.233.138.219/login')
                     }
                     else {
@@ -62,7 +61,7 @@ exports.user_post_one = (req, res, next) => {
                         });
                         user
                             .save()
-                            .then(result => {res.redirect('http://18.233.138.219/login?success=true')})
+                            .then(result => {res.redirect('http://18.233.138.219/login')})
                             .catch(err => {res.status(500).json({error: err});
                         });}});}})}
 

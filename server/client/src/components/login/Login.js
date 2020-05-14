@@ -21,7 +21,7 @@ class Login extends Component {
         this.checkEmailExists = this.checkEmailExists.bind(this);
         this.checkCredentials = this.checkCredentials.bind(this);}
 
-    // Imperative Functions //
+    /** Imperative Functions */
     storeValue(e) {  
         this.setState({
             [e.target.name]: e.target.value});}
@@ -33,7 +33,7 @@ class Login extends Component {
             email: '',
             password: ''});}
 
-    // Check Login Credentials are valid //
+    /** Login credential validator */
     checkCredentials(e) {
         e.preventDefault();
         fetch('/user/login', {
@@ -42,44 +42,40 @@ class Login extends Component {
                 body: JSON.stringify({
                     email : this.state.email,
                     password: this.state.password})})
-                .then((res) => res.json)
-                .then((data) => {
-                    localStorage.setItem("pj_token", data.token);
-                    this.setState({
-                        validLoginCredentials: data.status})})
-                .then((data) => {
-                    if (this.state.validLoginCredentials === true) {
-                        this.props.history.push('/')
-                        window.location.reload(true);}})
-                .catch((err) => console.log(err));}
+                        .then((res) => res.json)
+                        .then((res) => console.log(res))
+                        .then((data) => {
+                            localStorage.setItem("pj_token", data.token);
+                            this.setState({
+                                validLoginCredentials: data.status})})
+                        .then((data) => {
+                            if (this.state.validLoginCredentials === true) {
+                                this.props.history.push('/')
+                                window.location.reload(true);}})
+                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {
         fetch('/user/check_email', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
-                body: JSON.stringify({email:this.state.email})
-            })
-                .then((res) => res.json())
-                .then((data) => this.setState({emailExists: data.status}))
-                .catch((err) => console.log(err))
-    }
+                body: JSON.stringify({email:this.state.email})})
+                    .then((res) => res.json())
+                    .then((data) => this.setState({emailExists: data.status}))
+                    .catch((err) => console.log(err))}
+
     validateEmail(e) {
         this.storeValue(e);
         let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
         this.setState({
             email: e.target.value,
-            emailIsValid: regex.test(this.state.email.toLowerCase())
-        });
-    }
+            emailIsValid: regex.test(this.state.email.toLowerCase())});}
 
-    // Password validator //
+    /** Password Validator */
     comparePassword(e) {
         let valid = e.target.value.localeCompare(this.state.password);
         this.setState({
-            passwordIsValid: !Boolean(valid)
-        })
-    }
+            passwordIsValid: !Boolean(valid)})}
 
     render() {
         return (
