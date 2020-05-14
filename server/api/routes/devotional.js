@@ -4,7 +4,7 @@ const DevotionalController = require("../controllers/devotional");
 
 const Devotional = require('../models/devotional');
 
-// Get devotional
+/** Get Devotional */
 router.get('/', DevotionalController.devotional_get_one);
 
 module.exports = router;

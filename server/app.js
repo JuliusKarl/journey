@@ -31,28 +31,3 @@ app.use('/user', userRoutes);
 app.use('/devotional', devotionalRoutes);
 
 module.exports = app;
-
-
-// EXTRA CODE BELOW!!!
-//
-//
-// Allow CORS
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Headers', '*');
-//     if (req.method == 'OPTIONS') {
-//         res.header('Access-Control-Allow-Methods', 'PUT, PATCH, POST, DELETE, GET');
-//         return res.status(200).json({});
-//     };
-// });
-
-// //  Invalid Endpoint
-// app.use('/*', (req, res, next) => {
-//     res.status(404).json({
-//         error: "Page not Found by Julius"
-//     });
-// })
-// Build Prod
-// app.get('*', function (request, response){  
-//     response.sendFile(path.resolve(__dirname, 'client/public', 'index.html')) 
-// })

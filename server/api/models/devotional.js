@@ -8,7 +8,6 @@ const devotionalSchema = mongoose.Schema({
     verses: { type: Array, required: true },
     chapter: { type: String, required: true },
     reference: { type: String, required: true },
-    readingUrl: { type: String, required: true },
-});
+    readingUrl: { type: String, required: true },});
 
 module.exports = mongoose.model("Devotional", devotionalSchema);

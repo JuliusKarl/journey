@@ -13,13 +13,15 @@ class Login extends Component {
             name: '',
             email: '',
             password: '',
-            validLoginCredentials: null}
+            validLoginCredentials: null,
+            validSignupCredentials: null}
         this.changeType = this.changeType.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
         this.storeValue = this.storeValue.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
-        this.checkCredentials = this.checkCredentials.bind(this);}
+        this.checkCredentials = this.checkCredentials.bind(this);
+        this.checkSignup = this.checkSignup.bind(this)}
 
     /** Imperative Functions */
     storeValue(e) {  
@@ -33,7 +35,7 @@ class Login extends Component {
             email: '',
             password: ''});}
 
-    /** Login credential validator */
+    /** Credential validator */
     checkCredentials(e) {
         e.preventDefault();
         fetch('/user/log_in', {
@@ -52,6 +54,28 @@ class Login extends Component {
                                 this.props.history.push('/')
                                 window.location.reload(true);}})
                         .catch((err) => console.log(err));}
+    checkSignup(e) {
+        e.preventDefault();
+        fetch('/user/signup', {
+                method: 'POST',
+                headers : { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name : this.state.name,
+                    email : this.state.email,
+                    password: this.state.password})})
+                        .then((res) => res.json())
+                        .then((data) => {
+                            this.setState({
+                                validSignupCredentials: data.status})})
+                        .then((data) => {
+                            if (this.state.validSignupCredentials === true) {
+                                this.changeType()}
+                                setTimeout(
+                                    function() {
+                                        this.setState({validSignupCredentials: null});}
+                                .bind(this),2000);})
+                        .catch((err) => console.log(err));
+    }
 
     /** Email Authentication */
     checkEmailExists() {
@@ -83,17 +107,21 @@ class Login extends Component {
                 <div className="login-container">
                     {this.state.login?
                     <form 
+                        id="login_form"
                         method="POST">
-                        <div></div>
-                        {this.state.validLoginCredentials === false && <p className="error-warning">Invalid username or password</p>}
+                        {this.state.validLoginCredentials === null && this.state.validSignupCredentials === null && <div></div>}
+                        {this.state.validLoginCredentials === false && <div className="error-warning">Invalid username or password</div>}
+                        {this.state.validSignupCredentials === true && <div className="success-text">Signup succesful!</div>}
                         <input  
                             onChange={this.storeValue}
+                            value={this.state.email}
                             type="text" 
                             name="email"
                             placeholder="Email"/>
 
                         <input 
                             onChange={this.storeValue}
+                            value={this.state.password}
                             type="password" 
                             name="password"
                             placeholder="Password"/>
@@ -114,12 +142,13 @@ class Login extends Component {
                     </form>
                     :
                     <form 
-                        method="POST" 
-                        action="/user/signup">
+                        id="signup_form"
+                        method="POST">
                         <div></div>
-
+                        {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
                         <input 
                             onChange={this.storeValue}
+                            value={this.state.name}
                             type="text" 
                             name="name"
                             placeholder="Name"/>
@@ -140,6 +169,7 @@ class Login extends Component {
 
                         <input 
                             onChange={this.storeValue}
+                            value={this.state.password}
                             type="password" 
                             name="password"
                             placeholder="Password"/>
@@ -154,6 +184,7 @@ class Login extends Component {
 
                         <button
                             type="submit"
+                            onClick={this.checkSignup}
                             disabled = {
                                 !this.state.email || 
                                 !this.state.password || 

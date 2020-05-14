@@ -2,6 +2,7 @@ const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
+const domain = process.env.DOMAIN;
 
 /** Get all users */
 exports.user_get_all = (req, res, next) => {
@@ -77,7 +78,9 @@ exports.user_post_one = (req, res, next) => {
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        return res.redirect('http://18.233.138.219/login')}
+                        return res.status(200).json({
+                            message: "Auth Failed",
+                            status: false})}
                     else {
                         const user = new User({
                             _id: new mongoose.Types.ObjectId,
@@ -86,8 +89,13 @@ exports.user_post_one = (req, res, next) => {
                             password: hash});
                         user
                             .save()
-                            .then(result => {res.redirect('http://18.233.138.219/login')})
-                            .catch(err => {res.status(500).json({error: err});});}});}})}
+                            .then(result => {
+                                return res.status(200).json({
+                                    message: "Auth Success",
+                                    status: true})})
+                            .catch(err => {
+                                res.status(500).json({
+                                    error: err});});}});}})}
 
 /** Find one user */
 exports.user_find_one = (req, res, next) => {

@@ -16,10 +16,10 @@ export default class App extends Component {
       author: "",
       link: "",
       username: null,
-    }
-  }
+      showLogin: true}}
 
   componentDidMount() {
+    /** Get devotional from server */
     fetch('/devotional')
       .then(response => response.json())
       .then(response => {
@@ -28,8 +28,9 @@ export default class App extends Component {
               devotional: devotional.text,
               date: response.date,
               author: devotional.reference,
-              link: devotional.readingUrl,})})
+              link: devotional.readingUrl})})
 
+      /** Authenticate user */
       fetch('/user/find', {
         method: 'POST',
         headers : { 'Content-Type': 'application/json' },
@@ -39,7 +40,6 @@ export default class App extends Component {
             .then(data => {
               this.setState({
                   username: data.name})})}
-
   render() {
       return (
           <div className="App">
@@ -56,15 +56,14 @@ export default class App extends Component {
                     height="35" 
                     width="33"/>&nbsp;Journey
               </Navbar.Brand>
-              
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              {!this.state.username ?
+              {this.state.showLogin && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
+              {this.state.showLogin ?
+              !this.state.username ?
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                   <Button 
                     className="button"
                     href="/login" 
-                    onClick={this.loginButton}
                     variant="outline-light">Login
                   </Button>
                 </Nav> 
@@ -86,7 +85,7 @@ export default class App extends Component {
                   </Button>
                 </Nav> 
               </Navbar.Collapse> 
-              }
+              : ''}
             </Navbar>
       
             <Router>
@@ -110,7 +109,4 @@ export default class App extends Component {
       
               </Switch>
             </Router>
-          </div>
-        );
-    }
-}
+          </div>);}}

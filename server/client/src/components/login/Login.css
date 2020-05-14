@@ -60,7 +60,13 @@ input[type="submit"]:disabled {
 .pointer {cursor: pointer;}
 
 .error-warning {
-    color: #a00c0c;
-    font-size: 12px;
+    color: #c72828;
+    font-size: 14px;
     margin: 0px 60px;
     text-align: left;}
+
+.success-text {
+    color: #6cbd2b;
+    font-size: 14px;
+    margin: 0px 60px;
+    text-align: center;}

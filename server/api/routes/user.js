@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UsersController = require("../controllers/users");
+const UsersController = require("../controllers/user");
 
 /** Get all existing users */
 router.get('/', UsersController.user_get_all);

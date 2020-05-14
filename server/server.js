@@ -5,5 +5,4 @@ const app = require('./app');
 
 const server = http.createServer(app);
 server.listen(port, function() {
-    console.log(`Listening on port ${port}`);
-});
+    console.log(`Listening on port ${port}`);});

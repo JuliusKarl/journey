@@ -5,11 +5,7 @@ module.exports = (req, res, next) => {
         const token = req.headers['authorization'] && req.headers['authorization'].split(' ')[1];
         const decoded = jwt.verify(token, process.env.JWT_KEY)
         req.user = decoded;
-        next();
-    }
+        next();}
     catch (error) {
         return res.status(401).json({
-            message: "Auth failed"
-        })
-    }
-};
+            message: "Auth failed"})}};
