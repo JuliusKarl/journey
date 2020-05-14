@@ -35,7 +35,7 @@ class Login extends Component {
 
     /** Login credential validator */
     checkCredentials(e) {
-        e.preventDefault();
+        // e.preventDefault();
         fetch('/user/log_in', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
-// Get all users
+/** Get all users */
 exports.user_get_all = (req, res, next) => {
     User
         .find()
@@ -19,7 +19,7 @@ exports.user_get_all = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
-// Check email valid
+/** Check email exists */
 exports.user_check_email = (req, res, next) => {
     console.log(req.body.email);
     User.find({ email: req.body.email })
@@ -28,44 +28,36 @@ exports.user_check_email = (req, res, next) => {
             if (user.length >= 1) {
                 return res.status(409).json({
                     message: "Mail Exists",
-                    status: true
-                })
-            }
+                    status: true})}
             else {
                 return res.status(200).json({
                     message: "Mail Available",
-                    status: false
-                })}})}
+                    status: false})}})}
 
-// Signup one user
+/** Sign up one user */
 exports.user_post_one = (req, res, next) => {
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
             if (user.length >= 1) {
                 return res.status(409).json({
-                    message: "Mail Exists"
-                })
-            }
+                    message: "Mail Exists"})}
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        return res.redirect('http://18.233.138.219/login')
-                    }
+                        return res.redirect('http://18.233.138.219/login')}
                     else {
                         const user = new User({
                             _id: new mongoose.Types.ObjectId,
                             name: req.body.name,
                             email: req.body.email,
-                            password: hash
-                        });
+                            password: hash});
                         user
                             .save()
                             .then(result => {res.redirect('http://18.233.138.219/login')})
-                            .catch(err => {res.status(500).json({error: err});
-                        });}});}})}
+                            .catch(err => {res.status(500).json({error: err});});}});}})}
 
-// Login one user
+/** Log in one user */
 exports.user_login = (req, res, next) => {
     User
         .find({ email: req.body.email })
@@ -98,7 +90,7 @@ exports.user_login = (req, res, next) => {
                 message: "Auth Failed",
                 status: false})})}
 
-// Find one user
+/** Find one user */
 exports.user_find_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
     User
@@ -112,7 +104,7 @@ exports.user_find_one = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
-// Delete one user
+/** Delete one user */
 exports.user_delete_one = (req, res, next) => {
     const id = req.params.userId;
     User
