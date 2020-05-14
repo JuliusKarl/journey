@@ -64,7 +64,7 @@ export default class App extends Component {
                   <Button 
                     className="button"
                     href="/login" 
-                    variant="outline-light">Login
+                    variant="link">Login
                   </Button>
                 </Nav> 
               </Navbar.Collapse> 
