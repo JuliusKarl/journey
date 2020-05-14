@@ -62,11 +62,13 @@ input[type="submit"]:disabled {
 .error-warning {
     color: #c72828;
     font-size: 14px;
+    padding: 9.5px 0px;
     margin: 0px 60px;
     text-align: left;}
 
 .success-text {
     color: #6cbd2b;
     font-size: 14px;
+    padding: 9.5px 0px;
     margin: 0px 60px;
     text-align: center;}
