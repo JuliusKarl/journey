@@ -51,7 +51,7 @@ exports.user_post_one = (req, res, next) => {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
                         // return res.status(500).json({error: err});
-                        return res.redirect('http://18.233.138.219/login?success=false')
+                        return res.redirect('http://18.233.138.219/login')
                     }
                     else {
                         const user = new User({
@@ -73,31 +73,41 @@ exports.user_login = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.status(401).json({
-                    message: "Auth Failed",
-                    status: false});}
+                res.redirect('http://18.233.138.219/login');
+                // return res.status(401).json({
+                //     message: "Auth Failed",
+                //     status: false});
+                }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}
+                    res.redirect('http://18.233.138.219/login');
+                    // return res.status(401).json({
+                    //     message: "Auth Failed",
+                    //     status: false})
+                    }
                 if (result) {
                     const token = jwt.sign({
                         email: user[0].email,
                         id: user[0]._id
                     }, process.env.JWT_KEY);
-                    return res.status(200).json({
-                        message: "Auth Success",
-                        token: token,
-                        status: true})}
+                    res.redirect('http://18.233.138.219');
+                    // return res.status(200).json({
+                    //     message: "Auth Success",
+                    //     token: token,
+                    //     status: true})
+                    }
                 else {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}})})
+                    res.redirect('http://18.233.138.219/login');
+                    // return res.status(401).json({
+                    //     message: "Auth Failed",
+                    //     status: false})
+                    }})})
         .catch(err => {
-            res.status(401).json({
-                message: "Auth Failed",
-                status: false})})}
+            res.redirect('http://18.233.138.219/login');
+            // res.status(401).json({
+            //     message: "Auth Failed",
+            //     status: false})
+            })}
 
 // Find one user
 exports.user_find_one = (req, res, next) => {

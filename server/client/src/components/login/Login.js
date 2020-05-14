@@ -106,7 +106,7 @@ class Login extends Component {
 
                         <button
                             disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}
+                            // onClick={this.checkCredentials}
                             >Login</button>
 
                         <div>
@@ -116,7 +116,6 @@ class Login extends Component {
                                 className="pointer">
                                     Create an account
                             </span>
-
                         </div>
                     </form>
                     :
