@@ -43,7 +43,6 @@ exports.user_login = (req, res, next) => {
                 return res.status(401).json({
                     message: "Auth Failed",
                     status: false});}
-            else {
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
@@ -61,7 +60,7 @@ exports.user_login = (req, res, next) => {
                 else {
                     return res.status(401).json({
                         message: "Auth Failed",
-                        status: false})}})}})
+                        status: false})}})})
         .catch(err => {
             res.status(401).json({
                 message: "Auth Failed",

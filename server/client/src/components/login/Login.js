@@ -52,18 +52,7 @@ class Login extends Component {
                             if (this.state.validLoginCredentials === true) {
                                 this.props.history.push('/')
                                 window.location.reload(true);}})
-                        .catch((err) => console.log(err));
-        // fetch('/user/log_in', {
-        //     method: 'POST',
-        //     headers : { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({
-        //         email:this.state.email,
-        //         password:this.state.password})})
-        //         .then((data) => console.log(data))
-        //         .then((res) => res.json())
-        //         .then((data) => this.setState({emailExists: data.status}))
-        //         .catch((err) => console.log(err))
-    }
+                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {
@@ -95,8 +84,7 @@ class Login extends Component {
                 <div className="login-container">
                     {this.state.login?
                     <form 
-                        method="POST"
-                        action="/user/login">
+                        method="POST">
                         <div></div>
                         {this.state.validLoginCredentials === false && <p className="error-warning">Invalid username or password</p>}
                         <input  
