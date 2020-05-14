@@ -60,6 +60,7 @@ class Login extends Component {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email:this.state.email})})
+                    .then((data) => console.log(data))
                     .then((res) => res.json())
                     .then((data) => this.setState({emailExists: data.status}))
                     .catch((err) => console.log(err))}
