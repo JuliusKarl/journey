@@ -7,7 +7,7 @@
 
 .login-container {
     color: #e0e0e0;
-    background: #929292;
+    background: #a5a5a5;
     margin: 0 auto;
     padding: 5px;
     width: 40vw;
@@ -21,7 +21,7 @@
         background: rgba(14, 14, 27, 0.9);}
 
 .form-header {
-    color: rgba(63, 63, 68, 0.9);
+    color: rgba(14, 14, 27, 0.9);
     font-size: 24px;
     padding: 10.5px 0px;
     margin: 0px;}
