@@ -6,11 +6,25 @@
     margin: 0 auto;}
 
 .login-container {
-    color: white;
-    background: grey;
+    color: #e0e0e0;
+    background: #929292;
     margin: 0 auto;
     padding: 5px;
-    width: 40vw;}
+    width: 40vw;
+    border-radius: 5px;}
+
+.login-container * {
+    border-radius: 2px;}
+
+.login-container button {
+        color: #e0e0e0;
+        background: rgba(14, 14, 27, 0.9);}
+
+.form-header {
+    color: rgba(63, 63, 68, 0.9);
+    font-size: 24px;
+    padding: 10.5px 0px;
+    margin: 0px;}
 
 @media only screen and (max-width: 1000px) {
     .main-content {
@@ -57,18 +71,26 @@ form input, form div, form button {
 input[type="submit"]:disabled {
     background: grey;}
 
-.pointer {cursor: pointer;}
+.pointer {
+    cursor: pointer;
+    color: rgba(14, 14, 27, 0.9);
+    transition: color 0.2s ease-in-out;}
+
+.pointer:hover {
+    cursor: pointer;
+    color: #e0e0e0;
+    transition: color 0.2s ease-in-out;}
 
 .error-warning {
     color: #c72828;
     font-size: 14px;
-    padding: 9.5px 0px;
+    padding: 0px;
     margin: 0px 60px;
     text-align: left;}
 
 .success-text {
     color: #6cbd2b;
     font-size: 14px;
-    padding: 9.5px 0px;
+    padding: 0px;
     margin: 0px 60px;
     text-align: center;}

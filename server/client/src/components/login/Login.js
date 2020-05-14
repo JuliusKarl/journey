@@ -109,9 +109,10 @@ class Login extends Component {
                     <form 
                         id="login_form"
                         method="POST">
-                        {this.state.validLoginCredentials === null && this.state.validSignupCredentials === null && <div></div>}
-                        {this.state.validLoginCredentials === false && <div className="error-warning">Invalid username or password</div>}
-                        {this.state.validSignupCredentials === true && <div className="success-text">Signup succesful!</div>}
+                        <div className="form-header">Log in</div>
+                        {this.state.validLoginCredentials === null && this.state.validSignupCredentials === null && <div style={{padding:"0.5px"}}></div>}
+                        {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
+                        {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
                         <input  
                             onChange={this.storeValue}
                             value={this.state.email}
@@ -128,8 +129,7 @@ class Login extends Component {
 
                         <button
                             disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}
-                            >Login</button>
+                            onClick={this.checkCredentials}>Login</button>
 
                         <div>
                             Not Registered?&nbsp;
@@ -144,7 +144,7 @@ class Login extends Component {
                     <form 
                         id="signup_form"
                         method="POST">
-                        <div></div>
+                        <div className="form-header">Sign Up</div>
                         {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
                         <input 
                             onChange={this.storeValue}
@@ -183,7 +183,6 @@ class Login extends Component {
                             placeholder="Confirm Password"/>
 
                         <button
-                            type="submit"
                             onClick={this.checkSignup}
                             disabled = {
                                 !this.state.email || 

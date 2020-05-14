@@ -4,9 +4,8 @@
 
 .btn {
     margin-left: 10px;
-    padding: 0px;
+    padding: 0px 0px 0px 30px;
     font-size: 14px;
-    font-family: "Century Gothic";
     text-transform: uppercase;
     color: #e0e0e0;
     transition: color 0.2s ease-in-out;}
