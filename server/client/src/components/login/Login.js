@@ -38,11 +38,11 @@ class Login extends Component {
         e.preventDefault();
         fetch('/user/login', {
                 method: 'POST',
-                // headers : { 'Content-Type': 'application/json' },
+                headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email : this.state.email,
                     password: this.state.password})})
-                .then((res) => res.json())
+                .then((res) => console.log(res))
                 .then((data) => {
                     localStorage.setItem("pj_token", data.token);
                     this.setState({
