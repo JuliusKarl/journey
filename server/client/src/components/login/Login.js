@@ -42,7 +42,7 @@ class Login extends Component {
                 body: JSON.stringify({
                     email : this.state.email,
                     password: this.state.password})})
-                        .then((res) => res.json)
+                        .then((res) => res.json())
                         .then((data) => {
                             localStorage.setItem("pj_token", data.token);
                             this.setState({
