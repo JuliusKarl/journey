@@ -43,7 +43,7 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})})
                         .then((res) => res.json)
-                        .then((res) => console.log(res))
+                        .then((data) => console.log(data))
                         .then((data) => {
                             localStorage.setItem("pj_token", data.token);
                             this.setState({
