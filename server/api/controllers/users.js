@@ -21,7 +21,6 @@ exports.user_get_all = (req, res, next) => {
 
 /** Check email exists */
 exports.user_check_email = (req, res, next) => {
-    console.log(req.body.email);
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
@@ -33,6 +32,40 @@ exports.user_check_email = (req, res, next) => {
                 return res.status(200).json({
                     message: "Mail Available",
                     status: false})}})}
+
+/** Log in one user */
+exports.user_login = (req, res, next) => {
+    User
+        .find({ email: req.body.email })
+        .exec()
+        .then(user => {
+            if (user.length < 1) {
+                return res.status(401).json({
+                    message: "Auth Failed",
+                    status: false});}
+            else {
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if (err) {
+                    return res.status(401).json({
+                        message: "Auth Failed",
+                        status: false})}
+                if (result) {
+                    const token = jwt.sign({
+                        email: user[0].email,
+                        id: user[0]._id
+                    }, process.env.JWT_KEY);
+                    return res.status(200).json({
+                        message: "Auth Success",
+                        token: token,
+                        status: true})}
+                else {
+                    return res.status(401).json({
+                        message: "Auth Failed",
+                        status: false})}})}})
+        .catch(err => {
+            res.status(401).json({
+                message: "Auth Failed",
+                status: false})})}
 
 /** Sign up one user */
 exports.user_post_one = (req, res, next) => {
@@ -56,39 +89,6 @@ exports.user_post_one = (req, res, next) => {
                             .save()
                             .then(result => {res.redirect('http://18.233.138.219/login')})
                             .catch(err => {res.status(500).json({error: err});});}});}})}
-
-/** Log in one user */
-exports.user_login = (req, res, next) => {
-    User
-        .find({ email: req.body.email })
-        .exec()
-        .then(user => {
-            if (user.length < 1) {
-                return res.status(401).json({
-                    message: "Auth Failed",
-                    status: false});}
-            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-                if (err) {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}
-                if (result) {
-                    const token = jwt.sign({
-                        email: user[0].email,
-                        id: user[0]._id
-                    }, process.env.JWT_KEY);
-                    return res.status(200).json({
-                        message: "Auth Success",
-                        token: token,
-                        status: true})}
-                else {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}})})
-        .catch(err => {
-            res.status(401).json({
-                message: "Auth Failed",
-                status: false})})}
 
 /** Find one user */
 exports.user_find_one = (req, res, next) => {
