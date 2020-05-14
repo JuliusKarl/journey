@@ -12,7 +12,7 @@ router.post('/signup' , UsersController.user_post_one);
 router.post('/check_email' , UsersController.user_check_email);
 
 // Login a user
-router.post('/login', UsersController.user_login);
+router.post('/log_in', UsersController.user_login);
 
 // Find an existing user by userID
 router.post('/find', UsersController.user_find_one)
