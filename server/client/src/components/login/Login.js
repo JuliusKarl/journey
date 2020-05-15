@@ -73,7 +73,7 @@ class Login extends Component {
                                 setTimeout(
                                     function() {
                                         this.setState({validSignupCredentials: null});}
-                                .bind(this),2000);})
+                                .bind(this),1000);})
                         .catch((err) => console.log(err));
     }
 
@@ -110,7 +110,6 @@ class Login extends Component {
                         id="login_form"
                         method="POST">
                         <div className="form-header">Log in</div>
-                        {this.state.validLoginCredentials === null && this.state.validSignupCredentials === null && <div style={{padding:"0.5px"}}></div>}
                         {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
                         {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
                         <input  
