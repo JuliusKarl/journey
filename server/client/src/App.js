@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
-import {Navbar, Nav, Button} from 'react-bootstrap';
+import Navbar from './components/navigator/Navigator'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import logo from './assets/bible-logo-text.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -43,51 +42,7 @@ export default class App extends Component {
   render() {
       return (
           <div className="App">
-            <Navbar 
-              bg="dark" 
-              variant="dark"
-              expand="lg"
-              className="header-text">
-      
-              <Navbar.Brand href="/">
-                  <img 
-                    src={logo} 
-                    alt="Journey" 
-                    height="35" 
-                    width="150"/>
-              </Navbar.Brand>
-              {this.state.showLogin && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
-              {this.state.showLogin ?
-              !this.state.username ?
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                  <Button 
-                    className="button"
-                    href="/login" 
-                    variant="link">Login
-                  </Button>
-                </Nav> 
-              </Navbar.Collapse> 
-              :
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                  <Button 
-                      className="button" 
-                      variant="link">Prayers
-                  </Button>
-                  <Button 
-                      className="button" 
-                      variant="link">Devotionals
-                  </Button>
-                  <Button 
-                      className="button" 
-                      variant="link">Account
-                  </Button>
-                </Nav> 
-              </Navbar.Collapse> 
-              : ''}
-            </Navbar>
-      
+            <Navbar />      
             <Router>
               <Switch>
                 <Route
@@ -100,13 +55,11 @@ export default class App extends Component {
                       author={this.state.author} 
                       link={this.state.link}/>}>
                 </Route>
-      
                 <Route
                   exact
                   path='/login'
                   component={() => <Login />}>
                 </Route>
-      
               </Switch>
             </Router>
           </div>);}}
