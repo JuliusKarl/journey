@@ -34,7 +34,7 @@ export default class Landing extends Component {
                 
                 {this.state.devotional ?
                     <div className="main-content">
-                        <div style={isMobile? {height: '10vh'} : {height: '15vh'}}></div>
+                        <div style={isMobile? {height: '10vh'} : {height: '17vh'}}></div>
                         <a 
                             href={this.state.link} 
                             target="_blank" 
