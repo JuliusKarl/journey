@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 import { isMobile } from "react-device-detect";
+import { motion } from 'framer-motion';
 import './Landing.css';
 
 export default class Landing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            devotional: this.props.devotional,
-            date: this.props.date,
-            author: this.props.author,
-            link: this.props.link
-        }
-    }
+            devotional: "",
+            date: "",
+            author: "",
+            link: "",}}
+    componentDidMount() {
+        /** Get devotional from server */
+        fetch('/devotional')
+        .then(response => response.json())
+        .then(response => {
+            const devotional = response["1"];
+            this.setState({
+                devotional: devotional.text,
+                date: response.date,
+                author: devotional.reference,
+                link: devotional.readingUrl})})}
 
     render() {
         return (
-            <div>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                
                 <div className="main-content">
                     <div style={isMobile? {height: '10vh'} : {height: '15vh'}}></div>
                     <a 
@@ -30,4 +44,4 @@ export default class Landing extends Component {
                         className="devotional-text">
                         {this.state.author}</h4>
                 </div>
-            </div>)}}
+            </motion.div>)}}

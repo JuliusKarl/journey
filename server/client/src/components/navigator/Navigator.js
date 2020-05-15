@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, Button} from 'react-bootstrap';
 import logo from '../../assets/bible-logo-text.png';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navigator.css';
 
@@ -40,7 +41,10 @@ export default class Navigator extends Component {
                   username: data.name})})}
   render() {
       return (
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
             <Navbar 
               bg="dark" 
               variant="dark"
@@ -63,7 +67,6 @@ export default class Navigator extends Component {
                       <Navbar.Collapse id="nav-links">
                         {this.state.showLogin ?
                         !this.state.username ?
-                          <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
                               <Button 
                                 className="button"
@@ -71,9 +74,7 @@ export default class Navigator extends Component {
                                 variant="link">Login
                               </Button>
                             </Nav> 
-                          </Navbar.Collapse> 
                           :
-                          <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
                               <Button 
                                   className="button" 
@@ -87,11 +88,10 @@ export default class Navigator extends Component {
                                   className="button" 
                                   variant="link">Account
                               </Button>
-                            </Nav> 
-                          </Navbar.Collapse> : ''}
+                            </Nav>  : ''}
                       </Navbar.Collapse>
                   </Route>
                 </Switch>
               </Router>
             </Navbar>
-          </div>);}}
+          </motion.div>);}}

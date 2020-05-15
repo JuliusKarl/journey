@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './Login.css';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoaded: false,
             login: true,
             emailIsValid: true,
             emailExists: false,
@@ -102,104 +104,111 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="main-content">
-                <div style={{height: '10vh'}}></div>
-                <div className="login-container">
-                    {this.state.login?
-                    <form 
-                        id="login_form"
-                        method="POST">
-                        <div className="form-header">Log in</div>
-                        {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
-                        {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
-                        <input  
-                            onChange={this.storeValue}
-                            value={this.state.email}
-                            type="text" 
-                            name="email"
-                            placeholder="Email"/>
+            <div>
+                <motion.div 
+                    className="main-content"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}>
 
-                        <input 
-                            onChange={this.storeValue}
-                            value={this.state.password}
-                            type="password" 
-                            name="password"
-                            placeholder="Password"/>
+                    <div style={{height: '10vh'}}></div>
+                    <div className="login-container">
+                        {this.state.login?
+                        <form 
+                            id="login_form"
+                            method="POST">
+                            <div className="form-header">Log in</div>
+                            {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
+                            {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
+                            <input  
+                                onChange={this.storeValue}
+                                value={this.state.email}
+                                type="text" 
+                                name="email"
+                                placeholder="Email"/>
 
-                        <button
-                            disabled = {!this.state.email || !this.state.password}
-                            onClick={this.checkCredentials}>Login</button>
+                            <input 
+                                onChange={this.storeValue}
+                                value={this.state.password}
+                                type="password" 
+                                name="password"
+                                placeholder="Password"/>
 
-                        <div>
-                            Not Registered?&nbsp;
-                            <span 
-                                onClick={this.changeType} 
-                                className="pointer">
-                                    Create an account
-                            </span>
-                        </div>
-                    </form>
-                    :
-                    <form 
-                        id="signup_form"
-                        method="POST">
-                        <div className="form-header">Sign Up</div>
-                        {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
-                        <input 
-                            onChange={this.storeValue}
-                            value={this.state.name}
-                            type="text" 
-                            name="name"
-                            placeholder="Name"/>
+                            <button
+                                disabled = {!this.state.email || !this.state.password}
+                                onClick={this.checkCredentials}>Login</button>
 
-                        <input 
-                            onChange={this.validateEmail}
-                            onClick={this.state.email && this.validateEmail}
-                            onBlur={this.checkEmailExists}
-                            value={this.state.email}
-                            style={
-                                this.state.emailIsValid ?
-                                    {outline:""}:
-                                    {outline:"2px rgba(196, 33, 33, 0.7) solid"}}
-                            type="text" 
-                            name="email"
-                            placeholder="Email"/>
-                            {this.state.emailExists && <p className="error-warning">Mail Exists!</p>}
+                            <div>
+                                Not Registered?&nbsp;
+                                <span 
+                                    onClick={this.changeType} 
+                                    className="pointer">
+                                        Create an account
+                                </span>
+                            </div>
+                        </form>
+                        :
+                        <form 
+                            id="signup_form"
+                            method="POST">
+                            <div className="form-header">Sign Up</div>
+                            {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
+                            <input 
+                                onChange={this.storeValue}
+                                value={this.state.name}
+                                type="text" 
+                                name="name"
+                                placeholder="Name"/>
 
-                        <input 
-                            onChange={this.storeValue}
-                            value={this.state.password}
-                            type="password" 
-                            name="password"
-                            placeholder="Password"/>
-                        
-                        <input 
-                            onChange={this.comparePassword}
-                            onClick={this.state.password && this.comparePassword}
-                            style={this.state.password ? this.state.passwordIsValid? {outline:''} : {outline:"2px rgba(196, 33, 33, 0.7) solid"} : {outline:''}}
-                            type="password" 
-                            name="confirmPassword"
-                            placeholder="Confirm Password"/>
+                            <input 
+                                onChange={this.validateEmail}
+                                onClick={this.state.email && this.validateEmail}
+                                onBlur={this.checkEmailExists}
+                                value={this.state.email}
+                                style={
+                                    this.state.emailIsValid ?
+                                        {outline:""}:
+                                        {outline:"2px rgba(196, 33, 33, 0.7) solid"}}
+                                type="text" 
+                                name="email"
+                                placeholder="Email"/>
+                                {this.state.emailExists && <p className="error-warning">Mail Exists!</p>}
 
-                        <button
-                            onClick={this.checkSignup}
-                            disabled = {
-                                !this.state.email || 
-                                !this.state.password || 
-                                !this.state.passwordIsValid || 
-                                !this.state.emailIsValid ||
-                                this.emailExists}>Submit</button>
+                            <input 
+                                onChange={this.storeValue}
+                                value={this.state.password}
+                                type="password" 
+                                name="password"
+                                placeholder="Password"/>
+                            
+                            <input 
+                                onChange={this.comparePassword}
+                                onClick={this.state.password && this.comparePassword}
+                                style={this.state.password ? this.state.passwordIsValid? {outline:''} : {outline:"2px rgba(196, 33, 33, 0.7) solid"} : {outline:''}}
+                                type="password" 
+                                name="confirmPassword"
+                                placeholder="Confirm Password"/>
 
-                        <div>
-                            Already have an account?&nbsp;
-                            <span 
-                                onClick={this.changeType} 
-                                className="pointer">
-                                    Log in
-                            </span>
-                        </div>
-                    </form>}
-                </div>
+                            <button
+                                onClick={this.checkSignup}
+                                disabled = {
+                                    !this.state.email || 
+                                    !this.state.password || 
+                                    !this.state.passwordIsValid || 
+                                    !this.state.emailIsValid ||
+                                    this.emailExists}>Submit</button>
+
+                            <div>
+                                Already have an account?&nbsp;
+                                <span 
+                                    onClick={this.changeType} 
+                                    className="pointer">
+                                        Log in
+                                </span>
+                            </div>
+                        </form>}
+                    </div>
+                </motion.div>
             </div>)}};
 
 export default withRouter(Login);
