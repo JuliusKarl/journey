@@ -13,12 +13,15 @@
 .btn:hover {
     color: #a5a5a5;
     transition: color 0.2s ease-in-out;}
+
+/* If 'center-text' is required again, export it to a global CSS */
+ .center-text {
+    text-align: center;}
     
 
 @media only screen and (max-width: 980px) {
     .navbar {
-        padding: 0.5rem 1rem;
-    }
+        padding: 0.5rem 1rem;}
     .button {
         margin: 1rem;
         font-size: 30px;}}

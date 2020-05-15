@@ -45,6 +45,7 @@ export default class Navigator extends Component {
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}>
+
             <Navbar 
               bg="dark" 
               variant="dark"
@@ -58,6 +59,7 @@ export default class Navigator extends Component {
                     height="35" 
                     width="150"/>
               </Navbar.Brand>
+
               <Router>
                 <Switch>
                   <Route 
@@ -68,26 +70,40 @@ export default class Navigator extends Component {
                         {this.state.showLogin ?
                         !this.state.username ?
                             <Nav className="ml-auto">
-                              <Button 
-                                className="button"
-                                href="/login" 
-                                variant="link">Login
-                              </Button>
+                              <motion.div 
+                                className="center-text"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}>
+                                  
+                                <Button 
+                                  className="button"
+                                  href="/login" 
+                                  variant="link">Login
+                                </Button>
+                              </motion.div>
                             </Nav> 
                           :
                             <Nav className="ml-auto">
-                              <Button 
-                                  className="button" 
-                                  variant="link">Prayers
-                              </Button>
-                              <Button 
-                                  className="button" 
-                                  variant="link">Devotionals
-                              </Button>
-                              <Button 
-                                  className="button" 
-                                  variant="link">Account
-                              </Button>
+                              <motion.div 
+                                className="center-text"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}>
+
+                                <Button 
+                                    className="button" 
+                                    variant="link">Prayers
+                                </Button>
+                                <Button 
+                                    className="button" 
+                                    variant="link">Devotionals
+                                </Button>
+                                <Button 
+                                    className="button" 
+                                    variant="link">Account
+                                </Button>
+                              </motion.div>
                             </Nav>  : ''}
                       </Navbar.Collapse>
                   </Route>
