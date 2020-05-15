@@ -15,16 +15,16 @@ export default class App extends Component {
       showLogin: true}}
 
   componentDidMount() {
-      /** Authenticate user */
-      fetch('/user/find', {
-        method: 'POST',
-        headers : { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            token: localStorage.getItem('pj_token')})})
-            .then(response => response.json())
-            .then(data => {
-              this.setState({
-                  username: data.name})})}
+    /** Authenticate user */
+    fetch('/user/find', {
+      method: 'POST',
+      headers : { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+          token: localStorage.getItem('pj_token')})})
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+                username: data.name})})}
   render() {
     return (
         <div className="App">

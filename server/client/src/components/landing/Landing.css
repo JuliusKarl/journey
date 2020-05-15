@@ -24,3 +24,9 @@ a h3:hover {
         width: 90vw;
         margin: 0 auto;}
 }
+
+.loader {
+    height: "10";
+    width: "10";
+    margin-top: 15vh;
+    text-align: center;}

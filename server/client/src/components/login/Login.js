@@ -7,7 +7,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoaded: false,
             login: true,
             emailIsValid: true,
             emailExists: false,
@@ -24,6 +23,11 @@ class Login extends Component {
         this.checkEmailExists = this.checkEmailExists.bind(this);
         this.checkCredentials = this.checkCredentials.bind(this);
         this.checkSignup = this.checkSignup.bind(this)}
+    
+    componentDidMount() {
+        if (localStorage.getItem("pj_token")) {
+            this.props.history.push('/');
+            window.location.reload(true);}}
 
     /** Imperative Functions */
     storeValue(e) {  
@@ -33,9 +37,14 @@ class Login extends Component {
     changeType() {
         this.setState({
             login: !this.state.login,
+            emailIsValid: true,
+            emailExists: false,
+            passwordIsValid: false,
             name: '',
             email: '',
-            password: ''});}
+            password: '',
+            validLoginCredentials: null,
+            validSignupCredentials: null});}
 
     /** Credential validator */
     checkCredentials(e) {
@@ -53,8 +62,10 @@ class Login extends Component {
                                 validLoginCredentials: data.status})})
                         .then((data) => {
                             if (this.state.validLoginCredentials === true) {
-                                this.props.history.push('/')
-                                window.location.reload(true);}})
+                                this.props.history.push('/');
+                                window.location.reload(true);}
+                            else {
+                                localStorage.removeItem("pj_token")}})
                         .catch((err) => console.log(err));}
     checkSignup(e) {
         e.preventDefault();

@@ -15,7 +15,7 @@ export default class Navigator extends Component {
       author: "",
       link: "",
       username: null,
-      showLogin: true}}
+      showLogin: false}}
 
   componentDidMount() {
     /** Get devotional from server */
@@ -38,28 +38,27 @@ export default class Navigator extends Component {
             .then(response => response.json())
             .then(data => {
               this.setState({
-                  username: data.name})})}
+                  username: data.name,
+                  showLogin: true})})
+            .catch(() => this.setState({showLogin:true}))}
   render() {
       return (
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}>
-
             <Navbar 
               bg="dark" 
               variant="dark"
               expand="lg"
               className="header-text">
-      
-              <Navbar.Brand href="/">
-                  <img 
-                    src={logo} 
-                    alt="Journey" 
-                    height="35" 
-                    width="150"/>
-              </Navbar.Brand>
-
+                <Navbar.Brand href="/">
+                    <img 
+                      src={logo} 
+                      alt="Journey" 
+                      height="35" 
+                      width="150"/>
+                </Navbar.Brand>
               <Router>
                 <Switch>
                   <Route 
@@ -67,7 +66,7 @@ export default class Navigator extends Component {
                     exact>
                       <Navbar.Toggle aria-controls="nav-links" />
                       <Navbar.Collapse id="nav-links">
-                        {this.state.showLogin ?
+                        {this.state.showLogin === true ?
                         !this.state.username ?
                             <Nav className="ml-auto">
                               <motion.div 
@@ -75,7 +74,7 @@ export default class Navigator extends Component {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}>
-                                  
+
                                 <Button 
                                   className="button"
                                   href="/login" 
@@ -104,7 +103,7 @@ export default class Navigator extends Component {
                                     variant="link">Account
                                 </Button>
                               </motion.div>
-                            </Nav>  : ''}
+                            </Nav> : 'Not Yet'}
                       </Navbar.Collapse>
                   </Route>
                 </Switch>

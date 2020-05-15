@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { isMobile } from "react-device-detect";
 import { motion } from 'framer-motion';
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './Landing.css';
 
 export default class Landing extends Component {
@@ -30,18 +32,26 @@ export default class Landing extends Component {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
                 
-                <div className="main-content">
-                    <div style={isMobile? {height: '10vh'} : {height: '15vh'}}></div>
-                    <a 
-                        href={this.state.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer">
-                        <h3 
+                {this.state.devotional ?
+                    <div className="main-content">
+                        <div style={isMobile? {height: '10vh'} : {height: '15vh'}}></div>
+                        <a 
+                            href={this.state.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            <h3 
+                                className="devotional-text">
+                                {this.state.devotional}</h3></a>
+                        <hr/>
+                        <h4 
                             className="devotional-text">
-                            {this.state.devotional}</h3></a>
-                    <hr/>
-                    <h4 
-                        className="devotional-text">
-                        {this.state.author}</h4>
-                </div>
+                            {this.state.author}</h4>
+                    </div>
+                    : 
+                    <Loader
+                        type="TailSpin"
+                        color="#dbdbdb"
+                        height={80}
+                        width={80}
+                        className="loader"/>}
             </motion.div>)}}
