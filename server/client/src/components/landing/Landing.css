@@ -38,7 +38,7 @@ a h3:hover {
 
 .fade-appear.fade-active {
     opacity: 1;
-    transition: opacity 300ms linear;}
+    transition: opacity 100ms ease-in-out;}
 
 .fade-enter {
     opacity: 0;
@@ -46,7 +46,7 @@ a h3:hover {
 
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 300ms linear;}
+    transition: opacity 100ms ease-in-out;}
 
 .fade-exit {
     opacity: 1;
@@ -54,4 +54,4 @@ a h3:hover {
 
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transition: opacity 300ms linear;}
+    transition: opacity 100ms ease-in-out;}

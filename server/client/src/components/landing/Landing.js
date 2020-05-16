@@ -37,7 +37,7 @@ export default class Landing extends Component {
                 <CSSTransition
                     in={this.state.devotional}
                     appear={true}
-                    timeout={300}
+                    timeout={100}
                     classNames="fade">
                     <div className="main-content">
                         <div style={isMobile? {height: '10vh'} : {height: '17vh'}}></div>
@@ -58,7 +58,7 @@ export default class Landing extends Component {
                 <CSSTransition
                     in={this.state.devotional}
                     appear={true}
-                    timeout={300}
+                    timeout={100}
                     classNames="fade">
                 <Loader
                     type="TailSpin"

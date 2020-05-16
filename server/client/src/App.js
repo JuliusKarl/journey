@@ -24,7 +24,9 @@ export default class App extends Component {
           .then(response => response.json())
           .then(data => {
             this.setState({
-                username: data.name})})}
+                username: data.name})})
+          .catch(() => {
+            localStorage.removeItem("pj_token")})}
   render() {
     return (
         <div className="App">
