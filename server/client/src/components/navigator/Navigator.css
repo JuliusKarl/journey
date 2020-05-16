@@ -17,9 +17,14 @@
 /* If 'center-text' is required again, export it to a global CSS */
  .center-text {
     text-align: center;}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    border: none;}
     
 
-@media only screen and (max-width: 980px) {
+@media only screen and (max-width: 1000px) {
     .navbar {
         padding: 0.5rem 1rem;}
 

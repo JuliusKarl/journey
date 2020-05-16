@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Navbar, Nav, Button} from 'react-bootstrap';
 import logo from '../../assets/bible-logo-text.png';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { motion } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navigator.css';
@@ -99,8 +100,8 @@ export default class Navigator extends Component {
                                     variant="link">Devotionals
                                 </Button>
                                 <Button 
-                                    className="button" 
-                                    variant="link">Account
+                                  className="button" 
+                                  variant="link">Profile
                                 </Button>
                               </motion.div>
                             </Nav> : 'Not Yet'}

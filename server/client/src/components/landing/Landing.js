@@ -7,24 +7,31 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './Landing.css';
 
 export default class Landing extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
             devotional: "",
             date: "",
             author: "",
-            link: "",}}
+            link: ""}}
     componentDidMount() {
         /** Get devotional from server */
+        this._isMounted = true;
         fetch('/devotional')
         .then(response => response.json())
         .then(response => {
             const devotional = response["1"];
+            if (this._isMounted) {
             this.setState({
                 devotional: devotional.text,
                 date: response.date,
                 author: devotional.reference,
-                link: devotional.readingUrl})})}
+                link: devotional.readingUrl})}})}
+
+    componentWillUnmount() {
+        this._isMounted = false;}
 
     render() {
         return (
@@ -35,7 +42,7 @@ export default class Landing extends Component {
                 
                 {this.state.devotional ?
                 <CSSTransition
-                    in={this.state.devotional}
+                    in={this.state.devotional != null}
                     appear={true}
                     timeout={100}
                     classNames="fade">
@@ -56,7 +63,7 @@ export default class Landing extends Component {
                 </CSSTransition>
                 : 
                 <CSSTransition
-                    in={this.state.devotional}
+                    in={this.state.devotional == null}
                     appear={true}
                     timeout={100}
                     classNames="fade">

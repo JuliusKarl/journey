@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CSSTransition } from 'react-transition-group';
 import './Login.css';
 
 class Login extends Component {
@@ -103,7 +102,7 @@ class Login extends Component {
 
     validateEmail(e) {
         this.storeValue(e);
-        let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
+        let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
         this.setState({
             email: e.target.value,
             emailIsValid: regex.test(this.state.email.toLowerCase())});}

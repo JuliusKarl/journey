@@ -3,7 +3,7 @@ import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
 import Navbar from './components/navigator/Navigator';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -11,8 +11,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: null,
-      showLogin: true}}
+      username: null}}
 
   componentDidMount() {
     /** Authenticate user */
