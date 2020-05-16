@@ -94,3 +94,20 @@ input[type="submit"]:disabled {
     padding: 0px;
     margin: 0px 60px;
     text-align: center;}
+
+/* Animations */
+.fade-appear {
+    opacity: 0;
+    z-index: 1;}
+
+.fade-appear.fade-active {
+    opacity: 1;
+    transition: opacity 300ms linear;}
+
+.fade-enter {
+    opacity: 0;
+    z-index: 1;}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms linear;}

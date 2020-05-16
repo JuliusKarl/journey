@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { CSSTransition } from 'react-transition-group';
 import './Login.css';
 
 class Login extends Component {
@@ -125,99 +126,99 @@ class Login extends Component {
                     <div style={{height: '10vh'}}></div>
                     <div className="login-container">
                         {this.state.login?
-                        <form 
-                            id="login_form"
-                            method="POST">
-                            <div className="form-header">Log in</div>
-                            {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
-                            {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
-                            <input  
-                                onChange={this.storeValue}
-                                value={this.state.email}
-                                type="text" 
-                                name="email"
-                                placeholder="Email"/>
+                            <form 
+                                id="login_form"
+                                method="POST">
+                                <div className="form-header">Log in</div>
+                                {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}
+                                {this.state.validSignupCredentials === true && <div className="success-text form-header">Signup succesful!</div>}
+                                <input  
+                                    onChange={this.storeValue}
+                                    value={this.state.email}
+                                    type="text" 
+                                    name="email"
+                                    placeholder="Email"/>
 
-                            <input 
-                                onChange={this.storeValue}
-                                value={this.state.password}
-                                type="password" 
-                                name="password"
-                                placeholder="Password"/>
+                                <input 
+                                    onChange={this.storeValue}
+                                    value={this.state.password}
+                                    type="password" 
+                                    name="password"
+                                    placeholder="Password"/>
 
-                            <button
-                                disabled = {!this.state.email || !this.state.password}
-                                onClick={this.checkCredentials}>Login</button>
+                                <button
+                                    disabled = {!this.state.email || !this.state.password}
+                                    onClick={this.checkCredentials}>Login</button>
 
-                            <div>
-                                Not Registered?&nbsp;
-                                <span 
-                                    onClick={this.changeType} 
-                                    className="pointer">
-                                        Create an account
-                                </span>
-                            </div>
-                        </form>
-                        :
-                        <form 
-                            id="signup_form"
-                            method="POST">
-                            <div className="form-header">Sign Up</div>
-                            {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
-                            <input 
-                                onChange={this.storeValue}
-                                value={this.state.name}
-                                type="text" 
-                                name="name"
-                                placeholder="Name"/>
+                                <div>
+                                    Not Registered?&nbsp;
+                                    <span 
+                                        onClick={this.changeType} 
+                                        className="pointer">
+                                            Create an account
+                                    </span>
+                                </div>
+                            </form>
+                            :
+                            <form 
+                                id="signup_form"
+                                method="POST">
+                                <div className="form-header">Sign Up</div>
+                                {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
+                                <input 
+                                    onChange={this.storeValue}
+                                    value={this.state.name}
+                                    type="text" 
+                                    name="name"
+                                    placeholder="Name"/>
 
-                            <input 
-                                onChange={this.validateEmail}
-                                onClick={this.state.email && this.validateEmail}
-                                onBlur={this.checkEmailExists}
-                                value={this.state.email}
-                                style={
-                                    this.state.emailIsValid ?
-                                        {outline:""}:
-                                        {outline:"2px rgba(196, 33, 33, 0.7) solid"}}
-                                type="text" 
-                                name="email"
-                                placeholder="Email"/>
-                                {this.state.emailExists && <p className="error-warning">Mail Exists!</p>}
+                                <input 
+                                    onChange={this.validateEmail}
+                                    onClick={this.state.email && this.validateEmail}
+                                    onBlur={this.checkEmailExists}
+                                    value={this.state.email}
+                                    style={
+                                        this.state.emailIsValid ?
+                                            {outline:""}:
+                                            {outline:"2px rgba(196, 33, 33, 0.7) solid"}}
+                                    type="text" 
+                                    name="email"
+                                    placeholder="Email"/>
+                                    {this.state.emailExists && <p className="error-warning">Mail Exists!</p>}
 
-                            <input 
-                                onChange={this.storeValue}
-                                value={this.state.password}
-                                type="password" 
-                                name="password"
-                                placeholder="Password"/>
-                            
-                            <input 
-                                onChange={this.comparePassword}
-                                onClick={this.state.password && this.comparePassword}
-                                style={this.state.password ? this.state.passwordIsValid? {outline:''} : {outline:"2px rgba(196, 33, 33, 0.7) solid"} : {outline:''}}
-                                type="password" 
-                                name="confirmPassword"
-                                placeholder="Confirm Password"/>
+                                <input 
+                                    onChange={this.storeValue}
+                                    value={this.state.password}
+                                    type="password" 
+                                    name="password"
+                                    placeholder="Password"/>
+                                
+                                <input 
+                                    onChange={this.comparePassword}
+                                    onClick={this.state.password && this.comparePassword}
+                                    style={this.state.password ? this.state.passwordIsValid? {outline:''} : {outline:"2px rgba(196, 33, 33, 0.7) solid"} : {outline:''}}
+                                    type="password" 
+                                    name="confirmPassword"
+                                    placeholder="Confirm Password"/>
 
-                            <button
-                                onClick={this.checkSignup}
-                                disabled = {
-                                    !this.state.email || 
-                                    !this.state.password || 
-                                    !this.state.passwordIsValid || 
-                                    !this.state.emailIsValid ||
-                                    this.emailExists}>Submit</button>
+                                <button
+                                    onClick={this.checkSignup}
+                                    disabled = {
+                                        !this.state.email || 
+                                        !this.state.password || 
+                                        !this.state.passwordIsValid || 
+                                        !this.state.emailIsValid ||
+                                        this.emailExists}>Submit</button>
 
-                            <div>
-                                Already have an account?&nbsp;
-                                <span 
-                                    onClick={this.changeType} 
-                                    className="pointer">
-                                        Log in
-                                </span>
-                            </div>
-                        </form>}
+                                <div>
+                                    Already have an account?&nbsp;
+                                    <span 
+                                        onClick={this.changeType} 
+                                        className="pointer">
+                                            Log in
+                                    </span>
+                                </div>
+                            </form>}
                     </div>
                 </motion.div>
             </div>)}};
