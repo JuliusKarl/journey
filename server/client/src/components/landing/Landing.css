@@ -47,3 +47,11 @@ a h3:hover {
 .fade-enter.fade-enter-active {
     opacity: 1;
     transition: opacity 300ms linear;}
+
+.fade-exit {
+    opacity: 1;
+    z-index: 1;}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms linear;}
