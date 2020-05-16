@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
-import Navbar from './components/navigator/Navigator';
+import Navigator from './components/navigator/Navigator';
+import Prayers from './components/prayers/Prayers';
+import Profile from './components/profile/Profile';
+import Devotionals from './components/devotionals/Devotionals';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,25 +27,48 @@ export default class App extends Component {
           .then(data => {
             this.setState({
                 username: data.name})})
-          .catch(() => {
-            localStorage.removeItem("pj_token")})}
+          .then(() => {
+            if (!this.state.username) {
+              localStorage.removeItem('pj_token');}});}
+
   render() {
     return (
         <div className="App">
-          <Navbar />      
+          <Navigator />      
           <Router>
             <AnimatePresence exitBeforeEnter>
               <Switch>
+
                 <Route
                   exact
                   path='/'
                   component={() => <Landing/>}>
                 </Route>
+
                 <Route
                   exact
                   path='/login'
                   component={() => <Login />}>
                 </Route>
+
+                <Route
+                  exact
+                  path='/prayers'
+                  component={() => <Prayers />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/devotionals'
+                  component={() => <Devotionals />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/profile'
+                  component={() => <Profile />}>
+                </Route>
+
               </Switch>
             </AnimatePresence>
           </Router>

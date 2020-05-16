@@ -44,70 +44,112 @@ export default class Navigator extends Component {
             .catch(() => this.setState({showLogin:true}))}
   render() {
       return (
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
-            <Navbar 
-              bg="dark" 
-              variant="dark"
-              expand="lg"
-              className="header-text">
-                <Navbar.Brand href="/">
-                    <img 
-                      src={logo} 
-                      alt="Journey" 
-                      height="35" 
-                      width="150"/>
-                </Navbar.Brand>
-              <Router>
-                <Switch>
-                  <Route 
-                    path="/"
-                    exact>
-                      <Navbar.Toggle aria-controls="nav-links" />
-                      <Navbar.Collapse id="nav-links">
-                        {this.state.showLogin === true ?
-                        !this.state.username ?
-                            <Nav className="ml-auto">
-                              <motion.div 
-                                className="center-text"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}>
+        localStorage.getItem("pj_token") == null ?
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}>
+          <Navbar 
+            bg="dark" 
+            variant="dark"
+            expand="lg"
+            className="header-text">
+              <Navbar.Brand href="/">
+                  <img 
+                    src={logo} 
+                    alt="Journey" 
+                    height="35" 
+                    width="150"/>
+              </Navbar.Brand>
+            <Router>
+              <Switch>
+                <Route 
+                  path="/"
+                  exact>
+                    <Navbar.Toggle aria-controls="nav-links" />
+                    <Navbar.Collapse id="nav-links">
+                      {this.state.showLogin === true ?
+                      !this.state.username ?
+                          <Nav className="ml-auto">
+                            <motion.div 
+                              className="center-text"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}>
 
-                                <Button 
-                                  className="button"
-                                  href="/login" 
-                                  variant="link">Login
-                                </Button>
-                              </motion.div>
-                            </Nav> 
-                          :
-                            <Nav className="ml-auto">
-                              <motion.div 
-                                className="center-text"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}>
+                              <Button 
+                                className="button"
+                                href="/login" 
+                                variant="link">Login
+                              </Button>
+                            </motion.div>
+                          </Nav> 
+                        :
+                          <Nav className="ml-auto">
+                            <motion.div 
+                              className="center-text"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}>
 
-                                <Button 
-                                    className="button" 
-                                    variant="link">Prayers
-                                </Button>
-                                <Button 
-                                    className="button" 
-                                    variant="link">Devotionals
-                                </Button>
-                                <Button 
+                              <Button 
                                   className="button" 
-                                  variant="link">Profile
-                                </Button>
-                              </motion.div>
-                            </Nav> : 'Not Yet'}
-                      </Navbar.Collapse>
-                  </Route>
-                </Switch>
-              </Router>
-            </Navbar>
-          </motion.div>);}}
+                                  href="/prayers" 
+                                  variant="link">Prayers
+                              </Button>
+                              <Button 
+                                  className="button" 
+                                  href="/devotionals" 
+                                  variant="link">Devotionals
+                              </Button>
+                              <Button 
+                                className="button" 
+                                href="/profile" 
+                                variant="link">Profile
+                              </Button>
+                            </motion.div>
+                          </Nav> : 'Not Yet'}
+                    </Navbar.Collapse>
+                </Route>
+              </Switch>
+            </Router>
+          </Navbar>
+        </motion.div>
+        :
+        <div>
+          <Navbar 
+            bg="dark" 
+            variant="dark"
+            expand="lg"
+            className="header-text">
+              <Navbar.Brand href="/">
+                  <img 
+                    src={logo} 
+                    alt="Journey" 
+                    height="35" 
+                    width="150"/>
+              </Navbar.Brand>
+                <Navbar.Toggle aria-controls="nav-links" />
+                <Navbar.Collapse id="nav-links">
+                      <Nav className="ml-auto">
+                        <div>
+                          <Button 
+                              className="button" 
+                              href="/prayers" 
+                              variant="link">Prayers
+                          </Button>
+                          <Button 
+                              className="button" 
+                              href="/devotionals" 
+                              variant="link">Devotionals
+                          </Button>
+                          <Button 
+                            className="button" 
+                            href="/profile" 
+                            variant="link">Profile
+                          </Button>
+                        </div>
+                      </Nav>}
+                </Navbar.Collapse>
+          </Navbar>
+        </div>);}}

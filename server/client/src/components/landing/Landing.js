@@ -47,7 +47,7 @@ export default class Landing extends Component {
                     timeout={100}
                     classNames="fade">
                     <div className="main-content">
-                        <div style={isMobile? {height: '10vh'} : {height: '17vh'}}></div>
+                        <div style={isMobile? {height: '10vh'} : {height: '18vh'}}></div>
                             <a 
                                 href={this.state.link} 
                                 target="_blank" 
