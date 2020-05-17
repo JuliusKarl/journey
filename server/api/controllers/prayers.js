@@ -4,44 +4,59 @@ const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
-/** Add new prayer */
-exports.user_post_one = (req, res, next) => {
-    User.find({ email: req.body.email })
+/** Get all prayers */
+exports.prayers_get_all = (req, res, next) => {
+    Prayer
+        .find()
         .exec()
-        .then(user => {
-            if (user.length >= 1) {
-                return res.status(409).json({
-                    message: "Mail Exists"})}
-            else {
-                bcrypt.hash(req.body.password, 10, (err, hash) => {
-                    if (err) {
-                        return res.status(200).json({
-                            message: "Auth Failed",
-                            status: false})}
-                    else {
-                        const user = new User({
-                            _id: new mongoose.Types.ObjectId,
-                            name: req.body.name,
-                            email: req.body.email,
-                            password: hash});
-                        user
-                            .save()
-                            .then(result => {
-                                return res.status(200).json({
-                                    message: "Auth Success",
-                                    status: true})})
-                            .catch(err => {
-                                res.status(500).json({
-                                    error: err});});}});}})}
+        .then(result => {
+            const response = {
+                prayers: result.map(result => {
+                    return {
+                        _id: result.id,
+                        title: result.title,
+                        body: result.body,
+                        date: result.date}})}
+            res.status(200).json(response)})
+        .catch(err => {res.status(500).json({error: err})})}
+
+// /** Add new prayer */
+// exports.prayer_post_one = (req, res, next) => {
+//     const prayer = new Prayer({
+//         _id: new mongoose.Types.ObjectId,
+//         title: req.body.title,
+//         body: req.body.body})
+//     prayer
+//         .save()
+//         .then(result => {
+//             return res.status(200).json({
+//                 message: "Auth Success",
+//                 status: true})})
+//         .catch(err => {
+//             return res.status(500).json({
+//                 error: err});});}
+
+/** Add new prayer */
+exports.prayer_post_one = (req, res, next) => {
+    const prayer = new Prayer({
+        _id: new mongoose.Types.ObjectId,
+        title: req.body.title,
+        body: req.body.body});
+    console.log(req.body.email);
+    User
+        .update({ "email" : req.body.email }, { $set : { "name" : "Julie"}})
+        .then(result => {res.status(200).json({message: "Prayer Saved."})})
+        .catch(err => {console.log(err);res.status(500).json({error: err})})}
+
 
 /** Delete one prayer */
-exports.user_delete_one = (req, res, next) => {
-    const id = req.params.userId;
-    User
+exports.prayer_delete_one = (req, res, next) => {
+    const id = req.params.prayerId;
+    Prayer
         .remove({_id: id})
         .exec()
         .then(result => {
             const response = {
-                message: "User deleted."}
+                message: "Prayer deleted."}
             res.status(200).json(response)})
         .catch(err => {console.log(err);res.status(500).json({error: err})})}

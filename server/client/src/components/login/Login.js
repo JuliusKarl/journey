@@ -43,9 +43,7 @@ class Login extends Component {
             passwordIsValid: false,
             name: '',
             email: '',
-            password: '',
-            validLoginCredentials: null,
-            validSignupCredentials: null});}
+            password: ''});}
 
     /** Credential validator */
     checkCredentials(e) {
@@ -87,7 +85,7 @@ class Login extends Component {
                                 setTimeout(
                                     function() {
                                         this.setState({validSignupCredentials: null});}
-                                .bind(this),1000);})
+                                .bind(this), 2000);})
                         .catch((err) => console.log(err));}
 
     /** Email Authentication */
@@ -104,7 +102,6 @@ class Login extends Component {
         this.storeValue(e);
         let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
         this.setState({
-            email: e.target.value,
             emailIsValid: regex.test(this.state.email.toLowerCase())});}
 
     /** Password Validator */
@@ -174,7 +171,7 @@ class Login extends Component {
                                 <input 
                                     onChange={this.validateEmail}
                                     onClick={this.state.email && this.validateEmail}
-                                    onBlur={this.checkEmailExists}
+                                    onBlur={this.checkEmailExists && this.validateEmail}
                                     value={this.state.email}
                                     style={
                                         this.state.emailIsValid ?

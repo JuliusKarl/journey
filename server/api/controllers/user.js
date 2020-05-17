@@ -16,7 +16,10 @@ exports.user_get_all = (req, res, next) => {
                         _id: result.id,
                         name: result.name,
                         email: result.email,
-                        password: result.password}})}
+                        password: result.password,
+                        dateCreated: result.dateCreated,
+                        savedDevotionals: result.savedDevotionals,
+                        savedPrayers: result.savedPrayers}})}
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
@@ -69,6 +72,7 @@ exports.user_login = (req, res, next) => {
 
 /** Sign up one user */
 exports.user_post_one = (req, res, next) => {
+    console.log(req.body.enail);
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
