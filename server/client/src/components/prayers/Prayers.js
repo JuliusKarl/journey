@@ -117,7 +117,7 @@ class Prayers extends Component {
                         </div>
                         <hr />
                         <div className="prayer-list">
-                           {this.state.savedPrayers.length > 0 ? this.state.savedPrayers : 'No Prayers'}
+                           {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? this.state.savedPrayers : 'No Prayers'}
                             {/* fetch prayers from user else display 'no prayers' */}
                         </div>
                     </div>}
