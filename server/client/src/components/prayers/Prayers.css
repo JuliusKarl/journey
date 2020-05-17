@@ -1,0 +1,78 @@
+.main input,
+.main button,
+.main button:focus,
+.main button:active {
+    border-radius: 3px;
+    border: solid 1px;
+    border-color: #c7c7c7;
+    padding: 5px;
+    outline: 0;}    
+
+.toolbar {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;}
+
+.toolbar * {
+    margin: 0px 5px;
+    flex-grow: 1;}
+
+/** Form options */
+form {
+    width: 40vw;
+    border-radius: 5px;
+    background: #a5a5a5;
+    margin: 0 auto;}
+
+form span {
+    text-align: right;}
+
+form i {
+    cursor: pointer;}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-evenly;}
+
+.form-header {
+    color: rgba(14, 14, 27, 0.9);
+    font-size: 24px;
+    text-align: center;
+    padding: 0px 0px 10.5px 0px;
+    margin: 0px;}
+
+.form-buttons button {
+    background: rgba(14, 14, 27, 0.9);
+    flex-grow: 1;
+    color: #ffffff;}
+
+.prayer-body {
+    padding-bottom: 20vh!important;}
+
+input {
+    text-transform: capitalize;}
+
+/* Animations */
+.fade-appear {
+    opacity: 0;
+    z-index: 1;}
+
+.fade-appear.fade-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;}
+
+.fade-enter {
+    opacity: 0;
+    z-index: 1;}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;}
+
+.fade-exit {
+    opacity: 1;
+    z-index: 1;}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;}

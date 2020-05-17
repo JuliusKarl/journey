@@ -18,5 +18,13 @@ body {
   padding: 0;
   font-family: 'default-font'!important;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} 
+  -moz-osx-font-smoothing: grayscale;}
+
+
+/* Global classes for components */
+.main {
+  padding: 0.5rem 2.5rem;}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+      padding: 0.5rem 1rem;}}

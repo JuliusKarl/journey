@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 // Route Paths
 const userRoutes = require('./api/routes/user');
 const devotionalRoutes = require('./api/routes/devotional');
+const prayersRoutes = require('./api/routes/prayers');
 
 // MongoDB connection
 require('dotenv').config();
@@ -29,5 +30,6 @@ mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true}, functi
 // Routes which should handle requests.
 app.use('/user', userRoutes);
 app.use('/devotional', devotionalRoutes);
+app.use('/prayers', prayersRoutes);
 
 module.exports = app;

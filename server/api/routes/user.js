@@ -3,7 +3,7 @@ const router = express.Router();
 const UsersController = require("../controllers/user");
 
 /** Get all existing users */
-router.get('/', UsersController.user_get_all);
+// router.get('/', UsersController.user_get_all);
 
 /** Create new user */
 router.post('/signup' , UsersController.user_post_one);
@@ -18,6 +18,6 @@ router.post('/log_in', UsersController.user_login);
 router.post('/find', UsersController.user_find_one)
 
 /** Delete an existing user by userId */
-router.delete('/:userId', UsersController.user_delete_one);
+// router.delete('/:userId', UsersController.user_delete_one);
 
 module.exports = router;

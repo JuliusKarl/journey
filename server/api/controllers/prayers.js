@@ -1,10 +1,9 @@
-const User = require("../models/user");
+const User = require("../models/prayer");
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
-const domain = process.env.DOMAIN;
 
-/** Get all users */
+/** Get all prayers */
 exports.user_get_all = (req, res, next) => {
     User
         .find()
@@ -20,54 +19,7 @@ exports.user_get_all = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
-/** Check email exists */
-exports.user_check_email = (req, res, next) => {
-    User.find({ email: req.body.email })
-        .exec()
-        .then(user => {
-            if (user.length >= 1) {
-                return res.status(409).json({
-                    message: "Mail Exists",
-                    status: true})}
-            else {
-                return res.status(200).json({
-                    message: "Mail Available",
-                    status: false})}})}
-
-/** Log in one user */
-exports.user_login = (req, res, next) => {
-    User
-        .find({ email: req.body.email })
-        .exec()
-        .then(user => {
-            if (user.length < 1) {
-                return res.status(401).json({
-                    message: "Auth Failed",
-                    status: false});}
-            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-                if (err) {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}
-                if (result) {
-                    const token = jwt.sign({
-                        email: user[0].email,
-                        id: user[0]._id
-                    }, process.env.JWT_KEY);
-                    return res.status(200).json({
-                        message: "Auth Success",
-                        token: token,
-                        status: true})}
-                else {
-                    return res.status(401).json({
-                        message: "Auth Failed",
-                        status: false})}})})
-        .catch(err => {
-            res.status(401).json({
-                message: "Auth Failed",
-                status: false})})}
-
-/** Sign up one user */
+/** Add new prayer */
 exports.user_post_one = (req, res, next) => {
     User.find({ email: req.body.email })
         .exec()
@@ -97,7 +49,7 @@ exports.user_post_one = (req, res, next) => {
                                 res.status(500).json({
                                     error: err});});}});}})}
 
-/** Find one user */
+/** Search for prayer / change from findOne to findLike? */
 exports.user_find_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
     User
@@ -111,7 +63,7 @@ exports.user_find_one = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
-/** Delete one user */
+/** Delete one prayer */
 exports.user_delete_one = (req, res, next) => {
     const id = req.params.userId;
     User

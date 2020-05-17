@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import '../../index.css';
 
 class Profile extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 My Profile
             </div>)}}
 

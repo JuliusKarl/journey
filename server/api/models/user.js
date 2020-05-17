@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Devotional = require('../models/devotional').schema;
+const Prayer = require('../models/prayer').schema;
 
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -8,6 +10,9 @@ const userSchema = mongoose.Schema({
         required: true, 
         unique: true,
         match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/},
-    password: { type: String, required: true }});
+    password: { type: String, required: true }, 
+    savedDevotionals: [Devotional],
+    savedPrayers: [Prayer],
+    answeredPrayers: [Prayer]});
 
 module.exports = mongoose.model('User', userSchema);

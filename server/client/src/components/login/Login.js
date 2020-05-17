@@ -25,6 +25,7 @@ class Login extends Component {
         this.checkSignup = this.checkSignup.bind(this)}
     
     componentDidMount() {
+        /** Is user logged in? */
         if (localStorage.getItem("pj_token")) {
             this.props.history.push('/');
             window.location.reload(true);}}
@@ -87,8 +88,7 @@ class Login extends Component {
                                     function() {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this),1000);})
-                        .catch((err) => console.log(err));
-    }
+                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {
