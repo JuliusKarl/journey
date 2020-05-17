@@ -42,8 +42,8 @@ class Prayers extends Component {
                         email: data.email,
                         savedDevotionals: data.savedDevotionals,
                         savedPrayers: data.savedPrayers,
-                        answeredPrayers: data.answeredPrayers,})})
-                .then(this.setState({render: true}))}
+                        answeredPrayers: data.answeredPrayers,
+                        render: true})})}
 
     componentWillUnmount() {
         this._isMounted = false;}
