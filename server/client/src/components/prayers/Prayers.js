@@ -47,7 +47,7 @@ class Prayers extends Component {
                     <div className="new-prayer">
                         <form>
                             <span><i 
-                                class="large material-icons"
+                                className="large material-icons"
                                 onClick={this.newPrayer}>close</i></span>
                             <div className="form-header">New Prayer</div>
                             <input 
