@@ -107,7 +107,10 @@ exports.user_find_one = (req, res, next) => {
             const response = {
                 _id: result.id,
                 name: result.name,
-                email: result.email}
+                email: result.email,
+                savedDevotionals: result.savedDevotionals,
+                savedPrayers: result.savedPrayers,
+                answeredPrayers: result.answeredPrayers}
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 

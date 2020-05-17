@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const PrayersController = require("../controllers/prayers");
 
-const Prayer = require('../models/prayer');
-
-/** Get Prayers */
-router.get('/', PrayersController.prayers_get_all);
+/** Find one user / Get all prayers */
+// router.post('/', PrayersController.user_find_one);
 
 module.exports = router;

@@ -30,6 +30,6 @@ mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true}, functi
 // Routes which should handle requests.
 app.use('/user', userRoutes);
 app.use('/devotional', devotionalRoutes);
-app.use('/prayers', prayersRoutes);
+app.use('/prayer', prayersRoutes);
 
 module.exports = app;

@@ -1,23 +1,8 @@
 const User = require("../models/prayer");
+const Prayer = require('../models/prayer');
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
-
-/** Get all prayers */
-exports.user_get_all = (req, res, next) => {
-    User
-        .find()
-        .exec()
-        .then(result => {
-            const response = {
-                users: result.map(result => {
-                    return {
-                        _id: result.id,
-                        name: result.name,
-                        email: result.email,
-                        password: result.password}})}
-            res.status(200).json(response)})
-        .catch(err => {res.status(500).json({error: err})})}
 
 /** Add new prayer */
 exports.user_post_one = (req, res, next) => {
@@ -48,20 +33,6 @@ exports.user_post_one = (req, res, next) => {
                             .catch(err => {
                                 res.status(500).json({
                                     error: err});});}});}})}
-
-/** Search for prayer / change from findOne to findLike? */
-exports.user_find_one = (req, res, next) => {
-    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
-    User
-        .findOne({email: decoded["email"]})
-        .exec()
-        .then(result => {
-            const response = {
-                _id: result.id,
-                name: result.name,
-                email: result.email}
-            res.status(200).json(response)})
-        .catch(err => {res.status(500).json({error: err})})}
 
 /** Delete one prayer */
 exports.user_delete_one = (req, res, next) => {

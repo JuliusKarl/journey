@@ -10,6 +10,10 @@ class Prayers extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: null,
+            savedDevotionals: [],
+            savedPrayers: [],
+            answeredPrayers: [],
             newPrayer: false}
         this.newPrayer = this.newPrayer.bind(this)}
 
@@ -20,17 +24,19 @@ class Prayers extends Component {
             
         /** Get prayer list */
         this._isMounted = true;
-        fetch('/prayers')
-            .then(response => response.json())
-            .then(response => {})}
+        fetch('/user/find', {
+            method: 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                token: localStorage.getItem('pj_token')})})
+                .then(response => response.json())}
 
     componentWillUnmount() {
         this._isMounted = false;}
     
     newPrayer() {
         this.setState({
-            newPrayer: !this.state.newPrayer})
-            console.log(this.state)}
+            newPrayer: !this.state.newPrayer})}
 
     render() {
         return (
@@ -54,7 +60,7 @@ class Prayers extends Component {
                                 className="prayer-body"
                                 placeholder="Prayer" />
                             <div className="form-buttons">
-                                <button>Add</button>
+                                <input type="submit" value="Add"/>
                             </div>
                         </form>
                     </div>
@@ -70,6 +76,7 @@ class Prayers extends Component {
                         </div>
                         <hr />
                         <div className="prayer-list">
+                           {this.state.savedPrayers.length > 0 ? this.state.savedPrayers : 'No Prayers'}
                             {/* fetch prayers from user else display 'no prayers' */}
                         </div>
                     </div>}

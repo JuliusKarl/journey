@@ -41,7 +41,7 @@ form i {
     padding: 0px 0px 10.5px 0px;
     margin: 0px;}
 
-.form-buttons button {
+.form-buttons input {
     background: rgba(14, 14, 27, 0.9);
     flex-grow: 1;
     color: #ffffff;}
