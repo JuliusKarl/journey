@@ -79,11 +79,13 @@ exports.user_post_one = (req, res, next) => {
                     message: "Mail Exists"})}
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    console.log("bcrypt hash error");
                     if (err) {
                         return res.status(200).json({
                             message: "Auth Failed",
                             status: false})}
                     else {
+                        console.log("bcrypt hash success");
                         const user = new User({
                             _id: new mongoose.Types.ObjectId,
                             name: req.body.name,
