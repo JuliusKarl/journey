@@ -44,7 +44,7 @@ class Login extends Component {
             name: '',
             email: '',
             password: '',
-            validLoginCredentials: ''});}
+            validLoginCredentials: null});}
 
     /** Credential validator */
     checkCredentials(e) {
