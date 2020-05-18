@@ -78,9 +78,9 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})})
                         .then((res) => res.json())
-                        .then(() => {
+                        .then((data) => {
                             this.setState({
-                                validSignupCredentials: true})})
+                                validSignupCredentials: data.status})})
                         .then(() => {
                             if (this.state.validSignupCredentials === true) {
                                 this.changeType()}
