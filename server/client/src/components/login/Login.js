@@ -22,7 +22,8 @@ class Login extends Component {
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
         this.checkCredentials = this.checkCredentials.bind(this);
-        this.checkSignup = this.checkSignup.bind(this)}
+        this.checkSignup = this.checkSignup.bind(this);
+        this.tempSignupHandler = this.tempSignupHandler.bind(this)}
     
     componentDidMount() {
         /** Is user logged in? */
@@ -67,9 +68,21 @@ class Login extends Component {
                             else {
                                 localStorage.removeItem("pj_token")}})
                         .catch((err) => console.log(err));}
+
+     /** Server returns 302 on signup, temp solution but FIX LATER */
+     tempSignupHandler() {
+        this.setState({
+            validLoginCredentials: true})
+        this.changeType()
+        setTimeout(
+            function() {
+                this.setState({validSignupCredentials: null});}
+                .bind(this), 2000);}
+    
     /** Check Signup */
     checkSignup(e) {
         e.preventDefault();
+        this.tempSignupHandler();
         fetch('/user/signup', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
