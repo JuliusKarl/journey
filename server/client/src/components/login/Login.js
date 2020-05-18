@@ -72,7 +72,7 @@ class Login extends Component {
      /** Server returns 302 on signup, temp solution but FIX LATER */
      tempSignupHandler() {
         this.setState({
-            validLoginCredentials: true})
+            validSignupCredentials: true})
         this.changeType()
         setTimeout(
             function() {
