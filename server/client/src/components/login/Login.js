@@ -67,6 +67,7 @@ class Login extends Component {
                             else {
                                 localStorage.removeItem("pj_token")}})
                         .catch((err) => console.log(err));}
+    /** Check Signup */
     checkSignup(e) {
         e.preventDefault();
         fetch('/user/signup', {
@@ -86,7 +87,8 @@ class Login extends Component {
                                 setTimeout(
                                     function() {
                                         this.setState({validSignupCredentials: null});}
-                                .bind(this), 2000);})}
+                                .bind(this), 2000);})
+                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {
@@ -158,7 +160,6 @@ class Login extends Component {
                             </form>
                             :
                             <form 
-                                id="signup_form"
                                 method="POST">
                                 <div className="form-header">Sign Up</div>
                                 {this.state.validSignupCredentials === false && <p className="error-warning">Unexpected error, Try again.</p>}
