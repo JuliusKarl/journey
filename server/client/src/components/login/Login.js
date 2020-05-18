@@ -77,6 +77,7 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})})
                         .then((res) => res.json())
+                        .then((data) => console.log(data))
                         .then((data) => {
                             this.setState({
                                 validSignupCredentials: data.status})})
