@@ -71,7 +71,7 @@ class Login extends Component {
         e.preventDefault();
         fetch('/user/signup', {
                 method: 'POST',
-                headers : { 'Content-Type': 'application/json' },
+                headers : { 'Content-Type': 'application/json', 'Accept': 'application/json'},
                 body: JSON.stringify({
                     name : this.state.name,
                     email : this.state.email,
