@@ -78,6 +78,7 @@ exports.user_post_one = (req, res, next) => {
                 return res.status(409).json({
                     message: "Mail Exists"})}
             else {
+                console.log("else block")
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     console.log("bcrypt hash error");
                     if (err) {
