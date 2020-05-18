@@ -87,7 +87,6 @@ class Login extends Component {
                                     function() {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
-                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {
