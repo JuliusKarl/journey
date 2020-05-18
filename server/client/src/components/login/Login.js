@@ -86,7 +86,7 @@ class Login extends Component {
                                 setTimeout(
                                     function() {
                                         this.setState({validSignupCredentials: null});}
-                                .bind(this), 2000);})
+                                .bind(this), 2000);})}
 
     /** Email Authentication */
     checkEmailExists() {
