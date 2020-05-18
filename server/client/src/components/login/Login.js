@@ -77,11 +77,9 @@ class Login extends Component {
                     email : this.state.email,
                     password: this.state.password})})
                         .then((res) => res.json())
-                        .then((data) => console.log(data))
-                        .then((data) => {
+                        .then(() => {
                             this.setState({
-                                validSignupCredentials: data.status})})
-                        .then(console.log(this.state))
+                                validSignupCredentials: true})})
                         .then(() => {
                             if (this.state.validSignupCredentials === true) {
                                 this.changeType()}
@@ -89,7 +87,6 @@ class Login extends Component {
                                     function() {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
-                        .then(console.log(this.state))
                         .catch((err) => console.log(err));}
 
     /** Email Authentication */
