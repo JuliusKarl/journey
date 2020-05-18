@@ -70,7 +70,7 @@ class Login extends Component {
     /** Check Signup */
     checkSignup(e) {
         e.preventDefault();
-        fetch('/user/signup', {
+        fetch('https://journey.juliuskarl.dev/user/signup', {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
