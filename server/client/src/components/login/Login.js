@@ -124,7 +124,6 @@ class Login extends Component {
                     <div className="login-container">
                         {this.state.login?
                             <form 
-                                id="login_form"
                                 method="POST">
                                 <div className="form-header">Log in</div>
                                 {this.state.validLoginCredentials === false && <div className="error-warning form-header">Invalid username or password</div>}

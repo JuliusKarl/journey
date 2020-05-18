@@ -10,7 +10,7 @@
     background: #c7c7c7;
     margin: 0 auto;
     padding: 5px;
-    width: 40vw;
+    width: 45vw;
     border-radius: 5px;}
 
 .login-container * {
@@ -46,8 +46,22 @@
         margin: 0px 60px;}   
 }
 
-@media only screen and (max-width: 600px) {
-    .main-content {
+@media only screen and (max-width: 800px) {
+    .login-container {
+        margin: 0 auto;
+        width: 100vw;}
+
+    .login-container * {
+        margin: 0 auto;}
+
+    .login-container form {
+        width: 100%;
+        margin: 0px!important;}
+
+    form input, form div, form button {
+        margin: 10px 0px!important;
+        width: 100%;}
+    /* .main-content {
         width: 100%!important;}
 
     .login-container {
@@ -59,7 +73,7 @@
     
     form p {
         padding: 0px;
-        margin: 0px 20px!important;}
+        margin: 0px 20px!important;} */
 }
 
 form {display: grid;}
