@@ -81,7 +81,7 @@ class Login extends Component {
                         .then((data) => {
                             this.setState({
                                 validSignupCredentials: data.status})})
-                        .then(console.log(this.state)
+                            .then(console.log(this.state))
                         .then(() => {
                             if (this.state.validSignupCredentials === true) {
                                 this.changeType()}
