@@ -12,7 +12,7 @@ class Prayers extends Component {
         super(props);
         this.state = {
             render: false,
-            email: '',
+            id: null,
             savedDevotionals: [],
             savedPrayers: [],
             answeredPrayers: [],
@@ -38,12 +38,13 @@ class Prayers extends Component {
                 token: localStorage.getItem('pj_token')})})
                 .then(response => response.json())
                 .then(data => {
+                    if (this._isMounted) {
                     this.setState({
-                        email: data.email,
+                        id: data._id,
                         savedDevotionals: data.savedDevotionals,
                         savedPrayers: data.savedPrayers,
                         answeredPrayers: data.answeredPrayers,
-                        render: true})})}
+                        render: true})}})}
 
     componentWillUnmount() {
         this._isMounted = false;}
@@ -64,7 +65,7 @@ class Prayers extends Component {
                 method: 'POST',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    email: this.state.email,
+                    id: this.state.id,
                     title : this.state.newPrayerTitle,
                     body : this.state.newPrayerBody})})
                         .then((res) => res.json())
@@ -83,7 +84,7 @@ class Prayers extends Component {
                     <div className="new-prayer">
                         <form>
                             <span><i 
-                                className="large material-icons"
+                                className="material-icons"
                                 onClick={this.showNewPrayerView}>close</i></span>
                             <div className="new-prayer-header">New Prayer</div>
                             <input 
@@ -92,15 +93,20 @@ class Prayers extends Component {
                                 onChange={this.storeValue}
                                 value={this.state.newPrayerTitle}
                                 placeholder="Title"/>
-                            <input 
-                                type="text" 
+                            <textarea
+                                type="textarea" 
                                 name="newPrayerBody"
                                 onChange={this.storeValue}
                                 value={this.state.newPrayerBody}
                                 className="prayer-body"
-                                placeholder="Prayer" />
+                                rows="6"
+                                placeholder="Prayer"></textarea>
                             <div className="form-buttons">
-                                <input type="submit" onClick={this.submitPrayer} value="Add"/>
+                                <input 
+                                    type="submit" 
+                                    disabled={!this.state.newPrayerTitle}
+                                    onClick={this.submitPrayer} 
+                                    value="Add"/>
                             </div>
                         </form>
                     </div>
@@ -112,8 +118,8 @@ class Prayers extends Component {
                                 className="search" 
                                 type="text" 
                                 placeholder="Search prayer..."/>
-                            <button>Pray now</button>
                             <button onClick={this.showNewPrayerView}>Add prayer</button>
+                            <button>Pray now</button>
                         </div>
                         <hr />
                         <div className="prayer-list">

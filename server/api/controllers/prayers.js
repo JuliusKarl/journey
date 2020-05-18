@@ -38,15 +38,14 @@ exports.prayers_get_all = (req, res, next) => {
 
 /** Add new prayer */
 exports.prayer_post_one = (req, res, next) => {
+    const id = req.body.id;
+    User.updateOne({ _id : id }, { $set : { name : "Julie"}})
+        .then(result => {res.status(200).json({message: "Prayer Saved."})})
+        .catch(err => {console.log(err);res.status(500).json({error: err})})
     const prayer = new Prayer({
         _id: new mongoose.Types.ObjectId,
         title: req.body.title,
-        body: req.body.body});
-    console.log(req.body.email);
-    User
-        .update({ "email" : req.body.email }, { $set : { "name" : "Julie"}})
-        .then(result => {res.status(200).json({message: "Prayer Saved."})})
-        .catch(err => {console.log(err);res.status(500).json({error: err})})}
+        body: req.body.body});}
 
 
 /** Delete one prayer */

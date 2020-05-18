@@ -72,7 +72,6 @@ exports.user_login = (req, res, next) => {
 
 /** Sign up one user */
 exports.user_post_one = (req, res, next) => {
-    console.log(req.body.enail);
     User.find({ email: req.body.email })
         .exec()
         .then(user => {

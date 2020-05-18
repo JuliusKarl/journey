@@ -34,6 +34,14 @@ form span {
 form i {
     cursor: pointer;}
 
+.prayer-body {
+    margin: 10px 60px;
+    resize: none;
+    padding: 5px;
+    border-radius: 3px;
+    border: solid 1px;
+    border-color: #c7c7c7;}
+
 .form-buttons {
     display: flex;
     justify-content: space-evenly;}
@@ -49,9 +57,6 @@ form i {
     background: rgba(14, 14, 27, 0.9);
     flex-grow: 1;
     color: #ffffff;}
-
-.prayer-body {
-    padding-bottom: 20vh!important;}
 
 /* Animations */
 .loader {

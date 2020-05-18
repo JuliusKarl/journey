@@ -43,7 +43,8 @@ class Login extends Component {
             passwordIsValid: false,
             name: '',
             email: '',
-            password: ''});}
+            password: '',
+            validLoginCredentials: ''});}
 
     /** Credential validator */
     checkCredentials(e) {
@@ -142,9 +143,11 @@ class Login extends Component {
                                     name="password"
                                     placeholder="Password"/>
 
-                                <button
-                                    disabled = {!this.state.email || !this.state.password}
-                                    onClick={this.checkCredentials}>Login</button>
+                                <input
+                                    type="submit"
+                                    disabled={!this.state.email || !this.state.password}
+                                    onClick={this.checkCredentials}
+                                    value="Login"/>
 
                                 <div>
                                     Not Registered?&nbsp;
@@ -197,14 +200,16 @@ class Login extends Component {
                                     name="confirmPassword"
                                     placeholder="Confirm Password"/>
 
-                                <button
+                                <input
                                     onClick={this.checkSignup}
                                     disabled = {
                                         !this.state.email || 
                                         !this.state.password || 
                                         !this.state.passwordIsValid || 
                                         !this.state.emailIsValid ||
-                                        this.emailExists}>Submit</button>
+                                        this.emailExists}
+                                        type="submit"
+                                        value="Submit"/>
 
                                 <div>
                                     Already have an account?&nbsp;

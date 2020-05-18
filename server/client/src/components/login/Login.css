@@ -16,9 +16,10 @@
 .login-container * {
     border-radius: 2px;}
 
-.login-container button {
+.login-container input[type='submit'] {
         color: #e0e0e0;
-        background: rgba(14, 14, 27, 0.9);}
+        background-color: rgba(14, 14, 27, 0.9);
+        transition: background-color 0.1s ease-in-out }
 
 .form-header {
     color: rgba(14, 14, 27, 0.9);
@@ -69,7 +70,8 @@ form input, form div, form button {
     border: 0px;}
 
 input[type="submit"]:disabled {
-    background: grey;}
+    background-color: grey;
+    transition: background-color 0.1s ease-in-out}
 
 .pointer {
     cursor: pointer;
