@@ -91,9 +91,13 @@ exports.user_post_one = (req, res, next) => {
                             password: hash});
                         user
                             .save()
+                            .then(() => {
                                 return res.status(200).json({
                                     message: "Auth Success",
-                                    status: true});}});}})}
+                                    status: true})})
+                            .catch(err => {
+                                res.status(500).json({
+                                    error: err});});}});}})}
 
 /** Find one user */
 exports.user_find_one = (req, res, next) => {
