@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { isMobile } from "react-device-detect";
 import './Login.css';
 
 class Login extends Component {
@@ -134,7 +135,7 @@ class Login extends Component {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}>
 
-                    <div style={{height: '10vh'}}></div>
+                    {!isMobile ? <div style={{height: '10vh'}}></div>: <div style={{height: '5vh'}}></div>}
                     <div className="login-container">
                         {this.state.login?
                             <form 
