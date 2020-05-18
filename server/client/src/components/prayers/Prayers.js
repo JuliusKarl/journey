@@ -130,8 +130,7 @@ class Prayers extends Component {
                 </div>
                 :
                 <div className="mobile">
-                    <button>Pray now (Mobile)</button>
-                    <button>Add prayer (Mobile)</button>
+                    Not on mobile yet.
                 </div>
                 :
                 <Loader
