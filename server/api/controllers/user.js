@@ -91,7 +91,7 @@ exports.user_post_one = (req, res, next) => {
                             password: hash});
                         user
                             .save()
-                            .then(res => {
+                            .then(() => {
                                 return res.status(200).json({
                                     message: "Auth Success",
                                     status: true})})

@@ -71,7 +71,7 @@ class Login extends Component {
         e.preventDefault();
         fetch('/user/signup', {
                 method: 'POST',
-                headers : { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+                headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name : this.state.name,
                     email : this.state.email,
@@ -85,7 +85,8 @@ class Login extends Component {
                                 this.changeType()}
                                 setTimeout(
                                     function() {
-                                        this.setState({validSignupCredentials: null});}, 2000);})
+                                        this.setState({validSignupCredentials: null});}
+                                .bind(this), 2000);})
                         .catch((err) => console.log(err));}
 
     /** Email Authentication */
