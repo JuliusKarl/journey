@@ -2,7 +2,6 @@ const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
-const domain = process.env.DOMAIN;
 
 /** Get all users */
 exports.user_get_all = (req, res, next) => {

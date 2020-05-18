@@ -1,8 +1,6 @@
 const User = require("../models/prayer");
 const Prayer = require('../models/prayer');
-const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
-const jwt = require('jsonwebtoken');
 
 /** Get all prayers */
 exports.prayers_get_all = (req, res, next) => {
@@ -39,7 +37,11 @@ exports.prayers_get_all = (req, res, next) => {
 /** Add new prayer */
 exports.prayer_post_one = (req, res, next) => {
     const id = req.body.id;
-    User.updateOne({ _id : id }, { $set : { name : "Julie"}})
+    User
+        .updateOne({ _id : id }, { $push : { "savedPrayers" : {
+            _id: new mongoose.Types.ObjectId,
+            title: req.body.title,
+            body: req.body.body}}})
         .then(result => {res.status(200).json({message: "Prayer Saved."})})
         .catch(err => {console.log(err);res.status(500).json({error: err})})
     const prayer = new Prayer({

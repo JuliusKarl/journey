@@ -174,7 +174,7 @@ class Login extends Component {
                                 <input 
                                     onChange={this.validateEmail}
                                     onClick={this.state.email && this.validateEmail}
-                                    onBlur={this.checkEmailExists && this.validateEmail}
+                                    onBlur={this.checkEmailExists}
                                     value={this.state.email}
                                     style={
                                         this.state.emailIsValid ?
