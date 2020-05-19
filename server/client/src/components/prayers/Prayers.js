@@ -47,26 +47,24 @@ class Prayers extends Component {
                 .then(response => response.json())
                 .then(data => {
                     if (this._isMounted) {
-                    this.setState({
+                        this.setState({
                         id: data._id,
                         savedDevotionals: data.savedDevotionals,
                         savedPrayers: data.savedPrayers,
                         answeredPrayers: data.answeredPrayers,
-                        render: true})}})}
+                        render: true});}})}
 
     componentWillUnmount() {
         this._isMounted = false;}
     
     /** UI Views */    
-
     /** Create new prayer form */
     showNewPrayerView() {
         this.setState({
             newPrayerView: !this.state.newPrayerView})}
 
     /** Edit existing prayer form */
-    showPrayer(id) {
-        console.log(id);
+    showPrayer() {
         this.setState({
             showPrayerView: !this.state.showPrayerView})}
 
@@ -85,10 +83,13 @@ class Prayers extends Component {
                     body : this.state.newPrayerBody})})
                         .then((res) => res.json())
                         .then(() => {
+                            this.setState({
+                                newPrayerView: !this.state.newPrayerView,
+                                newPrayerTitle: '',
+                                newPrayerBody: '',})
                             this.props.history.push('/prayers');
                             window.location.reload(true);})
                         .catch((err) => console.log(err));}
-
     render() {
         return (
             <div className="main">
@@ -149,7 +150,9 @@ class Prayers extends Component {
                                                 key={i} 
                                                 title={item.title} 
                                                 body={item.body} 
-                                                id={item._id}/>})
+                                                id={item._id}
+                                                userId={this.state.id}
+                                                update={this.updatePrayers}/>})
                                         : 
                                         <i>No Prayers</i>}
                                     </div>
@@ -164,7 +167,10 @@ class Prayers extends Component {
                                         return <PrayerCard  
                                             key={i} 
                                             title={item.title} 
-                                            body={item.body} />})
+                                            body={item.body}
+                                            id={item._id}
+                                            userId={this.state.id}
+                                            update={this.updatePrayers}/>})
                                 : 
                                     <i>No Prayers</i>}
                             </div>

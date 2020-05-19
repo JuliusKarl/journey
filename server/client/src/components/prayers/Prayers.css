@@ -50,7 +50,7 @@ form i {
     grid-gap: 1vw;}
 
 .prayer-list * {
-    padding:  5px;
+    padding:  0px 5px 5px 5px;
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -17,8 +17,11 @@ router.post('/log_in', UsersController.user_login);
 /** Find an existing user by id */
 router.post('/find', UsersController.user_find_one)
 
-/** Delete an existing user by userId */
+/** Add new prayer */
 router.patch('/prayer/new/:userId', UsersController.user_patch_one);
+
+/** Remove new prayer */
+router.patch('/prayer/remove/:userId', UsersController.user_patch_one_remove);
 
 /** Delete an existing user by userId */
 router.delete('/:userId', UsersController.user_delete_one);

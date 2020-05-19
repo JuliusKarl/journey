@@ -4,7 +4,7 @@ const ObjectIdSchema = Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;
 
 const prayerSchema = mongoose.Schema({
-    _id: {type:ObjectIdSchema, default: new ObjectId()},
+    _id: mongoose.Schema.Types.ObjectId,
     title: { type: String, required: true },
     body: { type: String, required: false }});
 

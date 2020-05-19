@@ -1,0 +1,9 @@
+.close-button {
+    padding: 0px!important;
+    text-align: right;
+    cursor: pointer;
+    margin-top: 2px;}
+
+.prayer-card {
+    background: #c7c7c7;
+    border-radius: 3px;}

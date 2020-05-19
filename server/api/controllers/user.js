@@ -124,6 +124,7 @@ exports.user_find_one = (req, res, next) => {
 exports.user_patch_one = (req, res, next) => {
     const id = req.params.userId;
     const prayer = new Prayer({
+        _id: new mongoose.Types.ObjectId,
         title: req.body.title,
         body: req.body.body});
 
@@ -134,6 +135,18 @@ exports.user_patch_one = (req, res, next) => {
             res.status(200).json({result:result});})
         .catch(err => {
             console.log(err);res.status(500).json({error: err})})}
+
+/** Remove one prayer */
+exports.user_patch_one_remove = (req, res, next) => {
+    const id = req.params.userId;
+    User
+        .updateOne({ _id: id }, { $pull : { savedPrayers : { _id : req.body.id } }})
+        .exec()
+        .then(result => {
+            return res.status(200).json({ result: result});})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}
+
 
 /** Delete one user */
 exports.user_delete_one = (req, res, next) => {
