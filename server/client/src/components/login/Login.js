@@ -24,7 +24,8 @@ class Login extends Component {
         this.checkEmailExists = this.checkEmailExists.bind(this);
         this.checkCredentials = this.checkCredentials.bind(this);
         this.checkSignup = this.checkSignup.bind(this);
-        this.tempHandler = this.tempHandler.bind(this)}
+        // this.tempHandler = this.tempHandler.bind(this)
+    }
     
     componentDidMount() {
         /** Is user logged in? */
