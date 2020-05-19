@@ -71,14 +71,14 @@ class Login extends Component {
                         .catch((err) => console.log(err));}
 
     /** Temp PROD solution to signup */
-    tempHandler() {
-        this.changeType();
-        this.setState({
-            validSignupCredentials: true})
-        setTimeout(
-            function() {
-                this.setState({validSignupCredentials: null});}
-        .bind(this), 2000);}
+    // tempHandler() {
+    //     this.changeType();
+    //     this.setState({
+    //         validSignupCredentials: true})
+    //     setTimeout(
+    //         function() {
+    //             this.setState({validSignupCredentials: null});}
+    //     .bind(this), 2000);}
 
     /** Check Signup */
     checkSignup(e) {
@@ -102,7 +102,8 @@ class Login extends Component {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
                         .catch((err) => console.log(err));
-        this.tempHandler();}
+        // this.tempHandler();
+    }
 
     /** Email Authentication */
     checkEmailExists() {
