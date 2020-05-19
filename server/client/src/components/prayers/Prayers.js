@@ -24,14 +24,11 @@ class Prayers extends Component {
             showPrayerView: true,
             showPrayerId: '',
             showPrayerTitle: '',
-            showPrayerBody: '',
-            editMode: false,
-            editText: 'Edit'}
+            showPrayerBody: ''}
         this.storeValue = this.storeValue.bind(this);
         this.showNewPrayerView = this.showNewPrayerView.bind(this);
         this.submitPrayer = this.submitPrayer.bind(this);
-        this.showPrayer = this.showPrayer.bind(this);
-        this.editPrayer = this.editPrayer.bind(this);}
+        this.showPrayer = this.showPrayer.bind(this);}
 
     /** Imperative functions, Lifecycle Hooks */
     componentDidMount() {
@@ -68,21 +65,10 @@ class Prayers extends Component {
             newPrayerView: !this.state.newPrayerView})}
 
     /** Edit existing prayer form */
-    showPrayer() {
+    showPrayer(id) {
+        console.log(id);
         this.setState({
             showPrayerView: !this.state.showPrayerView})}
-
-    /** Change display mode from view to edit */
-    editPrayer(e) {
-        e.preventDefault();
-        if (this.state.editText == "Edit") {
-        this.setState({
-            editMode: !this.state.editMode,
-            editText: 'Save'})}
-        else {
-            this.setState({
-                editMode: !this.state.editMode,
-                editText: 'Edit'})}}
 
     /** Handlers */
     storeValue(e) {  
@@ -106,95 +92,95 @@ class Prayers extends Component {
     render() {
         return (
             <div className="main">
-                {this.state.render ?
-                !isMobile ?
-                <div className="browser">
-                    {this.state.newPrayerView ?
+                { this.state.render ?
+                    !isMobile ?
+                        <div className="browser">
+                            {this.state.newPrayerView ?
 
-                    /** Create a new prayer */
-                    <div className="new-prayer">
-                        <form>
-                            <span><i 
-                                className="material-icons"
-                                onClick={this.showNewPrayerView}>close</i></span>
-                            <div className="new-prayer-header">New Prayer</div>
-                            <input 
-                                type="text" 
-                                name="newPrayerTitle"
-                                onChange={this.storeValue}
-                                value={this.state.newPrayerTitle}
-                                placeholder="Title"/>
-                            <textarea
-                                type="textarea" 
-                                name="newPrayerBody"
-                                onChange={this.storeValue}
-                                value={this.state.newPrayerBody}
-                                className="prayer-body"
-                                rows="6"
-                                placeholder="Prayer"></textarea>
-                            <div className="form-buttons">
-                                <input 
-                                    type="submit" 
-                                    onClick={this.submitPrayer}
-                                    disabled={!this.state.newPrayerTitle}
-                                    value="Add"/>
-                            </div>
-                        </form>
-                    </div>
-                    :                   
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}>
-                        <div className="toolbar">
-                            <h2>My Prayers</h2>
-                            <input 
-                                className="search" 
-                                type="text" 
-                                placeholder="Search prayer..."/>
-                            <button onClick={this.showNewPrayerView}>Add prayer</button>
-                            <button>Pray now</button>
+                                /** Create a new prayer */
+                                <div className="new-prayer">
+                                    <form>
+                                        <span><i 
+                                            className="material-icons"
+                                            onClick={this.showNewPrayerView}>close</i></span>
+                                        <div className="new-prayer-header">New Prayer</div>
+                                        <input 
+                                            type="text" 
+                                            name="newPrayerTitle"
+                                            onChange={this.storeValue}
+                                            value={this.state.newPrayerTitle}
+                                            placeholder="Title"/>
+                                        <textarea
+                                            type="textarea" 
+                                            name="newPrayerBody"
+                                            onChange={this.storeValue}
+                                            value={this.state.newPrayerBody}
+                                            className="prayer-body"
+                                            rows="6"
+                                            placeholder="Prayer"></textarea>
+                                        <div className="form-buttons">
+                                            <input 
+                                                type="submit" 
+                                                onClick={this.submitPrayer}
+                                                disabled={!this.state.newPrayerTitle}
+                                                value="Add"/>
+                                        </div>
+                                    </form>
+                                </div>
+                                :                   
+                                <motion.div 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}>
+                                    <div className="toolbar">
+                                        <h2>My Prayers</h2>
+                                        <input 
+                                            className="search" 
+                                            type="text" 
+                                            placeholder="Search prayer..."/>
+                                        <button onClick={this.showNewPrayerView}>Add prayer</button>
+                                        <button>Pray now</button>
+                                    </div>
+                                    <hr />
+                                    <div className="prayer-list">
+                                        {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
+                                        this.state.savedPrayers.map((item, i) => {
+                                            return <PrayerCard 
+                                                key={i} 
+                                                title={item.title} 
+                                                body={item.body} 
+                                                id={item._id}/>})
+                                        : 
+                                        <i>No Prayers</i>}
+                                    </div>
+                                </motion.div>}
                         </div>
-                        <hr />
-                        <div className="prayer-list">
-                            {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
-                            this.state.savedPrayers.map((item, i) => {
-                                return <PrayerCard 
-                                    key={i} 
-                                    title={item.title} 
-                                    body={item.body} 
-                                    id={item._id}/>})
-                        : 
-                        'No Prayers'}
-                    </div>
+                        :
+                        <div>
+                            <hr />
+                            <div className="prayer-list">
+                                {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
+                                    this.state.savedPrayers.map((item, i) => {
+                                        return <PrayerCard  
+                                            key={i} 
+                                            title={item.title} 
+                                            body={item.body} />})
+                                : 
+                                    <i>No Prayers</i>}
+                            </div>
+                        </div>
+                :
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}>
+                    <Loader
+                        type="TailSpin"
+                        color="#dbdbdb"
+                        height={80}
+                        width={80}
+                        className="loader"/>
                 </motion.div>}
-            </div>
-            :
-            <div>
-                <hr />
-                    <div className="prayer-list">
-                        {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
-                        this.state.savedPrayers.map((item, i) => {
-                            return <PrayerCard  
-                                key={i} 
-                                title={item.title} 
-                                body={item.body} />})
-                        : 
-                        'No Prayers'}
-                    </div>
-            </div>
-            :
-            <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}>
-                <Loader
-                    type="TailSpin"
-                    color="#dbdbdb"
-                    height={80}
-                    width={80}
-                    className="loader"/>
-            </motion.div>}
-        </div>)}}
+            </div>)}}
 
 export default withRouter(Prayers);

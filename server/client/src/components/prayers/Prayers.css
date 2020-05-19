@@ -50,6 +50,7 @@ form i {
     grid-gap: 1vw;}
 
 .prayer-list * {
+    padding:  5px;
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -81,7 +82,7 @@ form i {
         text-align: center;}
 
     .prayer-list * {
-        padding: 15px 5px;
+        padding: 5px 5px;
         width: 100%;}}
 
 /* Animations */

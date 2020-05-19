@@ -128,7 +128,7 @@ exports.user_patch_one = (req, res, next) => {
         body: req.body.body});
 
     User
-        .updateOne({ _id: id }, { $push : { savedPrayers : prayer }})
+        .updateOne({ _id: id }, { $push : { savedPrayers : { $each : [ prayer ], $position: 0 } }})
         .exec()
         .then(result => {
             res.status(200).json({result:result});})

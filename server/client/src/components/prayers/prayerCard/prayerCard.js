@@ -12,5 +12,7 @@ export default class prayerCard extends Component {
     render() {
         return (
             <div className="prayer-card">
-                <button key={this.props.i}><b>{this.props.title}</b></button>
+                <button key={this.props.i}>
+                    <b>{this.props.title}</b>
+                </button>
             </div>)}}
