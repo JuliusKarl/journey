@@ -74,7 +74,7 @@ class Login extends Component {
     temphandler() {
         this.changeType();
         this.setState({
-            validSignupCredentials: data.status})
+            validSignupCredentials: true})
         setTimeout(
             function() {
                 this.setState({validSignupCredentials: null});}
@@ -102,7 +102,7 @@ class Login extends Component {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
                         .catch((err) => console.log(err));
-        tempHandler();}
+        this.tempHandler();}
 
     /** Email Authentication */
     checkEmailExists() {
