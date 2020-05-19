@@ -45,14 +45,16 @@ form i {
 
 /* Prayer Options*/
 .prayer-list {
-    display: flex;
-    flex-wrap: wrap;}
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1vw;}
 
 .prayer-list * {
-    position: relative;
-    flex-grow: 0;    
-    flex-shrink: 0;   
-    flex-basis: 10%;}
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;}
 
 .prayer-body {
     margin: 10px 60px;
@@ -74,11 +76,13 @@ form i {
         padding: 0px;}
 
     .prayer-list {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
         text-align: center;}
 
     .prayer-list * {
-        margin-bottom: 5px;
-        flex-grow: 1;}}
+        padding: 15px 5px;
+        width: 100%;}}
 
 /* Animations */
 .loader {

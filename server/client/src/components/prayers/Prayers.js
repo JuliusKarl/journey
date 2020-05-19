@@ -133,7 +133,11 @@ class Prayers extends Component {
                     <div className="prayer-list">
                         {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
                         this.state.savedPrayers.map((item, i) => {
-                            return <PrayerCard key={i} title={item.title} body={item.body} />})
+                            return <PrayerCard 
+                                key={i} 
+                                title={item.title} 
+                                body={item.body} 
+                                id={item._id}/>})
                         : 
                         'No Prayers'}
                     </div>

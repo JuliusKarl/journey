@@ -129,11 +129,9 @@ exports.user_patch_one = (req, res, next) => {
         .updateOne({ _id: id }, { $push : { savedPrayers : prayer }})
         .exec()
         .then(result => {
-            console.log(result);
             res.status(200).json({result:result});})
         .catch(err => {
             console.log(err);res.status(500).json({error: err})})}
-
 
 /** Delete one user */
 exports.user_delete_one = (req, res, next) => {
