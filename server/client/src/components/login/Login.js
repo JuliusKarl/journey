@@ -23,7 +23,8 @@ class Login extends Component {
         this.comparePassword = this.comparePassword.bind(this);
         this.checkEmailExists = this.checkEmailExists.bind(this);
         this.checkCredentials = this.checkCredentials.bind(this);
-        this.checkSignup = this.checkSignup.bind(this);}
+        this.checkSignup = this.checkSignup.bind(this);
+        this.tempHandler = this.tempHandler.bind(this)}
     
     componentDidMount() {
         /** Is user logged in? */
@@ -68,7 +69,17 @@ class Login extends Component {
                             else {
                                 localStorage.removeItem("pj_token")}})
                         .catch((err) => console.log(err));}
-    
+
+    /** Temp PROD solution to signup */
+    temphandler() {
+        this.changeType();
+        this.setState({
+            validSignupCredentials: data.status})
+        setTimeout(
+            function() {
+                this.setState({validSignupCredentials: null});}
+        .bind(this), 2000);}
+
     /** Check Signup */
     checkSignup(e) {
         e.preventDefault();
@@ -90,7 +101,8 @@ class Login extends Component {
                                     function() {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
-                        .catch((err) => console.log(err));}
+                        .catch((err) => console.log(err));
+        tempHandler();}
 
     /** Email Authentication */
     checkEmailExists() {
