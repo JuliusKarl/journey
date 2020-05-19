@@ -71,7 +71,7 @@ class Login extends Component {
                         .catch((err) => console.log(err));}
 
     /** Temp PROD solution to signup */
-    temphandler() {
+    tempHandler() {
         this.changeType();
         this.setState({
             validSignupCredentials: true})
