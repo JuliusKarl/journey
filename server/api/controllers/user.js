@@ -76,6 +76,7 @@ exports.user_post_one = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length >= 1) {
+                console.log('0')
                 return res.status(409).json({
                     message: "Mail Exists"})}
             else {
@@ -89,15 +90,16 @@ exports.user_post_one = (req, res, next) => {
                             _id: new mongoose.Types.ObjectId,
                             name: req.body.name,
                             email: req.body.email,
-                            date: Date.now(),
                             password: hash});
                         user
                             .save()
                             .then(() => {
+                                console.log('4')
                                 return res.status(200).json({
                                     message: "Auth Success",
                                     status: true})})
                             .catch(err => {
+                                console.log('5')
                                 res.status(500).json({
                                     error: err});});}});}})}
 
