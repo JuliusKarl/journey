@@ -21,7 +21,7 @@
     margin: 0px 5px;
     flex-grow: 1;}
 
-/** Form options */
+/** Form Options */
 form {
     width: 40vw;
     border-radius: 5px;
@@ -34,6 +34,26 @@ form span {
 form i {
     cursor: pointer;}
 
+.form-buttons {
+    display: flex;
+    justify-content: space-evenly;}
+
+.form-buttons input {
+    background: rgba(14, 14, 27, 0.9);
+    flex-grow: 1;
+    color: #ffffff;}
+
+/* Prayer Options*/
+.prayer-list {
+    display: flex;
+    flex-wrap: wrap;}
+
+.prayer-list * {
+    position: relative;
+    flex-grow: 0;    
+    flex-shrink: 0;   
+    flex-basis: 10%;}
+
 .prayer-body {
     margin: 10px 60px;
     resize: none;
@@ -42,10 +62,6 @@ form i {
     border: solid 1px;
     border-color: #c7c7c7;}
 
-.form-buttons {
-    display: flex;
-    justify-content: space-evenly;}
-
 .new-prayer-header {
     color: rgba(14, 14, 27, 0.9);
     font-size: 24px;
@@ -53,10 +69,16 @@ form i {
     padding: 0px 0px 10.5px 0px;
     margin: 0px;}
 
-.form-buttons input {
-    background: rgba(14, 14, 27, 0.9);
-    flex-grow: 1;
-    color: #ffffff;}
+@media only screen and (max-width: 1000px) {
+    .main {
+        padding: 0px;}
+
+    .prayer-list {
+        text-align: center;}
+
+    .prayer-list * {
+        margin-bottom: 5px;
+        flex-grow: 1;}}
 
 /* Animations */
 .loader {

@@ -58,7 +58,7 @@
         width: 100%;
         margin: 0px!important;}
 
-    form input, form div, form button {
+    form input, form div, form button, form textarea {
         margin: 10px 0px!important;
         width: 100%;}
     /* .main-content {

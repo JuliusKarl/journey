@@ -18,6 +18,9 @@ router.post('/log_in', UsersController.user_login);
 router.post('/find', UsersController.user_find_one)
 
 /** Delete an existing user by userId */
+router.patch('/prayer/new/:userId', UsersController.user_patch_one);
+
+/** Delete an existing user by userId */
 router.delete('/:userId', UsersController.user_delete_one);
 
 module.exports = router;

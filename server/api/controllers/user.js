@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Prayer = require("../models/prayer")
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
@@ -88,6 +89,7 @@ exports.user_post_one = (req, res, next) => {
                             _id: new mongoose.Types.ObjectId,
                             name: req.body.name,
                             email: req.body.email,
+                            date: Date.now(),
                             password: hash});
                         user
                             .save()
@@ -115,6 +117,23 @@ exports.user_find_one = (req, res, next) => {
                 answeredPrayers: result.answeredPrayers}
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
+
+/** Add new prayer */
+exports.user_patch_one = (req, res, next) => {
+    const id = req.params.userId;
+    const prayer = new Prayer({
+        title: req.body.title,
+        body: req.body.body});
+
+    User
+        .updateOne({ _id: id }, { $push : { savedPrayers : prayer }})
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json({result:result});})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}
+
 
 /** Delete one user */
 exports.user_delete_one = (req, res, next) => {

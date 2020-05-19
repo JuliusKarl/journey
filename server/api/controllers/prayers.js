@@ -1,6 +1,7 @@
 const User = require("../models/prayer");
 const Prayer = require('../models/prayer');
 const mongoose = require("mongoose");
+const ObjectId = require('mongodb').ObjectID;
 
 /** Get all prayers */
 exports.prayers_get_all = (req, res, next) => {
@@ -36,18 +37,19 @@ exports.prayers_get_all = (req, res, next) => {
 
 /** Add new prayer */
 exports.prayer_post_one = (req, res, next) => {
-    const id = req.body.id;
-    User
-        .updateOne({ _id : id }, { $push : { "savedPrayers" : {
-            _id: new mongoose.Types.ObjectId,
-            title: req.body.title,
-            body: req.body.body}}})
-        .then(result => {res.status(200).json({message: "Prayer Saved."})})
-        .catch(err => {console.log(err);res.status(500).json({error: err})})
+    const id = req.params.userId;
     const prayer = new Prayer({
-        _id: new mongoose.Types.ObjectId,
         title: req.body.title,
-        body: req.body.body});}
+        body: req.body.body});
+
+    User
+        .update({ _id: id }, { $set: { name : "Jul" }})
+        .exec()
+        .then(result => {
+            console.log(prayer);
+            res.status(200).json({result:result});})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}
 
 
 /** Delete one prayer */
