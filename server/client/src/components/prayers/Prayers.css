@@ -46,11 +46,11 @@ form i {
 /* Prayer Options*/
 .prayer-list {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 1vw;}
 
 .prayer-list * {
-    padding:  0px 5px 5px 5px;
+    padding:  2px 2px 5px 5px;
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -75,6 +75,9 @@ form i {
 @media only screen and (max-width: 1000px) {
     .main {
         padding: 0px;}
+    
+    .new-prayer form {
+        width: 100vw;}
 
     .prayer-list {
         grid-template-columns: repeat(1, 1fr);
