@@ -3,6 +3,7 @@ import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
 import Navigator from './components/navigator/Navigator';
 import Prayers from './components/prayers/Prayers';
+import PrayerView from './components/prayers/prayerView/PrayerView';
 import Profile from './components/profile/Profile';
 import Devotionals from './components/devotionals/Devotionals';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -11,13 +12,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 export default class App extends Component {
+
   constructor() {
     super();
     this.state = {
-      username: null}}
+      _id: null}}
 
   componentDidMount() {
     /** Authenticate user */
+    if (window.location.pathname == '/') {
     fetch('/user/find', {
       method: 'POST',
       headers : { 'Content-Type': 'application/json' },
@@ -26,10 +29,10 @@ export default class App extends Component {
           .then(response => response.json())
           .then(data => {
             this.setState({
-                username: data.name})})
+                _id: data._id})})
           .then(() => {
-            if (!this.state.username) {
-              localStorage.removeItem('pj_token');}});}
+            if (!this.state._id) {
+              localStorage.removeItem('pj_token');}});}}
 
   render() {
     return (
@@ -55,6 +58,12 @@ export default class App extends Component {
                   exact
                   path='/prayers'
                   component={() => <Prayers />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/prayers/find/:id'
+                  component={() => <PrayerView />}>
                 </Route>
 
                 <Route

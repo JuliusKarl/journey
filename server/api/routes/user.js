@@ -23,6 +23,9 @@ router.patch('/prayer/new/:userId', UsersController.user_patch_one);
 /** Remove new prayer */
 router.patch('/prayer/remove/:userId', UsersController.user_patch_one_remove);
 
+/** Find a prayer */
+router.post('/prayer/find/:prayerId', UsersController.prayer_find_one)
+
 /** Delete an existing user by userId */
 router.delete('/:userId', UsersController.user_delete_one);
 

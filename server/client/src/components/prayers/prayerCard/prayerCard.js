@@ -9,8 +9,7 @@ export default class prayerCard extends Component {
             id: this.props.id,
             title: this.props.title,
             body: this.props.body}
-    this.removePrayer = this.removePrayer.bind(this);
-    this.openPrayer = this.openPrayer.bind(this)}
+    this.removePrayer = this.removePrayer.bind(this);}
 
     removePrayer() {
         fetch('/user/prayer/remove/' + this.state.userId, {
@@ -22,18 +21,14 @@ export default class prayerCard extends Component {
                         .then(() => {
                             window.location.reload(true);})
                         .catch((err) => console.log(err));}
-    openPrayer() {
-        console.log('prayer is opened');
-    }
 
     render() {
         return (
-            <div className="prayer-card">
+            <a 
+                href={"/prayers/find/" + this.state.id}
+                className="prayer-card">
                 <span>
-                <i 
-                    className="small material-icons close-button"
-                    onClick={this.removePrayer}>close</i>
                     <b>{this.state.title}</b>
                     <i>{this.state.body ? this.state.body : <br></br>}</i>
                 </span>
-            </div>)}}
+            </a>)}}

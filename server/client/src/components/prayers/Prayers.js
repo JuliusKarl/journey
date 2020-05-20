@@ -92,9 +92,9 @@ class Prayers extends Component {
                         .catch((err) => console.log(err));}
     render() {
         return (
+            this.state.render ?
             <div className="main">
-                { this.state.render ?
-                    !isMobile ?
+                    {!isMobile ?
                         <div className="browser">
                             {this.state.newPrayerView ?
 
@@ -151,8 +151,7 @@ class Prayers extends Component {
                                                 title={item.title} 
                                                 body={item.body} 
                                                 id={item._id}
-                                                userId={this.state.id}
-                                                update={this.updatePrayers}/>})
+                                                userId={this.state.id}/>})
                                         : 
                                         <i>No Prayers</i>}
                                     </div>
@@ -169,24 +168,18 @@ class Prayers extends Component {
                                             title={item.title} 
                                             body={item.body}
                                             id={item._id}
-                                            userId={this.state.id}
-                                            update={this.updatePrayers}/>})
+                                            userId={this.state.id}/>})
                                 : 
                                     <i>No Prayers</i>}
                             </div>
-                        </div>
-                :
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}>
-                    <Loader
-                        type="TailSpin"
-                        color="#dbdbdb"
-                        height={80}
-                        width={80}
-                        className="loader"/>
-                </motion.div>}
-            </div>)}}
+                        </div>}
+            </div>
+            :
+            <Loader
+                type="TailSpin"
+                color="#dbdbdb"
+                height={80}
+                width={80}
+                className="loader"/>)}}
 
 export default withRouter(Prayers);

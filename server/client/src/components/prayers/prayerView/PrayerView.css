@@ -1,0 +1,17 @@
+.prayer-view-form-content {
+    background: #c7c7c7;
+    padding: 0px;
+    margin: 0px;
+    font-size: 24px;}
+
+.prayer-view-form-content * {
+    padding: 0px;}
+
+.prayer-view-form-content .form-buttons {
+    display: flex;
+    justify-content: space-evenly;}
+
+.prayer-view-form-content .form-buttons input {
+    background: rgba(14, 14, 27, 0.9);
+    flex-grow: 1;
+    color: #ffffff;}

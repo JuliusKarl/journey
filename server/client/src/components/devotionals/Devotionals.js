@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DevotionalCard from './devotionalCard/DevotionalCard';
 import { withRouter } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import Loader from 'react-loader-spinner';
@@ -10,13 +11,14 @@ class Devotionals extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            render: false,}}
+            savedDevotionals: [],
+            render: false}}
 
     componentDidMount() {
         this._isMounted = true;
 
         /** Change this when pulling devotional data from user */
-        this.setState({render:true})
+        if (this._isMounted) {this.setState({render:true})}
 
         /** User Logged In ? Load Data : Redirect Login */
         if (!localStorage.getItem('pj_token')) {
@@ -27,9 +29,9 @@ class Devotionals extends Component {
 
     render() {
         return (
+            this.state.render ? 
             <div className="main">
-                {this.state.render ?
-                !isMobile ?
+                {!isMobile ?
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -45,8 +47,17 @@ class Devotionals extends Component {
                             </div>
                             <hr />
                             <div className="prayer-list">
-                                {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? this.state.savedPrayers : 'No Devotionals'}
-                                {/* fetch prayers from user else display 'no prayers' */}
+                            {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
+                                        this.state.savedDevotionals.map((item, i) => {
+                                            return <DevotionalCard 
+                                                key={i} 
+                                                title={item.title} 
+                                                body={item.body} 
+                                                id={item._id}
+                                                userId={this.state.id}
+                                                savedDevotionals={this.state.savedDevotionals}/>})
+                                        : 
+                                        <i>No Devotionals</i>}
                             </div>
                         </div>
                     </div>
@@ -54,9 +65,10 @@ class Devotionals extends Component {
                 :
                 <div className="mobile">
                     Not on mobile yet.
-                </div>
-                :
-                <motion.div 
+                </div>}
+            </div>
+            : 
+            <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}>
@@ -66,7 +78,6 @@ class Devotionals extends Component {
                         height={80}
                         width={80}
                         className="loader"/>
-                </motion.div>}
-            </div>)}}
+            </motion.div>)}}
 
 export default withRouter(Devotionals);

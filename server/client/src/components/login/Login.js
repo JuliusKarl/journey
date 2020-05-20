@@ -71,16 +71,6 @@ class Login extends Component {
                                 localStorage.removeItem("pj_token")}})
                         .catch((err) => console.log(err));}
 
-    /** Temp PROD solution to signup */
-    // tempHandler() {
-    //     this.changeType();
-    //     this.setState({
-    //         validSignupCredentials: true})
-    //     setTimeout(
-    //         function() {
-    //             this.setState({validSignupCredentials: null});}
-    //     .bind(this), 2000);}
-
     /** Check Signup */
     checkSignup(e) {
         e.preventDefault();
@@ -102,9 +92,7 @@ class Login extends Component {
                                     function() {
                                         this.setState({validSignupCredentials: null});}
                                 .bind(this), 2000);})
-                        .catch((err) => console.log(err));
-        // this.tempHandler();
-    }
+                        .catch((err) => console.log(err));}
 
     /** Email Authentication */
     checkEmailExists() {

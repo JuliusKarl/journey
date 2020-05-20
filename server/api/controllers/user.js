@@ -120,6 +120,20 @@ exports.user_find_one = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
+/** Find one prayer */
+exports.prayer_find_one = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+    console.log(req.params.prayerId);
+    
+    User
+        .findOne({email: decoded["email"]}, { savedPrayers: { $elemMatch : { _id : req.params.prayerId }}})
+        .exec()
+        .then(result => {
+            const response = {
+                prayer: result.savedPrayers[0]}
+            res.status(200).json(response)})
+        .catch(err => {res.status(500).json({error: err})})}
+
 /** Add new prayer */
 exports.user_patch_one = (req, res, next) => {
     const id = req.params.userId;
