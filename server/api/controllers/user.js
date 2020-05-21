@@ -131,7 +131,7 @@ exports.prayer_find_one = (req, res, next) => {
             const response = {
                 prayer: result.savedPrayers[0]}
             res.status(200).json(response)})
-        .catch(err => {res.status(500).json({error: err})})}
+        .catch(err => {res.status(500).json({error: err, prayer: {}})})}
 
 /** Add new prayer */
 exports.user_patch_one = (req, res, next) => {

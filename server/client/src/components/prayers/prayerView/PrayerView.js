@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './PrayerView.css'
@@ -11,7 +10,8 @@ class PrayerView extends Component {
             prayer: null,
             editMode: false,
             render: false}
-    this.removePrayer = this.removePrayer.bind(this);}
+    this.removePrayer = this.removePrayer.bind(this);
+    this.cancelPrayer = this.cancelPrayer.bind(this);}  
 
     componentDidMount() {
     /** Find prayer */
@@ -23,12 +23,11 @@ class PrayerView extends Component {
                 id: window.location.pathname.split('/')[3]})})
                     .then((res) => res.json())
                     .then((data) => {
-                        if (data.prayer == {}) {
-                            this.props.history.push('/prayers');}
-                        else {
                         this.setState({
                             prayer: data.prayer,
-                            render: true})}})
+                            render: true})
+                        if (this.state.prayer.title == null) {
+                            this.props.history.push('/prayers')}})
                     .then(() => console.log(this.state))
                     .catch((err) => console.log(err));}
 
@@ -51,6 +50,9 @@ class PrayerView extends Component {
         this.setState({
             [e.target.name]: e.target.value});}
 
+    cancelPrayer() {
+        this.props.history.push('/prayers');}
+
     render() {
         return (
             this.state.render ? 
@@ -61,6 +63,11 @@ class PrayerView extends Component {
                     exit={{ opacity: 0 }}>
                     {!this.state.editMode ? 
                     <form>
+                        <span>
+                            <i 
+                                onClick={this.cancelPrayer}
+                                className="material-icons">close</i>
+                        </span>
                         <div className="prayer-view-form-content">
                             <div><b>{this.state.prayer.title}</b></div>
                             <div><small>{this.state.prayer.body}</small></div>
