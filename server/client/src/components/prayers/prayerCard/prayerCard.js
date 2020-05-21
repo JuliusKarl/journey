@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import './PrayerCard.css';
 
 export default class prayerCard extends Component {
