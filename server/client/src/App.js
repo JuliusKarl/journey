@@ -21,7 +21,7 @@ export default class App extends Component {
 
   componentDidMount() {
     /** Authenticate user */
-    if (window.location.pathname == '/') {
+    if (window.location.pathname === '/') {
     fetch('/user/find', {
       method: 'POST',
       headers : { 'Content-Type': 'application/json' },

@@ -7,11 +7,14 @@ class PrayerView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            prayer: null,
+            prayerTitle: '',
+            prayerBody: '',
             editMode: false,
             render: false}
+    this.storeValue = this.storeValue.bind(this);
     this.removePrayer = this.removePrayer.bind(this);
-    this.cancelPrayer = this.cancelPrayer.bind(this);}  
+    this.cancelPrayer = this.cancelPrayer.bind(this);
+    this.editPrayer = this.editPrayer.bind(this);}  
 
     componentDidMount() {
     /** Find prayer */
@@ -24,9 +27,10 @@ class PrayerView extends Component {
                     .then((res) => res.json())
                     .then((data) => {
                         this.setState({
-                            prayer: data.prayer,
+                            prayerTitle: data.prayer.title,
+                            prayerBody: data.prayer.body,
                             render: true})
-                        if (this.state.prayer.title == null) {
+                        if (this.state.prayerTitle == null) {
                             this.props.history.push('/prayers')}})
                     .then(() => console.log(this.state))
                     .catch((err) => console.log(err));}
@@ -44,14 +48,34 @@ class PrayerView extends Component {
                         .then(() => {
                             this.props.history.push('/prayers');})
                         .catch((err) => console.log(err));}
+                        
+    /** Close prayer */
+    cancelPrayer() {
+        this.props.history.push('/prayers');}
+
+    editPrayer(e) {
+        if (!this.state.editMode) {
+            this.setState({
+                editMode: !this.state.editMode})}
+        else {
+            e.preventDefault();
+            fetch('/user/prayer/edit', {
+                    method: 'PATCH',
+                    headers : { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token: localStorage.getItem('pj_token'),
+                        id: window.location.pathname.split('/')[3],
+                        title : this.state.prayerTitle,
+                        body : this.state.prayerBody})})
+                            .then((res) => res.json())
+                            .then((result) => {
+                                this.setState({editMode: !this.state.editMode})})
+                            .catch((err) => console.log(err));}}
 
     /** Handlers */
     storeValue(e) {  
         this.setState({
             [e.target.name]: e.target.value});}
-
-    cancelPrayer() {
-        this.props.history.push('/prayers');}
 
     render() {
         return (
@@ -62,58 +86,60 @@ class PrayerView extends Component {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}>
                     {!this.state.editMode ? 
-                    <form>
-                        <span>
-                            <i 
-                                onClick={this.cancelPrayer}
-                                className="material-icons">close</i>
-                        </span>
-                        <div className="prayer-view-form-content">
-                            <div><b>{this.state.prayer.title}</b></div>
-                            <div><small>{this.state.prayer.body}</small></div>
-                            <hr />
+                        <form>
+                            <span>
+                                <i 
+                                    onClick={this.cancelPrayer}
+                                    className="material-icons">close</i>
+                            </span>
+                            <div className="prayer-view-form-content">
+                                <div><b>{this.state.prayerTitle}</b></div>
+                                <div><small>{this.state.prayerBody}</small></div>
+                                <hr />
+                                <div className="form-buttons">
+                                    <input 
+                                        onClick={this.editPrayer}
+                                        type="submit" 
+                                        value="Edit"/>
+
+                                    <input 
+                                        type="submit" 
+                                        onClick={this.removePrayer}
+                                        value="Delete"/>
+                                </div>
+                            </div>
+                        </form>
+                        : 
+                        <form>
+                            <input 
+                                type="text" 
+                                className="prayer-title"
+                                name="prayerTitle"
+                                onChange={this.storeValue}
+                                value={this.state.prayerTitle}
+                                placeholder="Title"/>
+
+                            <textarea
+                                type="textarea" 
+                                name="prayerBody"
+                                onChange={this.storeValue}
+                                value={this.state.prayerBody}
+                                className="prayer-body"
+                                rows="6"
+                                placeholder="Prayer"></textarea>
+
                             <div className="form-buttons">
                                 <input 
-                                    disabled
+                                    onClick={this.editPrayer}
                                     type="submit" 
-                                    value="Edit"/>
+                                    value="Save"/>
 
                                 <input 
                                     type="submit" 
                                     onClick={this.removePrayer}
                                     value="Delete"/>
                             </div>
-                        </div>
-                    </form>
-                    : 
-                    <form>
-                        <input 
-                            type="text" 
-                            className="prayer-title"
-                            name="newPrayerTitle"
-                            onChange={this.storeValue}
-                            value={this.state.prayer.title}
-                            placeholder="Title"/>
-                        <textarea
-                            type="textarea" 
-                            name="newPrayerBody"
-                            onChange={this.storeValue}
-                            value={this.state.prayer.body}
-                            className="prayer-body"
-                            rows="6"
-                            placeholder="Prayer"></textarea>
-
-                        <div className="form-buttons">
-                            <input 
-                                type="submit" 
-                                value="Save"/>
-
-                            <input 
-                                type="submit" 
-                                onClick={this.removePrayer}
-                                value="Delete"/>
-                        </div>
-                    </form>}
+                        </form>}
                 </motion.div>
                 :
                 '')}}
