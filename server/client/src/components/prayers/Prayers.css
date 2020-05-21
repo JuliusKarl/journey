@@ -72,22 +72,6 @@ form i {
     padding: 0px 0px 10.5px 0px;
     margin: 0px;}
 
-@media only screen and (max-width: 1000px) {
-    .main {
-        padding: 0px;}
-    
-    form {
-        width: 100vw;}
-
-    .prayer-list {
-        grid-template-columns: repeat(1, 1fr);
-        width: 100%;
-        text-align: center;}
-
-    .prayer-list * {
-        padding: 5px 5px;
-        width: 100%;}}
-
 /* Animations */
 .loader {
     height: "10";
@@ -118,3 +102,29 @@ form i {
 .fade-exit.fade-exit-active {
     opacity: 0;
     transition: opacity 300ms ease-in-out;}
+
+/* Mobile Options */
+@media only screen and (max-width: 1000px) {
+    .main {
+        padding: 0px;}
+    
+    form {
+        width: 100vw;}
+
+    .prayer-list {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        text-align: center;}
+
+    .prayer-list * {
+        padding: 5px 5px;
+        width: 100%;}}
+
+.mobile-add-button {
+    position: fixed;
+    height: 80px;
+    width: 80px;
+    bottom: 30px;
+    right: 20px;
+    font-size: 80px;
+    border-radius: 50%!important;}

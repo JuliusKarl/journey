@@ -112,6 +112,11 @@ class Prayers extends Component {
                                 : 
                                     <i>No Prayers</i>}
                             </div>
+                                <i 
+                                    className="mobile-add-button large material-icons"
+                                    onClick={this.newPrayer}>
+                                    add_circle_outline
+                                </i>
                         </div>}
             </div>
             :
