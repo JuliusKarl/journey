@@ -64,6 +64,7 @@ class PrayerView extends Component {
                         <div className="prayer-view-form-content">
                             <div><b>{this.state.prayer.title}</b></div>
                             <div><small>{this.state.prayer.body}</small></div>
+                            <hr />
                             <div className="form-buttons">
                                 <input 
                                     type="submit" 

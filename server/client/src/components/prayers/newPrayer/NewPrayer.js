@@ -69,7 +69,6 @@ class NewPrayer extends Component {
                         className="prayer-body"
                         rows="6"
                         placeholder="Prayer"></textarea>
-
                     <div className="form-buttons">
                         <input 
                             type="submit" 
