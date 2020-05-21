@@ -69,7 +69,7 @@ export default class App extends Component {
 
                 <Route
                   exact
-                  path='/prayers/find'
+                  path='/prayers/find/:id'
                   component={() => <PrayerView />}>
                 </Route>
 
