@@ -26,7 +26,7 @@ export default class prayerCard extends Component {
     render() {
         return (
             <Link 
-                to={"prayers/find/" + this.state.id}
+                to={{ pathname: '/prayers/find', query: { id: this.state.id } }}
                 className="prayer-card">
                 <span>
                     <b>{this.state.title}</b>
