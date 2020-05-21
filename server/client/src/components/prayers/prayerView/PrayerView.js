@@ -15,7 +15,7 @@ class PrayerView extends Component {
 
     componentDidMount() {
     /** Find prayer */
-    fetch('/user/prayer/find/', {
+    fetch('/user/prayer/find', {
             method: 'POST',
             headers : { 'Content-Type': 'application/json' },
             body: JSON.stringify({
