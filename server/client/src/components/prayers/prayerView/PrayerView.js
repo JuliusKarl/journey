@@ -74,6 +74,7 @@ class PrayerView extends Component {
                             <hr />
                             <div className="form-buttons">
                                 <input 
+                                    disabled
                                     type="submit" 
                                     value="Edit"/>
 

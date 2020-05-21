@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import './PrayerCard.css';
 
 export default class prayerCard extends Component {
@@ -25,11 +24,11 @@ export default class prayerCard extends Component {
 
     render() {
         return (
-            <Link 
-                to={"prayers/find/" + this.state.id}
+            <a 
+                href={"prayers/find/" + this.state.id}
                 className="prayer-card">
                 <span>
                     <b>{this.state.title}</b>
                     <i>{this.state.body ? this.state.body : <br></br>}</i>
                 </span>
-            </Link>)}}
+            </a>)}}
