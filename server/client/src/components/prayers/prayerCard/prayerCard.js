@@ -25,7 +25,7 @@ export default class prayerCard extends Component {
     render() {
         return (
             <a 
-                href={"find/" + this.state.id}
+                href={"user/prayer/find/" + this.state.id}
                 className="prayer-card">
                 <span>
                     <b>{this.state.title}</b>
