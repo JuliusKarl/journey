@@ -15,7 +15,9 @@ export default class Landing extends Component {
             devotional: "",
             date: "",
             author: "",
-            link: ""}}
+            link: ""}
+    this.saveDevotional = this.saveDevotional.bind(this);}
+
     componentDidMount() {
         /** Get devotional from server */
         this._isMounted = true;
@@ -32,6 +34,10 @@ export default class Landing extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;}
+
+    saveDevotional() {
+        /** Fetch PATCH and save to user */
+    }
 
     render() {
         return (
@@ -58,7 +64,16 @@ export default class Landing extends Component {
                             <hr/>
                             <h4 
                                 className="devotional-text">
-                                {this.state.author}</h4>
+                                {this.state.author}
+                            </h4>
+                            <br/>
+                            {localStorage.getItem('pj_token') && 
+                                <div className="devotional-form-buttons">
+                                    <input 
+                                        type="submit" 
+                                        value="Like"/>
+                                </div>}
+                        {/* save devotionals buttons here */}
                     </div>
                 </CSSTransition>
                 : 

@@ -53,3 +53,22 @@ a h3:hover {
 .fade-exit.fade-exit-active {
     opacity: 0;
     transition: opacity 100ms ease-in-out;}
+
+/* Form Button Options */
+.devotional-form-buttons {
+    display: flex;
+    justify-content: space-evenly;}
+
+.devotional-form-buttons input {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: rgba(14, 14, 27, 0.9);
+    flex-grow: 0.1;
+    background: #d1d1d1;
+    transition: background 0.2s ease-in-out;}
+
+.devotional-form-buttons input:hover {
+    background: #c7c7c7;
+    transition: background 0.2s ease-in-out;
+    color: rgba(14, 14, 27, 0.9);}
