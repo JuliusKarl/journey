@@ -20,15 +20,9 @@ class Prayers extends Component {
             answeredPrayers: [],
             newPrayerView: false,
             newPrayerTitle: '',
-            newPrayerBody: '',
-            showPrayerView: true,
-            showPrayerId: '',
-            showPrayerTitle: '',
-            showPrayerBody: ''}
+            newPrayerBody: ''}
         this.storeValue = this.storeValue.bind(this);
-        this.showNewPrayerView = this.showNewPrayerView.bind(this);
-        this.submitPrayer = this.submitPrayer.bind(this);
-        this.showPrayer = this.showPrayer.bind(this);}
+        this.newPrayer = this.newPrayer.bind(this);}
 
     /** Imperative functions, Lifecycle Hooks */
     componentDidMount() {
@@ -57,78 +51,21 @@ class Prayers extends Component {
     componentWillUnmount() {
         this._isMounted = false;}
     
-    /** UI Views */    
-    /** Create new prayer form */
-    showNewPrayerView() {
-        this.setState({
-            newPrayerView: !this.state.newPrayerView})}
-
-    /** Edit existing prayer form */
-    showPrayer() {
-        this.setState({
-            showPrayerView: !this.state.showPrayerView})}
-
     /** Handlers */
     storeValue(e) {  
         this.setState({
             [e.target.name]: e.target.value});}
+    
+    newPrayer() {
+        this.props.history.push('/prayers/new');}
 
-    submitPrayer(e) {
-        e.preventDefault();
-        fetch('/user/prayer/new/' + this.state.id, {
-                method: 'PATCH',
-                headers : { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    title : this.state.newPrayerTitle,
-                    body : this.state.newPrayerBody})})
-                        .then((res) => res.json())
-                        .then(() => {
-                            this.setState({
-                                newPrayerView: !this.state.newPrayerView,
-                                newPrayerTitle: '',
-                                newPrayerBody: '',})
-                            this.props.history.push('/prayers');
-                            window.location.reload(true);})
-                        .catch((err) => console.log(err));}
     render() {
         return (
             this.state.render ?
             <div className="main">
                     {!isMobile ?
                         <div className="browser">
-                            {this.state.newPrayerView ?
-
-                                /** Create a new prayer */
-                                <div className="new-prayer">
-                                    <form>
-                                        <span><i 
-                                            className="material-icons"
-                                            onClick={this.showNewPrayerView}>close</i></span>
-                                        <div className="new-prayer-header">New Prayer</div>
-                                        <input 
-                                            type="text" 
-                                            name="newPrayerTitle"
-                                            onChange={this.storeValue}
-                                            value={this.state.newPrayerTitle}
-                                            placeholder="Title"/>
-                                        <textarea
-                                            type="textarea" 
-                                            name="newPrayerBody"
-                                            onChange={this.storeValue}
-                                            value={this.state.newPrayerBody}
-                                            className="prayer-body"
-                                            rows="6"
-                                            placeholder="Prayer"></textarea>
-                                        <div className="form-buttons">
-                                            <input 
-                                                type="submit" 
-                                                onClick={this.submitPrayer}
-                                                disabled={!this.state.newPrayerTitle}
-                                                value="Add"/>
-                                        </div>
-                                    </form>
-                                </div>
-                                :                   
+                                             
                                 <motion.div 
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -139,7 +76,10 @@ class Prayers extends Component {
                                             className="search" 
                                             type="text" 
                                             placeholder="Search prayer..."/>
-                                        <button onClick={this.showNewPrayerView}>Add prayer</button>
+                                        <input 
+                                            type="button" 
+                                            onClick={this.newPrayer} 
+                                            value="Add prayer"/>
                                         <button>Pray now</button>
                                     </div>
                                     <hr />
@@ -155,7 +95,7 @@ class Prayers extends Component {
                                         : 
                                         <i>No Prayers</i>}
                                     </div>
-                                </motion.div>}
+                                </motion.div>
                         </div>
                         :
                         <div>

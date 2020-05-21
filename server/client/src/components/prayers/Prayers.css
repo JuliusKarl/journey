@@ -17,7 +17,7 @@
     margin-right: 20px;
     margin-bottom: 0px;}
 
-.toolbar input, .toolbar button {
+.toolbar input, .toolbar button, .toolbar a {
     margin: 0px 5px;
     flex-grow: 1;}
 

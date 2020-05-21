@@ -123,10 +123,9 @@ exports.user_find_one = (req, res, next) => {
 /** Find one prayer */
 exports.prayer_find_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
-    console.log(req.params.prayerId);
-    
+
     User
-        .findOne({email: decoded["email"]}, { savedPrayers: { $elemMatch : { _id : req.params.prayerId }}})
+        .findOne({email: decoded["email"]}, { savedPrayers: { $elemMatch : { _id : req.body.id }}})
         .exec()
         .then(result => {
             const response = {
@@ -136,14 +135,14 @@ exports.prayer_find_one = (req, res, next) => {
 
 /** Add new prayer */
 exports.user_patch_one = (req, res, next) => {
-    const id = req.params.userId;
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
     const prayer = new Prayer({
         _id: new mongoose.Types.ObjectId,
         title: req.body.title,
         body: req.body.body});
 
     User
-        .updateOne({ _id: id }, { $push : { savedPrayers : { $each : [ prayer ], $position: 0 } }})
+        .updateOne({ email: decoded["email"] }, { $push : { savedPrayers : { $each : [ prayer ], $position: 0 } }})
         .exec()
         .then(result => {
             res.status(200).json({result:result});})
@@ -152,12 +151,13 @@ exports.user_patch_one = (req, res, next) => {
 
 /** Remove one prayer */
 exports.user_patch_one_remove = (req, res, next) => {
-    const id = req.params.userId;
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+
     User
-        .updateOne({ _id: id }, { $pull : { savedPrayers : { _id : req.body.id } }})
+        .updateOne({ email: decoded["email"] }, { $pull : { savedPrayers : { _id : req.body.id } } })
         .exec()
         .then(result => {
-            return res.status(200).json({ result: result});})
+            return res.status(200).json({});})
         .catch(err => {
             console.log(err);res.status(500).json({error: err})})}
 

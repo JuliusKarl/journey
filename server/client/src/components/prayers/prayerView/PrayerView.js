@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
+import { withRouter } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './PrayerView.css'
 
-export default class PrayerView extends Component {
+class PrayerView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +15,7 @@ export default class PrayerView extends Component {
 
     componentDidMount() {
     /** Find prayer */
-    fetch('/user/prayer/find/' + window.location.pathname.split('/')[3], {
+    fetch('/user/prayer/find/', {
             method: 'POST',
             headers : { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -21,22 +23,27 @@ export default class PrayerView extends Component {
                 id: window.location.pathname.split('/')[3]})})
                     .then((res) => res.json())
                     .then((data) => {
+                        if (data.prayer == {}) {
+                            this.props.history.push('/prayers');}
+                        else {
                         this.setState({
                             prayer: data.prayer,
-                            render: true})})
+                            render: true})}})
                     .then(() => console.log(this.state))
                     .catch((err) => console.log(err));}
 
     /** Delete prayer */
-    removePrayer() {
+    removePrayer(e) {
+        e.preventDefault();
         fetch('/user/prayer/remove/', {
                 method: 'PATCH',
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    token: localStorage.getItem('pj_token'),
                     id: window.location.pathname.split('/')[3]})})
                         .then((res) => res.json())
                         .then(() => {
-                            window.location.reload(true);})
+                            this.props.history.push('/prayers');})
                         .catch((err) => console.log(err));}
 
     /** Handlers */
@@ -47,12 +54,26 @@ export default class PrayerView extends Component {
     render() {
         return (
             this.state.render ? 
-                <div className="main">
+                <motion.div 
+                    className="main"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}>
                     {!this.state.editMode ? 
                     <form>
                         <div className="prayer-view-form-content">
-                            <div className="prayer-view-title"><b>{this.state.prayer.title}</b></div>
+                            <div><b>{this.state.prayer.title}</b></div>
                             <div><small>{this.state.prayer.body}</small></div>
+                            <div className="form-buttons">
+                                <input 
+                                    type="submit" 
+                                    value="Edit"/>
+
+                                <input 
+                                    type="submit" 
+                                    onClick={this.removePrayer}
+                                    value="Delete"/>
+                            </div>
                         </div>
                     </form>
                     : 
@@ -76,20 +97,16 @@ export default class PrayerView extends Component {
                         <div className="form-buttons">
                             <input 
                                 type="submit" 
-                                value="Edit"/>
+                                value="Save"/>
 
                             <input 
                                 type="submit" 
                                 onClick={this.removePrayer}
                                 value="Delete"/>
                         </div>
-                    </form>
-                    }
-                </div>
+                    </form>}
+                </motion.div>
                 :
-                <Loader
-                    type="TailSpin"
-                    color="#dbdbdb"
-                    height={80}
-                    width={80}
-                    className="loader"/>)}}
+                '')}}
+
+export default withRouter(PrayerView);

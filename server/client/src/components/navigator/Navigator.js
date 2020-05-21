@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navigator.css';
 
 export default class Navigator extends Component {
+  _isMounted = false;
   constructor() {
     super();
     this.state = {
@@ -19,7 +20,8 @@ export default class Navigator extends Component {
 
   componentDidMount() {
     /** Get devotional from server */
-    fetch('/devotional')
+    if (this._isMounted) {
+      fetch('/devotional')
       .then(response => response.json())
       .then(response => {
           const devotional = response["1"];
@@ -27,20 +29,24 @@ export default class Navigator extends Component {
               devotional: devotional.text,
               date: response.date,
               author: devotional.reference,
-              link: devotional.readingUrl})})
+              link: devotional.readingUrl})})}
+        
+    /** Authenticate user */
+    fetch('/user/find', {
+      method: 'POST',
+      headers : { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+          token: localStorage.getItem('pj_token')})})
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+                username: data.name,
+                showLogin: true})})
+          .catch(() => this.setState({showLogin:true}))}
 
-      /** Authenticate user */
-      fetch('/user/find', {
-        method: 'POST',
-        headers : { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            token: localStorage.getItem('pj_token')})})
-            .then(response => response.json())
-            .then(data => {
-              this.setState({
-                  username: data.name,
-                  showLogin: true})})
-            .catch(() => this.setState({showLogin:true}))}
+  componentWillUnmount() {
+    this._isMounted = false;}
+    
   render() {
       return (
         localStorage.getItem("pj_token") == null ?

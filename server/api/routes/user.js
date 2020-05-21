@@ -18,13 +18,13 @@ router.post('/log_in', UsersController.user_login);
 router.post('/find', UsersController.user_find_one)
 
 /** Add new prayer */
-router.patch('/prayer/new/:userId', UsersController.user_patch_one);
+router.patch('/prayer/new/', UsersController.user_patch_one);
 
 /** Remove new prayer */
-router.patch('/prayer/remove/:userId', UsersController.user_patch_one_remove);
+router.patch('/prayer/remove/', UsersController.user_patch_one_remove);
 
 /** Find a prayer */
-router.post('/prayer/find/:prayerId', UsersController.prayer_find_one)
+router.post('/prayer/find', UsersController.prayer_find_one)
 
 /** Delete an existing user by userId */
 router.delete('/:userId', UsersController.user_delete_one);

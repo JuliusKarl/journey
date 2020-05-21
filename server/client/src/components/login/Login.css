@@ -60,21 +60,7 @@
 
     form input, form div, form button, form textarea {
         margin: 10px 0px!important;
-        width: 100%;}
-    /* .main-content {
-        width: 100%!important;}
-
-    .login-container {
-        margin: 0 auto;
-        width: 100vw;}
-
-    form input, form div, form button {
-        margin: 10px 20px!important;}
-    
-    form p {
-        padding: 0px;
-        margin: 0px 20px!important;} */
-}
+        width: 100%;}}
 
 form {display: grid;}
 

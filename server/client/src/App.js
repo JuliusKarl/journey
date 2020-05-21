@@ -3,6 +3,7 @@ import Login from './components/login/Login';
 import Landing from './components/landing/Landing';
 import Navigator from './components/navigator/Navigator';
 import Prayers from './components/prayers/Prayers';
+import NewPrayer from './components/prayers/newPrayer/NewPrayer';
 import PrayerView from './components/prayers/prayerView/PrayerView';
 import Profile from './components/profile/Profile';
 import Devotionals from './components/devotionals/Devotionals';
@@ -58,6 +59,12 @@ export default class App extends Component {
                   exact
                   path='/prayers'
                   component={() => <Prayers />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/prayers/new'
+                  component={() => <NewPrayer />}>
                 </Route>
 
                 <Route
