@@ -53,7 +53,7 @@ form i {
     padding:  2px 2px 5px 5px;
     width: 100%;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis!important;
     display: block;
     overflow: hidden;}
 
