@@ -1,0 +1,6 @@
+.fixed-navbar-spacer {
+    height: 10vh;}
+
+@media only screen and (max-width: 1000px) {
+    .fixed-navbar-spacer {
+        height: 12vh;}}

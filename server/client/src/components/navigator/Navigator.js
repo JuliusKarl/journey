@@ -58,7 +58,7 @@ export default class Navigator extends Component {
             bg="dark" 
             variant="dark"
             expand="lg"
-            className="header-text">
+            className="header-text navbar-fixed-top">
               <Navbar.Brand href="/">
                   <img 
                     src={logo} 

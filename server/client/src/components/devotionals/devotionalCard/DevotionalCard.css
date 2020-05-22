@@ -1,0 +1,15 @@
+.devotional-card {
+    color: #212529;
+    text-decoration: none;
+    background: #c7c7c7;
+    text-align: center;
+    border-radius: 3px;
+    transition: background 0.2s ease-in-out;}
+
+.devotional-card:hover {
+    color: #212529;
+    background: #acabab;
+    transition: background 0.2s ease-in-out;}
+
+.devotional-card i {
+    font-size: 8px;}

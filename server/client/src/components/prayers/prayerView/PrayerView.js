@@ -32,7 +32,6 @@ class PrayerView extends Component {
                             render: true})
                         if (this.state.prayerTitle == null) {
                             this.props.history.push('/prayers')}})
-                    .then(() => console.log(this.state))
                     .catch((err) => console.log(err));}
 
     /** Delete prayer */

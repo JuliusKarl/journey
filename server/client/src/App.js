@@ -7,6 +7,7 @@ import NewPrayer from './components/prayers/newPrayer/NewPrayer';
 import PrayerView from './components/prayers/prayerView/PrayerView';
 import Profile from './components/profile/Profile';
 import Devotionals from './components/devotionals/Devotionals';
+import DevotionalView from './components/devotionals/devotionalView/DevotionalView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -38,7 +39,8 @@ export default class App extends Component {
   render() {
     return (
         <div className="App">
-          <Navigator />      
+          <Navigator /> 
+          <div className="fixed-navbar-spacer"></div>
           <Router>
             <AnimatePresence exitBeforeEnter>
               <Switch>
@@ -77,6 +79,12 @@ export default class App extends Component {
                   exact
                   path='/devotionals'
                   component={() => <Devotionals />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/devotionals/find/:id'
+                  component={() => <DevotionalView />}>
                 </Route>
 
                 <Route

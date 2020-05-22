@@ -15,7 +15,8 @@ export default class Landing extends Component {
             devotional: "",
             date: "",
             author: "",
-            link: ""}
+            link: "",
+            saved: false}
     this.saveDevotional = this.saveDevotional.bind(this);}
 
     componentDidMount() {
@@ -26,18 +27,30 @@ export default class Landing extends Component {
         .then(response => {
             const devotional = response["1"];
             if (this._isMounted) {
-            this.setState({
-                devotional: devotional.text,
-                date: response.date,
-                author: devotional.reference,
-                link: devotional.readingUrl})}})}
+                this.setState({
+                    devotional: devotional.text,
+                    date: response.date,
+                    author: devotional.reference,
+                    link: devotional.readingUrl})}})}
 
     componentWillUnmount() {
         this._isMounted = false;}
 
-    saveDevotional() {
-        /** Fetch PATCH and save to user */
-    }
+    saveDevotional(e) {
+        e.preventDefault();
+        fetch('/user/devotional/new', {
+                method: 'PATCH',
+                headers : { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    token: localStorage.getItem('pj_token'),
+                    text : this.state.devotional,
+                    reference : this.state.author,
+                    readingUrl: this.state.link})})
+                        .then((res) => res.json())
+                        .then(() => {
+                            this.setState({
+                                saved: true})})
+                        .catch((err) => console.log(err));}
 
     render() {
         return (
@@ -70,10 +83,10 @@ export default class Landing extends Component {
                             {localStorage.getItem('pj_token') && 
                                 <div className="devotional-form-buttons">
                                     <input 
+                                        onClick={this.saveDevotional}
                                         type="submit" 
                                         value="Like"/>
                                 </div>}
-                        {/* save devotionals buttons here */}
                     </div>
                 </CSSTransition>
                 : 

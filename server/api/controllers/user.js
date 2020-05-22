@@ -1,9 +1,11 @@
 const User = require("../models/user");
 const Prayer = require("../models/prayer")
+const Devotional = require("../models/devotional");
 const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
+/** Users */
 /** Get all users */
 exports.user_get_all = (req, res, next) => {
     User
@@ -120,6 +122,19 @@ exports.user_find_one = (req, res, next) => {
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err})})}
 
+/** Delete one user */
+exports.user_delete_one = (req, res, next) => {
+    const id = req.params.userId;
+    User
+        .remove({_id: id})
+        .exec()
+        .then(result => {
+            const response = {
+                message: "User deleted."}
+            res.status(200).json(response)})
+        .catch(err => {console.log(err);res.status(500).json({error: err})})}
+
+/** Prayers */
 /** Find one prayer */
 exports.prayer_find_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
@@ -134,7 +149,7 @@ exports.prayer_find_one = (req, res, next) => {
         .catch(err => {res.status(500).json({error: err, prayer: {}})})}
 
 /** Add new prayer */
-exports.user_add_one = (req, res, next) => {
+exports.prayer_add_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
     const prayer = new Prayer({
         _id: new mongoose.Types.ObjectId,
@@ -150,7 +165,7 @@ exports.user_add_one = (req, res, next) => {
             console.log(err);res.status(500).json({error: err})})}
 
 /** Remove one prayer */
-exports.user_patch_one_remove = (req, res, next) => {
+exports.prayer_patch_one_remove = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
 
     User
@@ -162,7 +177,7 @@ exports.user_patch_one_remove = (req, res, next) => {
             console.log(err);res.status(500).json({error: err})})}
 
 /** Edit Prayer */
-exports.user_patch_one = (req, res, next) => {
+exports.prayer_patch_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
 
     const prayer = new Prayer({
@@ -179,14 +194,66 @@ exports.user_patch_one = (req, res, next) => {
         .catch(err => {
             console.log(err);res.status(500).json({error: err})})}
 
-/** Delete one user */
-exports.user_delete_one = (req, res, next) => {
-    const id = req.params.userId;
+/** Devotionals */
+/** Find one devotional */
+exports.devotional_find_one = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+
     User
-        .remove({_id: id})
+        .findOne({email: decoded["email"]}, { savedDevotionals: { $elemMatch : { _id : req.body.id }}})
         .exec()
         .then(result => {
             const response = {
-                message: "User deleted."}
+                devotional: result.savedDevotionals[0]}
+            console.log(response);
             res.status(200).json(response)})
-        .catch(err => {console.log(err);res.status(500).json({error: err})})}
+        .catch(err => {res.status(500).json({error: err, prayer: {}})})}
+
+/** Add new devotional */
+exports.devotional_add_one = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+
+    const devotional = new Devotional({
+        _id: new mongoose.Types.ObjectId,
+        text: req.body.text,
+        reference: req.body.reference,
+        readingUrl: req.body.readingUrl,
+        date: new Date()});
+        
+    User
+        .updateOne({ email: decoded["email"] }, { $push : { savedDevotionals : { $each : [ devotional ], $position: 0 } }})
+        .exec()
+        .then(result => {
+            res.status(200).json({ result: result });})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}
+
+/** Remove one devotional */
+exports.devotional_patch_one_remove = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+
+    User
+        .updateOne({ email: decoded["email"] }, { $pull : { savedDevotionals : { _id : req.body.id } } })
+        .exec()
+        .then(result => {
+            return res.status(200).json({});})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}
+
+/** Edit devotional */
+exports.devotional_patch_one = (req, res, next) => {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+
+    const prayer = new Prayer({
+        _id: req.body.id,
+        title: req.body.title,
+        body: req.body.body});
+
+    console.log(prayer);
+    User
+        .updateOne({ email: decoded["email"], "savedPrayers._id" : req.body.id }, { $set : { "savedPrayers.$.title" : req.body.title, "savedPrayers.$.body" : req.body.body}}, { $upsert: true} )
+        .exec()
+        .then(result => {
+            res.status(200).json({});})
+        .catch(err => {
+            console.log(err);res.status(500).json({error: err})})}

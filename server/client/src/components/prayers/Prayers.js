@@ -15,7 +15,6 @@ class Prayers extends Component {
         this.state = {
             render: false,
             id: null,
-            savedDevotionals: [],
             savedPrayers: [],
             answeredPrayers: [],
             newPrayerView: false,
@@ -43,7 +42,6 @@ class Prayers extends Component {
                     if (this._isMounted) {
                         this.setState({
                         id: data._id,
-                        savedDevotionals: data.savedDevotionals,
                         savedPrayers: data.savedPrayers,
                         answeredPrayers: data.answeredPrayers,
                         render: true});}})}
@@ -79,7 +77,7 @@ class Prayers extends Component {
                                         <input 
                                             type="button" 
                                             onClick={this.newPrayer} 
-                                            value="Add prayer"/>
+                                            value="New prayer"/>
                                         <button>Pray now</button>
                                     </div>
                                     <hr />

@@ -18,7 +18,18 @@ class Devotionals extends Component {
         this._isMounted = true;
 
         /** Change this when pulling devotional data from user */
-        if (this._isMounted) {this.setState({render:true})}
+        fetch('/user/find', {
+            method: 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                token: localStorage.getItem('pj_token')})})
+                .then(response => response.json())
+                .then(data => {
+                    if (this._isMounted) {
+                        this.setState({
+                        id: data._id,
+                        savedDevotionals: data.savedDevotionals,
+                        render: true});}})
 
         /** User Logged In ? Load Data : Redirect Login */
         if (!localStorage.getItem('pj_token')) {
@@ -46,16 +57,18 @@ class Devotionals extends Component {
                                     placeholder="Search devotional..."/>
                             </div>
                             <hr />
-                            <div className="prayer-list">
+                            <div className="devotional-list">
                             {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
-                                        this.state.savedDevotionals.map((item, i) => {
-                                            return <DevotionalCard 
-                                                key={i} 
-                                                title={item.title} 
-                                                body={item.body} 
-                                                id={item._id}
-                                                userId={this.state.id}
-                                                savedDevotionals={this.state.savedDevotionals}/>})
+                                this.state.savedDevotionals.map((item, i) => {
+                                    return <DevotionalCard 
+                                        key={i} 
+                                        text={item.text} 
+                                        reference={item.reference}
+                                        readingUrl={item.readingUrl} 
+                                        date={item.date}
+                                        note={item.note}
+                                        id={item._id}
+                                        userId={this.state.id}/>})
                                         : 
                                         <i>No Devotionals</i>}
                             </div>
@@ -64,7 +77,21 @@ class Devotionals extends Component {
                 </motion.div>
                 :
                 <div className="mobile">
-                    Not on mobile yet.
+                    <div className="devotional-list">
+                            {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
+                                this.state.savedDevotionals.map((item, i) => {
+                                    return <DevotionalCard 
+                                        key={i} 
+                                        text={item.text} 
+                                        reference={item.reference}
+                                        readingUrl={item.readingUrl} 
+                                        date={item.date}
+                                        note={item.note}
+                                        id={item._id}
+                                        userId={this.state.id}/>})
+                                        : 
+                                        <i>No Devotionals</i>}
+                            </div>
                 </div>}
             </div>
             : 

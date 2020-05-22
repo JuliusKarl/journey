@@ -1,4 +1,6 @@
 .navbar {
+    position: fixed;
+    width: 100vw;
     background: rgba(14, 14, 27, 0.9)!important;
     padding: 0.5rem 2.5rem;}
 
