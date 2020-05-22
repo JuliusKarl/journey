@@ -23,8 +23,12 @@
 
 .devotional-view-form-content .form-buttons input {
     background: rgba(14, 14, 27, 0.9);
-    flex-grow: 1;
     color: #ffffff;}
 
 .devotional-view-form-content hr {
     width: 80%;}
+
+@media only screen and (max-width: 1000px) {
+    
+.devotional-view-form-content .form-buttons input {
+    margin: 0px 30vw!important;}}

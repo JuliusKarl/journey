@@ -103,6 +103,7 @@ class PrayerView extends Component {
 
                                     <input 
                                         type="submit" 
+                                        className="danger"
                                         onClick={this.removePrayer}
                                         value="Delete"/>
                                 </div>
@@ -135,6 +136,7 @@ class PrayerView extends Component {
 
                                 <input 
                                     type="submit" 
+                                    className="danger"
                                     onClick={this.removePrayer}
                                     value="Delete"/>
                             </div>

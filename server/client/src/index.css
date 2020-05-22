@@ -28,3 +28,10 @@ body {
 @media only screen and (max-width: 1000px) {
   .main {
       padding: 0.5rem 1rem;}}
+
+.danger {
+  background: #fffefe!important;
+  border-style: solid!important;
+  border-color: #df1414!important;
+  color: #df1414!important;
+  font-weight: bold;}

@@ -112,6 +112,7 @@ class DevotionalView extends Component {
                                 <div className="form-buttons">
                                     <input 
                                         type="submit" 
+                                        className="danger"
                                         onClick={this.removeDevotional}
                                         value="Delete"/>
                                 </div>
