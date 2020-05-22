@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import './NewPrayer.css';
 
 class NewPrayer extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class NewPrayer extends Component {
     render() {
         return (
             <motion.div 
-                className="main"
+                className="main-prayer-view"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>

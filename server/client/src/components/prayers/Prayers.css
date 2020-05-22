@@ -109,7 +109,7 @@ form i {
         padding: 0px;}
     
     form {
-        width: 97vw;}
+        width: 100vw;}
 
     .prayer-list {
         grid-template-columns: repeat(1, 1fr);

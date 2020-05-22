@@ -7,7 +7,7 @@
 
 /* Prayer view form options */
 .prayer-view-form-content * {
-    padding: 0px;}
+    padding: 0px 10px;}
 
 .prayer-view-form-content .form-buttons {
     display: flex;
