@@ -107,14 +107,14 @@ export default class Landing extends Component {
                                     <input 
                                         onClick={this.saveDevotional}
                                         type="submit" 
-                                        value="Like"/>
+                                        value="Save"/>
                                 </div>
                                 :
                                 <div className="devotional-form-buttons">
                                     <input 
                                         disabled={this.state.saved}
                                         type="submit" 
-                                        value="Liked"/>
+                                        value="Saved &#10004;"/>
                                 </div>}
                     </div>
                 </CSSTransition>
