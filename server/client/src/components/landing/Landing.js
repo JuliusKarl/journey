@@ -48,8 +48,8 @@ export default class Landing extends Component {
                                     render: true,
                                     saved: true})}
                             else {
-                                this.setState({
-                                    render: true})}})})}
+                                this.setState({})}})
+                        .catch(() => this.setState({render:true}))})}
 
     componentWillUnmount() {
         this._isMounted = false;}
@@ -101,7 +101,8 @@ export default class Landing extends Component {
                                 {this.state.author}
                             </h4>
                             <br/>
-                            {localStorage.getItem('pj_token') && 
+                            
+                            {localStorage.getItem('pj_token') ? 
                             !this.state.saved ?
                                 <div className="devotional-form-buttons">
                                     <input 
@@ -115,7 +116,7 @@ export default class Landing extends Component {
                                         disabled={this.state.saved}
                                         type="submit" 
                                         value="Saved &#10004;"/>
-                                </div>}
+                                </div>:''}
                     </div>
                 </CSSTransition>
                 : 
