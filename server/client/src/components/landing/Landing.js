@@ -3,6 +3,7 @@ import { isMobile } from "react-device-detect";
 import { motion } from 'framer-motion';
 import Loader from 'react-loader-spinner';
 import { CSSTransition } from 'react-transition-group';
+import mongoose from "mongoose";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './Landing.css';
 
@@ -12,6 +13,9 @@ export default class Landing extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            render: false,
+            id: new mongoose.Types.ObjectId,
+            liked: false,
             devotional: "",
             date: "",
             author: "",
@@ -31,7 +35,19 @@ export default class Landing extends Component {
                     devotional: devotional.text,
                     date: response.date,
                     author: devotional.reference,
-                    link: devotional.readingUrl})}})}
+                    link: devotional.readingUrl,
+                    render: true})}})}
+
+        // fetch('/user/devotional/find', {
+        //     method: 'POST',
+        //     headers : { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         token: localStorage.getItem('pj_token'),
+        //         id: this.state.id})})
+        //             .then(response => response.json())
+        //             .then(() => {
+        //                 this.setState({
+        //                     render: true})})}
 
     componentWillUnmount() {
         this._isMounted = false;}
@@ -43,6 +59,7 @@ export default class Landing extends Component {
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     token: localStorage.getItem('pj_token'),
+                    id: this.state.id,
                     text : this.state.devotional,
                     reference : this.state.author,
                     readingUrl: this.state.link})})
@@ -54,6 +71,7 @@ export default class Landing extends Component {
 
     render() {
         return (
+            this.state.render ?
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -80,7 +98,7 @@ export default class Landing extends Component {
                                 {this.state.author}
                             </h4>
                             <br/>
-                            {localStorage.getItem('pj_token') && 
+                            {localStorage.getItem('pj_token') && !this.state.liked && 
                                 <div className="devotional-form-buttons">
                                     <input 
                                         onClick={this.saveDevotional}
@@ -101,4 +119,11 @@ export default class Landing extends Component {
                     height={80}
                     width={80}
                     className="loader"/></CSSTransition>}
-            </motion.div>)}}
+            </motion.div>
+            :
+            <Loader
+            type="TailSpin"
+            color="#dbdbdb"
+            height={80}
+            width={80}
+            className="loader"/>)}}

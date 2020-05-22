@@ -43,11 +43,11 @@ class Devotionals extends Component {
             this.state.render ? 
             <div className="main">
                 {!isMobile ?
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}>
-                    <div className="browser">
+                <div className="browser">
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}>
                         <div>
                             <div className="toolbar">
                                 <h2>My Devotionals</h2>
@@ -73,25 +73,26 @@ class Devotionals extends Component {
                                         <i>No Devotionals</i>}
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
                 :
-                <div className="mobile">
-                    <div className="devotional-list">
-                            {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
-                                this.state.savedDevotionals.map((item, i) => {
-                                    return <DevotionalCard 
-                                        key={i} 
-                                        text={item.text} 
-                                        reference={item.reference}
-                                        readingUrl={item.readingUrl} 
-                                        date={item.date}
-                                        note={item.note}
-                                        id={item._id}
-                                        userId={this.state.id}/>})
-                                        : 
-                                        <i>No Devotionals</i>}
-                            </div>
+                <div>
+                    <hr />
+                        <div className="devotional-list">
+                                {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
+                                    this.state.savedDevotionals.map((item, i) => {
+                                        return <DevotionalCard 
+                                            key={i} 
+                                            text={item.text} 
+                                            reference={item.reference}
+                                            readingUrl={item.readingUrl} 
+                                            date={item.date}
+                                            note={item.note}
+                                            id={item._id}
+                                            userId={this.state.id}/>})
+                                            : 
+                                            <i>No Devotionals</i>}
+                        </div>
                 </div>}
             </div>
             : 

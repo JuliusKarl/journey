@@ -145,6 +145,7 @@ exports.prayer_find_one = (req, res, next) => {
         .then(result => {
             const response = {
                 prayer: result.savedPrayers[0]}
+                console.log(result.savedPrayers)
             res.status(200).json(response)})
         .catch(err => {res.status(500).json({error: err, prayer: {}})})}
 
@@ -205,16 +206,15 @@ exports.devotional_find_one = (req, res, next) => {
         .then(result => {
             const response = {
                 devotional: result.savedDevotionals[0]}
-            console.log(response);
             res.status(200).json(response)})
-        .catch(err => {res.status(500).json({error: err, prayer: {}})})}
+        .catch(err => {res.status(500).json({error: err})})}
 
 /** Add new devotional */
 exports.devotional_add_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
 
     const devotional = new Devotional({
-        _id: new mongoose.Types.ObjectId,
+        _id: req.body.id,
         text: req.body.text,
         reference: req.body.reference,
         readingUrl: req.body.readingUrl,
