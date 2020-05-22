@@ -17,15 +17,15 @@ export default class DevotionalCard extends Component {
     render() {
         return (
             <Link 
-                to={"/devotionals/find/" + this.state.id}
+                to={"/devotionals/find/" + this.state.date}
                 className="devotional-card">
                 <span>
                     <b>"{this.state.text}"</b>
                     {this.state.reference}
                     <i>
-                        {this.state.date.substring(0,10).split('-')[2]}/
-                        {this.state.date.substring(0,10).split('-')[1]}/
-                        {this.state.date.substring(0,10).split('-')[0]}
+                        {this.state.date.split('-')[2]}/
+                        {this.state.date.split('-')[1]}/
+                        {this.state.date.split('-')[0]}
                     </i>
                 </span>
             </Link>)}}

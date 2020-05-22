@@ -201,7 +201,7 @@ exports.devotional_find_one = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
 
     User
-        .findOne({email: decoded["email"]}, { savedDevotionals: { $elemMatch : { _id : req.body.id }}})
+        .findOne({email: decoded["email"]}, { savedDevotionals: { $elemMatch : { date : req.body.date }}})
         .exec()
         .then(result => {
             const response = {
@@ -218,8 +218,7 @@ exports.devotional_add_one = (req, res, next) => {
         text: req.body.text,
         reference: req.body.reference,
         readingUrl: req.body.readingUrl,
-        date: new Date()});
-        
+        date: req.body.date});
     User
         .updateOne({ email: decoded["email"] }, { $push : { savedDevotionals : { $each : [ devotional ], $position: 0 } }})
         .exec()
@@ -233,7 +232,7 @@ exports.devotional_patch_one_remove = (req, res, next) => {
     const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
 
     User
-        .updateOne({ email: decoded["email"] }, { $pull : { savedDevotionals : { _id : req.body.id } } })
+        .updateOne({ email: decoded["email"] }, { $pull : { savedDevotionals : { date : req.body.date } } })
         .exec()
         .then(result => {
             return res.status(200).json({});})

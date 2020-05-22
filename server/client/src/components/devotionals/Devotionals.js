@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import Loader from 'react-loader-spinner';
 import { motion } from 'framer-motion';
+import './Devotional.css'
 import '../../index.css';
 
 class Devotionals extends Component {
@@ -17,7 +18,7 @@ class Devotionals extends Component {
     componentDidMount() {
         this._isMounted = true;
 
-        /** Change this when pulling devotional data from user */
+        /** Get savedDevotionals */
         fetch('/user/find', {
             method: 'POST',
             headers : { 'Content-Type': 'application/json' },

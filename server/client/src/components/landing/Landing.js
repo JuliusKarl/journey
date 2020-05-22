@@ -15,7 +15,6 @@ export default class Landing extends Component {
         this.state = {
             render: false,
             id: new mongoose.Types.ObjectId,
-            liked: false,
             devotional: "",
             date: "",
             author: "",
@@ -35,19 +34,22 @@ export default class Landing extends Component {
                     devotional: devotional.text,
                     date: response.date,
                     author: devotional.reference,
-                    link: devotional.readingUrl,
-                    render: true})}})}
-
-        // fetch('/user/devotional/find', {
-        //     method: 'POST',
-        //     headers : { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({
-        //         token: localStorage.getItem('pj_token'),
-        //         id: this.state.id})})
-        //             .then(response => response.json())
-        //             .then(() => {
-        //                 this.setState({
-        //                     render: true})})}
+                    link: devotional.readingUrl})}
+            fetch('/user/devotional/find', {
+                method: 'POST',
+                headers : { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    token: localStorage.getItem('pj_token'),
+                    date: response.date})})
+                        .then(response => response.json())
+                        .then(response => {
+                            if (Object.keys(response).length !== 0) {
+                                this.setState({
+                                    render: true,
+                                    saved: true})}
+                            else {
+                                this.setState({
+                                    render: true})}})})}
 
     componentWillUnmount() {
         this._isMounted = false;}
@@ -62,7 +64,8 @@ export default class Landing extends Component {
                     id: this.state.id,
                     text : this.state.devotional,
                     reference : this.state.author,
-                    readingUrl: this.state.link})})
+                    readingUrl: this.state.link,
+                    date: this.state.date})})
                         .then((res) => res.json())
                         .then(() => {
                             this.setState({
@@ -98,12 +101,20 @@ export default class Landing extends Component {
                                 {this.state.author}
                             </h4>
                             <br/>
-                            {localStorage.getItem('pj_token') && !this.state.liked && 
+                            {localStorage.getItem('pj_token') && 
+                            !this.state.saved ?
                                 <div className="devotional-form-buttons">
                                     <input 
                                         onClick={this.saveDevotional}
                                         type="submit" 
                                         value="Like"/>
+                                </div>
+                                :
+                                <div className="devotional-form-buttons">
+                                    <input 
+                                        disabled={this.state.saved}
+                                        type="submit" 
+                                        value="Liked"/>
                                 </div>}
                     </div>
                 </CSSTransition>

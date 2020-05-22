@@ -28,7 +28,7 @@ class DevotionalView extends Component {
             headers : { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 token: localStorage.getItem('pj_token'),
-                id: window.location.pathname.split('/')[3]})})
+                date: window.location.pathname.split('/')[3]})})
                     .then((res) => res.json())
                     .then((data) => {
                         this.setState({
@@ -50,7 +50,7 @@ class DevotionalView extends Component {
                 headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     token: localStorage.getItem('pj_token'),
-                    id: window.location.pathname.split('/')[3]})})
+                    date: window.location.pathname.split('/')[3]})})
                         .then((res) => res.json())
                         .then(() => {
                             this.props.history.push('/devotionals');})
