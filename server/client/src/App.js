@@ -8,6 +8,7 @@ import PrayerView from './components/prayers/prayerView/PrayerView';
 import Profile from './components/profile/Profile';
 import Devotionals from './components/devotionals/Devotionals';
 import DevotionalView from './components/devotionals/devotionalView/DevotionalView';
+import CarouselView from './components/carousel/CarouselView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -77,6 +78,12 @@ export default class App extends Component {
 
                 <Route
                   exact
+                  path='/prayers/carousel/:id'
+                  component={() => <CarouselView />}>
+                </Route>
+
+                <Route
+                  exact
                   path='/devotionals'
                   component={() => <Devotionals />}>
                 </Route>
@@ -85,6 +92,12 @@ export default class App extends Component {
                   exact
                   path='/devotionals/find/:id'
                   component={() => <DevotionalView />}>
+                </Route>
+
+                <Route
+                  exact
+                  path='/devotionals/carousel/:id'
+                  component={() => <CarouselView />}>
                 </Route>
 
                 <Route

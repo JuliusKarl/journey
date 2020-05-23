@@ -1,12 +1,21 @@
 .main input,
 .main button,
 .main button:focus,
-.main button:active {
+.main button:active,
+.main .link {
     border-radius: 3px;
     border: solid 1px;
     border-color: #c7c7c7;
     padding: 5px;
-    outline: 0;}    
+    outline: 0;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background: #f0f0f0;}    
+
+input[type=text] {
+    background: white;
+    text-align: left;}
 
 .toolbar {
     padding-top: 15px;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PrayerCard from './prayerCard/prayerCard';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import Loader from 'react-loader-spinner';
 import { motion } from 'framer-motion';
@@ -78,7 +78,12 @@ class Prayers extends Component {
                                             type="button" 
                                             onClick={this.newPrayer} 
                                             value="New prayer"/>
-                                        <button>Pray now</button>
+                                        <Link 
+                                            className="link"
+                                            disabled={!this.state.savedPrayers} 
+                                            to={"/prayers/carousel/" + this.state.id}>
+                                                Pray now
+                                        </Link>
                                     </div>
                                     <hr />
                                     <div className="prayer-list">

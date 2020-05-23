@@ -1,0 +1,32 @@
+.main-carousel {
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    color: #ffffff;
+    background: #212529;}
+
+.top-spacer {
+    height: 40vh;
+    padding: 5px;
+    text-align: right;}
+
+.close-button {
+    cursor: pointer;}
+
+.close-button * {
+    text-decoration: none;
+    color: #ffffff;}
+
+.BrainhubCarousel__container button,
+.BrainhubCarousel__container button:active,
+.BrainhubCarousel__container button:disabled,
+.BrainhubCarousel__container button:hover:enabled,
+.BrainhubCarousel__arrows,
+.BrainhubCarousel__arrowRight,
+.BrainhubCarousel__arrowLeft,
+.BrainhubCarousel__dot {
+    color: white!important;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);}
