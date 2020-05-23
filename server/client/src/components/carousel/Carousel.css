@@ -30,3 +30,8 @@
     color: white!important;
     outline: none;
     background-color: rgba(0, 0, 0, 0);}
+
+.carousel-loader {
+    height: "10";
+    width: "10";
+    text-align: center;}

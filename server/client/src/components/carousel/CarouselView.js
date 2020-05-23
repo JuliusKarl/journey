@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Carousel from '@brainhubeu/react-carousel';
 import { motion } from 'framer-motion';
+import Loader from 'react-loader-spinner';
 import "./Carousel.css";
 import '@brainhubeu/react-carousel/lib/style.css';
 
@@ -13,6 +14,7 @@ export default class CarouselView extends Component {
             savedPrayers: []}}
 
     componentDidMount() {
+        this._isMounted = true;
         fetch('/user/find', {
             method: 'POST',
             headers : { 'Content-Type': 'application/json' },
@@ -23,7 +25,8 @@ export default class CarouselView extends Component {
                     if (this._isMounted) {
                         this.setState({
                             savedPrayers: data.savedPrayers,
-                            render: true});}})}
+                            render: true});}})
+                        .then(console.log(this.state))}
 
     componentWillUnmount() {
         this._isMounted = false;}
@@ -35,15 +38,22 @@ export default class CarouselView extends Component {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
-                <div className="top-spacer">
-                    <i className="material-icons close-button"><Link to={'/prayers/'}>close</Link></i>
-                </div>
-                    <Carousel arrows dots>
-                        i
-                        {this.state.savedPrayers.map((item, i) => {
-                            return <div key={i}>
-                                <b>item.title</b>
-                                <p>item.body</p>
-                            </div>})}
-                    </Carousel>
+                    <div className="top-spacer">
+                        <i className="material-icons close-button"><Link to={'/prayers/'}>close</Link></i>
+                    </div>
+                    {this.state.render ?
+                        <Carousel arrows dots>
+                            {this.state.savedPrayers.map((item, i) => {
+                                return <div key={i}>
+                                    <b>{item.title}</b>
+                                    <p>{item.body}</p>
+                                </div>})}
+                        </Carousel>
+                        :
+                        <Loader
+                            type="TailSpin"
+                            color="#dbdbdb"
+                            height={80}
+                            width={80}
+                            className="carousel-loader"/>}
             </motion.div>)}}
