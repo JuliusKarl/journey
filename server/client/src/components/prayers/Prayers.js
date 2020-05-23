@@ -80,7 +80,7 @@ class Prayers extends Component {
                                             value="New prayer"/>
                                         <Link 
                                             className="link"
-                                            disabled={!this.state.savedPrayers} 
+                                            onClick={this.state.savedPrayers.length <= 0 ? e => e.preventDefault() : ''}
                                             to={"/prayers/carousel/" + this.state.id}>
                                                 Pray now
                                         </Link>

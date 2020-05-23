@@ -37,7 +37,7 @@ export default class CarouselView extends Component {
                 className="main-carousel"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}>
+                exit={{ opacity: 1 }}>
                     <div className="top-spacer">
                         <i className="material-icons close-button"><Link to={'/prayers/'}>close</Link></i>
                     </div>
