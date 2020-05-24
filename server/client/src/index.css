@@ -154,7 +154,7 @@ a h3:hover, .link:hover {
 
   .list {
     grid-template-columns: repeat(1, 1fr);
-    width: 100vw!important;
+    max-width: 100vw!important;
     text-align: center;
     padding: 0px 5px;}
 

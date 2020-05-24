@@ -60,7 +60,6 @@ input[type=text] {
     height: 70px;
     width: 70px;
     font-size: 80px;
-    color: rgba(0, 0, 0, 0.6);
     border-radius: 50%!important;}
 
 .mobile-pray-now-button {
@@ -70,5 +69,4 @@ input[type=text] {
     height: 70px;
     width: 70px;
     left: 30px;
-    color: rgba(0, 0, 0, 0.6);
     border-radius: 50%!important;}
