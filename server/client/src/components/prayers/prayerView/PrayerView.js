@@ -118,7 +118,7 @@ class PrayerView extends Component {
                                 <span>
                                     <i 
                                         onClick={this.cancelPrayer}
-                                        className="material-icons close">close</i>
+                                        className="material-icons close pointer">close</i>
                                 </span>
                                 <input 
                                     type="text" 

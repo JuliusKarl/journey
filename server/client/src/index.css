@@ -32,7 +32,9 @@ body {
 .new-prayer-container, 
 .new-prayer-container form,
 .devotional-view-form-content,
-.devotional-view-form-content form {
+.devotional-view-form-content form,
+.profile-container,
+.profile-container form {
     display: grid;
     background: #c7c7c7;
     margin: 0 auto;
@@ -43,13 +45,15 @@ body {
 .login-container *,
 .prayer-view-form-container *,
 .new-prayer-container *,
-.devotional-view-form-content * {
+.devotional-view-form-content *,
+.profile-container, * {
     border-radius: 2px;}
 
 .login-container input[type='submit'],
 .prayer-view-form-container input[type='submit'],
 .new-prayer-container input[type='submit'],
-.devotional-view-form-content input[type='submit'] {
+.devotional-view-form-content input[type='submit'],
+.profile-container input[type="submit"] {
     color: #e0e0e0;
     background-color: rgba(14, 14, 27, 0.9);
     transition: background-color 0.1s ease-in-out }
@@ -65,9 +69,9 @@ form {display: grid;}
 form input, 
 form div, 
 form button {
-    padding: 10px;
-    margin: 10px 60px;
-    border: 0px;}
+  padding: 10px;
+  margin: 10px 60px;
+  border: 0px;}
 
 .pointer {
     cursor: pointer;
@@ -75,15 +79,15 @@ form button {
     transition: color 0.2s ease-in-out;}
 
 .pointer:hover {
-    cursor: pointer;
-    color: #e0e0e0;
-    transition: color 0.2s ease-in-out;}
-    
+      cursor: pointer;
+      color: #e0e0e0;
+      transition: color 0.2s ease-in-out;}
+      
 .list {
-  display: grid;
-  max-width: 100vw!important;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1vw;}
+    display: grid;
+    max-width: 100vw!important;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1vw;}
 
 .list * {
     padding:  2px 2px 5px 5px;
@@ -94,138 +98,151 @@ form button {
 
 .prayer-view-form-container span,
 .new-prayer-container span,
-.devotional-view-form-content span {
-  margin: 0px;
-  text-align: right;}
+.devotional-view-form-content span,
+.profile-container span {
+    margin: 0px;
+    text-align: right;}
 
 input[type="submit"]:disabled {
-  background-color: grey;
-  transition: background-color 0.1s ease-in-out}
+    background-color: grey;
+    transition: background-color 0.1s ease-in-out}
 
 .form-buttons {
-  display: flex;}
+    display: flex;} 
 
 .form-buttons * {
-  flex-grow: 1;}
+    flex-grow: 1;}
 
 /* Animations */
 .loader {
-  height: "10";
-  width: "10";
-  margin-top: 15vh;
-  text-align: center;}
+    height: "10";
+    width: "10";
+    margin-top: 15vh;
+    text-align: center;}
   
 .fade-appear {
-  opacity: 0;
-  z-index: 1;}
+    opacity: 0;
+    z-index: 1;}
 
 .fade-appear.fade-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in-out;}
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;}
 
 .fade-enter {
-  opacity: 0;
-  z-index: 1;}
+    opacity: 0;
+    z-index: 1;}
 
 .fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in-out;}
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;}
 
 .fade-exit {
-  opacity: 1;
-  z-index: 1;}
+    opacity: 1;
+    z-index: 1;}
 
 .fade-exit.fade-exit-active {
-  opacity: 0;
-  transition: opacity 300ms ease-in-out;}
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;}
 
 a h3, .link { 
     color: rgba(0, 0, 0, 1);
     transition: color 0.2s ease-in-out;}
 
-a h3:hover, .link:hover {
+a h3:hover, 
+.link:hover {
     color: rgba(0, 0, 0, 0.6);
     transition: color 0.2s ease-in-out;}
 
 @media only screen and (max-width: 1000px) {
   .main-content {
-    width: 100%;}
+      width: 100%;}
 
   .list {
-    grid-template-columns: repeat(1, 1fr);
-    max-width: 100vw!important;
-    text-align: center;
-    padding: 0px 5px;}
+      grid-template-columns: repeat(1, 1fr);
+      max-width: 100vw!important;
+      text-align: center;
+      padding: 0px 5px;}
 
   .list .list-input {
       padding: 5px 5px;
       width: 100%;}
-  
+    
   .list hr {
       padding: 0px;
       width: 90%;}
     
-  form input, 
+  /* form input, 
   form div, 
   form button {
-    padding: 10px;
-    margin: 10px 60px;
-    border: 0px;}
+      padding: 10px;
+      margin: 10px 60px;
+      border: 0px;} */
 
+  form input, 
+  form div, 
+  form button, 
+  form textarea {
+      margin: 10px 0px!important;
+      width: 100%;}
+      
   form p {
-    padding: 0px;
-    margin: 0px 60px;}
+      padding: 0px;
+      margin: 0px 60px;}
 
   .login-container,
   .prayer-view-form-container,
   .new-prayer-container,
-  .devotional-view-form-content {
-    margin: 0 auto;
-    padding: 1px;
-    width: 60vw;}}
+  .devotional-view-form-content,
+  .profile-container {
+      margin: 0 auto!important;
+      padding: 1px;
+      width: 60vw;}}
 
 @media only screen and (max-width: 800px) {
   form input, 
   form div, 
   form button, 
   form textarea {
-    margin: 10px 0px!important;
-    width: 100%;}
-    
+      margin: 10px 0px!important;
+      width: 100%;}
+      
   .login-container,
   .prayer-view-form-container,
   .new-prayer-container,
-  .devotional-view-form-content {
-    margin: 0 auto;
-    padding: 5px;
-    width: 100vw;}
+  .devotional-view-form-content,
+  .profile-container {
+      margin: 0 auto;
+      padding: 5px;
+      width: 100vw;}
 
   .login-container *,
   .prayer-view-form-container *,
   .new-prayer-container *,
-  .devotional-view-form-content * {
-    margin: 0 auto;}
+  .devotional-view-form-content *,
+  .profile-container * {
+      margin: 0 auto;}
 
   .login-container form,
   .prayer-view-form-container form,
   .new-prayer-container form,
-  .devotional-view-form-content form {
-    width: 100%;
-    margin: 0px;}}
+  .devotional-view-form-content form,
+  .profile-container form {
+      width: 100%;
+      margin: 0px;}}
 
 .danger {
-  background: #fffefe!important;
-  border-style: solid!important;
-  border-color: #df1414!important;
-  color: #df1414!important;
-  font-weight: bold;}
+    background: #fffefe!important;
+    border-style: solid!important;
+    border-color: #df1414!important;
+    color: #df1414!important;
+    font-weight: bold;}
 
 .error-warning {
-  color: #c72828;
-  font-size: 14px;
-  padding: 0px;
-  margin: 0px 60px;
-  text-align: left;}
+    color: #c72828;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px 60px;
+    text-align: left;}
 
 .success-text {
     color: #6cbd2b;
@@ -235,4 +252,5 @@ a h3:hover, .link:hover {
     text-align: center;}
 
 .close {
-  color: black;}
+    color: black;
+    cursor: pointer;}

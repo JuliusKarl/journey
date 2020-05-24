@@ -154,7 +154,7 @@ export default class Navigator extends Component {
                             variant="link">Profile
                           </Button>
                         </div>
-                      </Nav>}
+                      </Nav>
                 </Navbar.Collapse>
           </Navbar>
         </div>);}}

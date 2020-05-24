@@ -77,6 +77,7 @@ export default class Landing extends Component {
         return (
             this.state.render ?
             <motion.div
+                className="main"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
