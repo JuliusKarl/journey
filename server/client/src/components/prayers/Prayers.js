@@ -4,10 +4,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import Loader from 'react-loader-spinner';
 import { motion } from 'framer-motion';
-import './Prayers.css';
-import '../../index.css';
 import AddPrayer from '../../assets/add-prayer.png';
 import PrayNow from '../../assets/pray-now.png';
+import './Prayers.css';
+import '../../index.css';
+
 
 class Prayers extends Component {
     _isMounted = false;
@@ -65,7 +66,6 @@ class Prayers extends Component {
             <div className="main">
                     {!isMobile ?
                         <div className="browser">
-                                             
                                 <motion.div 
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -79,12 +79,12 @@ class Prayers extends Component {
                                         <input 
                                             type="button" 
                                             onClick={this.newPrayer} 
-                                            value="New prayer"/>
+                                            value="New prayer &#65291;"/>
                                         <Link 
                                             className="link"
                                             onClick={this.state.savedPrayers.length <= 0 ? e => e.preventDefault() : ''}
                                             to={"/prayers/carousel/" + this.state.id}>
-                                                Pray now
+                                                Pray now 🡒
                                         </Link>
                                     </div>
                                     <hr />

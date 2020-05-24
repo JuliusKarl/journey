@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Carousel from '@brainhubeu/react-carousel';
 import { motion } from 'framer-motion';
 import Loader from 'react-loader-spinner';
-import "./Carousel.css";
+import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import "./Carousel.css";
 
 export default class CarouselView extends Component {
     _isMounted = false;
@@ -47,7 +47,8 @@ export default class CarouselView extends Component {
                         <Carousel arrows dots>
                             {this.state.savedPrayers.map((item, i) => {
                                 return <div key={i}>
-                                    <b>{item.title}</b>
+                                    <h3><b>{item.title}</b></h3>
+                                    <hr/>
                                     <p>{item.body}</p>
                                 </div>})}
                         </Carousel>

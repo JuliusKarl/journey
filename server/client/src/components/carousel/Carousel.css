@@ -8,13 +8,19 @@
     background: #212529;}
 
 .top-spacer {
-    height: 40vh;
+    height: 5vh;
     padding: 5px;
     text-align: right;}
 
 .carousel-close * {
     text-decoration: none;
-    color: #ffffff;}
+    color: #ffffff;
+    z-index: 1;
+    transition: color 0.2s ease-in-out;}
+
+.carousel-close *:hover {
+    color: rgb(133, 133, 133);
+    transition: color 0.2s ease-in-out;}
 
 .BrainhubCarousel__container button,
 .BrainhubCarousel__container button:active,
@@ -32,3 +38,15 @@
     height: "10";
     width: "10";
     text-align: center;}
+
+.BrainhubCarousel,
+.BrainhubCarousel__container,
+.BrainhubCarousel__track,
+.BrainhubCarousel__trackContainer,
+.BrainhubCarousel__track--transition,
+.BrainhubCarousel__track--draggable,
+.BrainhubCarousel__arrows,
+.BrainhubCarousel__arrowRight,
+.BrainhubCarousel__arrowLeft {
+    text-align: center;
+    height: 95%;}

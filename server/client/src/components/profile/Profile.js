@@ -18,6 +18,13 @@ class Profile extends Component {
         this.props.history.push('/');
         window.location.reload(true);}
 
+/** To Add:  
+ * - Profile Picture
+ * - Name handle
+ * - email handle
+ * - edit profile
+ * - delete account
+*/
     render() {
         return (
             <motion.div 
@@ -28,7 +35,7 @@ class Profile extends Component {
                 <input 
                     type="button"
                     value="Log Out"
-                    onClick={this.logOut}></input>
+                    onClick={this.logOut}/>
             </motion.div>)}}
 
 export default withRouter(Profile);
