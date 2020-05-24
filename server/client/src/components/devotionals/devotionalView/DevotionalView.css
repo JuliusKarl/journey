@@ -1,34 +1,8 @@
-.devotional-view-form-content {
-    background: #c7c7c7;
-    padding: 0px 5px;
-    margin: 0px;
-    border-radius: 5px;
-    font-size: 24px;}
-
 .devotional-toolbar {
     display: flex;
-    padding-left: 5px;
+    padding: 0px 0px 0px 5px;
     justify-content: space-between;}
 
-/* Prayer view form options */
-.devotional-view-form-content * {
-    padding: 0px;
-    text-align: center;
-    color: rgba(14, 14, 27, 0.9)}
-
-.devotional-view-form-content .form-buttons {
-    display: flex;
-    font-size: 16px;
-    justify-content: space-evenly;}
-
-.devotional-view-form-content .form-buttons input {
-    background: rgba(14, 14, 27, 0.9);
-    color: #ffffff;}
-
-.devotional-view-form-content hr {
-    width: 80%;}
-
-@media only screen and (max-width: 1000px) {
-    
-.devotional-view-form-content .form-buttons input {
-    margin: 0px 30vw!important;}}
+.devotional-title,
+.devotional-body {
+    margin: 0px auto;}

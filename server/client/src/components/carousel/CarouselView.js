@@ -39,7 +39,9 @@ export default class CarouselView extends Component {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 1 }}>
                     <div className="top-spacer">
-                        <i className="material-icons close-button"><Link to={'/prayers/'}>close</Link></i>
+                        <i className="material-icons pointer carousel-close">
+                            <Link to={'/prayers/'}>close</Link>
+                        </i>
                     </div>
                     {this.state.render ?
                         <Carousel arrows dots>

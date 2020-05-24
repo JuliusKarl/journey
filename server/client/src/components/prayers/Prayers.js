@@ -6,6 +6,8 @@ import Loader from 'react-loader-spinner';
 import { motion } from 'framer-motion';
 import './Prayers.css';
 import '../../index.css';
+import AddPrayer from '../../assets/add-prayer.png';
+import PrayNow from '../../assets/pray-now.png';
 
 class Prayers extends Component {
     _isMounted = false;
@@ -86,7 +88,7 @@ class Prayers extends Component {
                                         </Link>
                                     </div>
                                     <hr />
-                                    <div className="prayer-list">
+                                    <div className="list">
                                         {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
                                         this.state.savedPrayers.map((item, i) => {
                                             return <PrayerCard 
@@ -102,11 +104,16 @@ class Prayers extends Component {
                         </div>
                         :
                         <div>
-                            <hr />
-                            <div className="prayer-list">
+                            <div className="list">
+                                <input 
+                                    className="search list-input" 
+                                    type="text" 
+                                    placeholder="Search prayer..."/>
+                                <hr />
                                 {this.state.savedPrayers &&  this.state.savedPrayers.length > 0 ? 
                                     this.state.savedPrayers.map((item, i) => {
-                                        return <PrayerCard  
+                                        return <PrayerCard
+                                            className="list-input"  
                                             key={i} 
                                             title={item.title} 
                                             body={item.body}
@@ -115,11 +122,21 @@ class Prayers extends Component {
                                 : 
                                     <i>No Prayers</i>}
                             </div>
-                                <i 
-                                    className="mobile-add-button large material-icons"
+                                <Link 
+                                    className="mobile-pray-now-button"
+                                    onClick={this.state.savedPrayers.length <= 0 ? e => e.preventDefault() : ''}
+                                    to={"/prayers/carousel/" + this.state.id}>
+                                        <img 
+                                            src={PrayNow}
+                                            className="mobile-pray-now-button"
+                                            onClick={this.newPrayer}>
+                                        </img>
+                                </Link>
+                                <img 
+                                    src={AddPrayer}
+                                    className="mobile-add-button"
                                     onClick={this.newPrayer}>
-                                    add_circle_outline
-                                </i>
+                                </img>
                         </div>}
             </div>
             :

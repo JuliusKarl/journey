@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { isMobile } from "react-device-detect";
 import './DevotionalView.css'
 
 class DevotionalView extends Component {
@@ -87,28 +88,30 @@ class DevotionalView extends Component {
         return (
             this.state.render ? 
                 <motion.div 
-                    className="main"
+                    className="main-content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}>
+                    {!isMobile ? <div style={{height: '10vh'}}></div>: <div style={{height: '5vh'}}></div>}
                     {!this.state.editMode ? 
                         <form>
-                            <span  className="devotional-toolbar">
-                                <span>
+                            <div className="devotional-view-form-content">
+                            <span className="devotional-toolbar">
+                                <span className="devotional-date">
                                     <small><small><i>
                                     {this.state.date.substring(0,10).split('-')[2]}/
                                     {this.state.date.substring(0,10).split('-')[1]}/
                                     {this.state.date.substring(0,10).split('-')[0]}
                                     </i></small></small>
                                 </span>
+                                <span className="close pointer">
                                 <i 
                                     onClick={this.cancelDevotional}
                                     className="material-icons">close</i>
+                                </span>
                             </span>
-                            <div className="devotional-view-form-content">
-                                <div><Link to={this.state.readingUrl}><b>"{this.state.text}"</b></Link></div>
-                                <div><small>{this.state.reference}</small></div>
-                                <hr />
+                                <div className="devotional-title"><Link className="link" to={this.state.readingUrl}><b>"{this.state.text}"</b></Link></div>
+                                <div className="devotional-body">{this.state.reference}</div>
                                 <div className="form-buttons">
                                     <input 
                                         type="submit" 

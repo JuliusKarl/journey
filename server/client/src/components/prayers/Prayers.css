@@ -30,43 +30,6 @@ input[type=text] {
     margin: 0px 5px;
     flex-grow: 1;}
 
-/** Form Options */
-form {
-    width: 60vw;
-    border-radius: 5px;
-    background: #c7c7c7;
-    margin: 0 auto;}
-
-form span {
-    text-align: right;}
-
-form i {
-    cursor: pointer;}
-
-.form-buttons {
-    display: flex;
-    justify-content: space-evenly;}
-
-.form-buttons input {
-    background: rgba(14, 14, 27, 0.9);
-    flex-grow: 1;
-    color: #ffffff;}
-
-/* Prayer Options*/
-.prayer-list {
-    display: grid;
-    max-width: 100vw!important;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1vw;}
-
-.prayer-list * {
-    padding:  2px 2px 5px 5px;
-    width: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis!important;
-    display: block;
-    overflow: hidden;}
-
 .prayer-body {
     margin: 10px 60px;
     resize: none;
@@ -81,61 +44,31 @@ form i {
     text-align: center;
     padding: 0px 0px 10.5px 0px;
     margin: 0px;}
-
-/* Animations */
-.loader {
-    height: "10";
-    width: "10";
-    margin-top: 15vh;
-    text-align: center;}
     
-.fade-appear {
-    opacity: 0;
-    z-index: 1;}
-
-.fade-appear.fade-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in-out;}
-
-.fade-enter {
-    opacity: 0;
-    z-index: 1;}
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in-out;}
-
-.fade-exit {
-    opacity: 1;
-    z-index: 1;}
-
-.fade-exit.fade-exit-active {
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;}
-
 /* Mobile Options */
 @media only screen and (max-width: 1000px) {
     .main {
         padding: 0px;}
     
     form {
-        width: 100vw;}
-
-    .prayer-list {
-        grid-template-columns: repeat(1, 1fr);
-        width: 100vw!important;
-        text-align: center;}
-
-    .prayer-list * {
-        padding: 5px 5px;
-        width: 100%;}}
+        width: 100vw;}}
 
 .mobile-add-button {
     position: fixed;
-    height: 80px;
-    width: 80px;
-    bottom: 30px;
-    right: 20px;
+    bottom: 50px;
+    right: 30px;
+    height: 70px;
+    width: 70px;
     font-size: 80px;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%!important;}
+
+.mobile-pray-now-button {
+    position: fixed;
+    font-size: 80px;
+    bottom: 50px;
+    height: 70px;
+    width: 70px;
+    left: 30px;
     color: rgba(0, 0, 0, 0.6);
     border-radius: 50%!important;}

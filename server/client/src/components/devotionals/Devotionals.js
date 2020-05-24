@@ -58,7 +58,7 @@ class Devotionals extends Component {
                                     placeholder="Search devotional..."/>
                             </div>
                             <hr />
-                            <div className="devotional-list">
+                            <div className="list">
                             {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
                                 this.state.savedDevotionals.map((item, i) => {
                                     return <DevotionalCard 
@@ -78,8 +78,12 @@ class Devotionals extends Component {
                 </div>
                 :
                 <div>
-                    <hr />
-                        <div className="devotional-list">
+                    <div className="list">
+                        <input 
+                            className="search" 
+                            type="text" 
+                            placeholder="Search devotional..."/>
+                            <hr />
                                 {this.state.savedDevotionals &&  this.state.savedDevotionals.length > 0 ? 
                                     this.state.savedDevotionals.map((item, i) => {
                                         return <DevotionalCard 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { isMobile } from "react-device-detect";
 import './PrayerView.css'
 
 class PrayerView extends Component {
@@ -84,17 +85,19 @@ class PrayerView extends Component {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}>
+                    {!isMobile ? <div style={{height: '10vh'}}></div>: <div style={{height: '5vh'}}></div>}
                     {!this.state.editMode ? 
                         <form>
-                            <span>
-                                <i 
-                                    onClick={this.cancelPrayer}
-                                    className="material-icons">close</i>
-                            </span>
-                            <div className="prayer-view-form-content">
+                            <div className="prayer-view-form-container">
+                                <span>
+                                    <i 
+                                        onClick={this.cancelPrayer}
+                                        className="material-icons close">close
+                                    </i>
+                                </span>
+                                
                                 <div><b>{this.state.prayerTitle}</b></div>
                                 <div><small>{this.state.prayerBody}</small></div>
-                                <hr />
                                 <div className="form-buttons">
                                     <input 
                                         onClick={this.editPrayer}
@@ -111,34 +114,41 @@ class PrayerView extends Component {
                         </form>
                         : 
                         <form>
-                            <input 
-                                type="text" 
-                                className="prayer-title"
-                                name="prayerTitle"
-                                onChange={this.storeValue}
-                                value={this.state.prayerTitle}
-                                placeholder="Title"/>
-
-                            <textarea
-                                type="textarea" 
-                                name="prayerBody"
-                                onChange={this.storeValue}
-                                value={this.state.prayerBody}
-                                className="prayer-body"
-                                rows="6"
-                                placeholder="Prayer"></textarea>
-
-                            <div className="form-buttons">
+                            <div className="prayer-view-form-container">
+                                <span>
+                                    <i 
+                                        onClick={this.cancelPrayer}
+                                        className="material-icons close">close</i>
+                                </span>
                                 <input 
-                                    onClick={this.editPrayer}
-                                    type="submit" 
-                                    value="Save"/>
+                                    type="text" 
+                                    className="prayer-title"
+                                    name="prayerTitle"
+                                    onChange={this.storeValue}
+                                    value={this.state.prayerTitle}
+                                    placeholder="Title"/>
 
-                                <input 
-                                    type="submit" 
-                                    className="danger"
-                                    onClick={this.removePrayer}
-                                    value="Delete"/>
+                                <textarea
+                                    type="textarea" 
+                                    name="prayerBody"
+                                    onChange={this.storeValue}
+                                    value={this.state.prayerBody}
+                                    className="prayer-body"
+                                    rows="4"
+                                    placeholder="Prayer"></textarea>
+
+                                <div className="form-buttons">
+                                    <input 
+                                        onClick={this.editPrayer}
+                                        type="submit" 
+                                        value="Save"/>
+
+                                    <input 
+                                        type="submit" 
+                                        className="danger"
+                                        onClick={this.removePrayer}
+                                        value="Delete"/>
+                                </div>
                             </div>
                         </form>}
                 </motion.div>

@@ -48,7 +48,8 @@ export default class Landing extends Component {
                                     render: true,
                                     saved: true})}
                             else {
-                                this.setState({})}})
+                                this.setState({
+                                    render:true})}})
                         .catch(() => this.setState({render:true}))})}
 
     componentWillUnmount() {

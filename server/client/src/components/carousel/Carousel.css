@@ -12,10 +12,7 @@
     padding: 5px;
     text-align: right;}
 
-.close-button {
-    cursor: pointer;}
-
-.close-button * {
+.carousel-close * {
     text-decoration: none;
     color: #ffffff;}
 
