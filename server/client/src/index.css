@@ -87,11 +87,10 @@ form button {
 
 .list * {
     padding:  2px 2px 5px 5px;
-    width: 100%;
-    white-space: nowrap;
+    white-space: nowrap!important;
     text-overflow: ellipsis!important;
-    display: block;
-    overflow: hidden;}
+    display: block!important;
+    overflow: hidden!important;}
 
 .prayer-view-form-container span,
 .new-prayer-container span,
