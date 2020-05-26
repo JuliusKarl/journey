@@ -55,6 +55,7 @@ class PrayerView extends Component {
 
     editPrayer(e) {
         if (!this.state.editMode) {
+            e.preventDefault();
             this.setState({
                 editMode: !this.state.editMode})}
         else {
